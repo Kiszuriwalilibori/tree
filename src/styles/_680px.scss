@@ -1,0 +1,48 @@
+@media only screen and (max-width: 680px) {
+  #root {
+    padding: 70px 11vw;
+  }
+  .wrapper-primary {
+    width: 63vw;
+  }
+  .wrapper-secondary {
+    width: 36.7vw;
+  }
+  .contentWrapperSecondary {
+    margin-left: unset;
+    @include content-wrapper-secondary-top-padding;
+  }
+  .wrapper-secondary-outer {
+    @include wrapper-secondary-outer-margin;
+  }
+  .wrapper-secondary-outer::before {
+    left: -$secondary-offset / 2.2;
+  }
+  .wrapper-primary > .element .wrapper-secondary {
+    border-radius: 6px 6px 6px 0;
+    width: calc(36.7vw - 30px);
+  }
+  $top-header-button: 44vw;
+  .top-header {
+    width: $top-header-button;
+    @include top-header-padding;
+  }
+  .contentWrapperPrimary {
+    margin-left: 0.5 * $top-header-button;
+    @include content-wrapper-primary-top-padding;
+  }
+  .append-primary {
+    width: calc(50px + 70 * ((100vw - 320px) / 360));
+    height: calc(50px + 70 * ((100vw - 320px) / 360));
+  }
+  .append-secondary {
+    width: calc(30px + 20 * ((100vw - 320px) / 360));
+    height: calc(30px + 20 * ((100vw - 320px) / 360));
+  }
+}
+
+@media only screen and (min-width: 680px) and (max-width: 707px) {
+  .contentWrapperSecondary {
+    margin-left: calc(40px + 22.5 * ((100vw - 680px) / 27));
+  }
+}

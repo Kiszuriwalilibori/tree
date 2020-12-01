@@ -1,0 +1,77 @@
+@mixin gradient {
+  background-image: linear-gradient(#a375f3, $local-blue);
+}
+
+@mixin box_shadow {
+  box-shadow: 0px 4px 20px -4px rgb(172, 166, 192);
+}
+
+@mixin operator {
+  position: absolute;
+  left: -70px;
+  font-size: $basic-font-size;
+  font-size: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: lightgrey;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+@mixin small-font {
+  font-size: calc(18px + 6 * ((100vw - 320px) / 180));
+}
+
+@mixin grey-letters {
+  font-size: calc(14px + 8 * ((100vw - 320px) / 180));
+}
+
+@mixin delete-small-font {
+  font-size: calc(18px + 12 * ((100vw - 320px) / 180));
+}
+
+@mixin top-header-padding {
+  padding: calc(10px + 10 * ((100vw - 500px) / 180)) 25px;
+}
+
+@mixin wrapper-secondary-outer-margin {
+  margin: calc(20px + 20 * ((100vw - 320px) / 360)) 0;
+}
+
+@mixin content-wrapper-secondary-top-padding {
+  padding-top: calc(1px + 25 * ((100vw - 320px) / 360));
+}
+
+@mixin content-wrapper-primary-top-padding {
+  padding-top: calc(1px + 25 * ((100vw - 320px) / 360));
+}
+
+@mixin append {
+  background-image: linear-gradient(#87f2a1, #25e9e6);
+  border-radius: 50%;
+  border: none;
+  position: absolute;
+  cursor: pointer;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12);
+
+  &:hover,
+  &:focus {
+    outline: none;
+    background-image: linear-gradient(#25e9e6, #87f2a1);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.11), 0 0 2px 2px rgba(0, 0, 0, 0.11), 0 0 4px 4px rgba(0, 0, 0, 0.11), 0 0 8px 8px rgba(0, 0, 0, 0.11), 0 0 16px 16px rgba(0, 0, 0, 0.11);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin delete-box-shadow {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.2), 0 2px 4px rgba(0, 0, 0, 0.15), 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.05);
+}

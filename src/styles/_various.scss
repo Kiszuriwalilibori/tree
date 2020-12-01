@@ -1,0 +1,163 @@
+.TextItem {
+  font-size: inherit;
+  display: inline-block;
+  color: inherit;
+  letter-spacing: inherit;
+}
+
+.element {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: $basic-font-size;
+}
+
+.wrapper-secondary {
+  border: 2px solid lightgrey;
+  border-radius: 6px;
+  padding: 7px $secondary-left-indent 7px 15px;
+  width: $short;
+}
+
+.wrapper-primary {
+  position: relative;
+  border: none;
+  border-radius: $radius;
+  width: 420px;
+  padding: 25px 20px 25px 50px;
+  background-color: #06575b;
+  color: white;
+  @include box_shadow;
+
+  &::before {
+    position: absolute;
+    content: "";
+    @include gradient;
+    left: 0px;
+    height: 100%;
+    width: 20px;
+    top: 0;
+    border-radius: $radius 0 0 $radius;
+  }
+}
+
+.wrapper-primary>.element {
+  padding-right: $secondary-left-indent + $line-bolder;
+}
+
+.top-header {
+  color: white;
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  @include box_shadow;
+  text-align: center;
+  padding: 20px 25px;
+  border-radius: $radius;
+  @include gradient;
+  width: $top-header-button;
+  text-shadow: 0px 2px 2px rgb(74, 74, 155);
+}
+
+.contentWrapperPrimary {
+  margin-left: 0.5 * $top-header-button;
+  border-left: 2px solid white;
+  padding: 25px 0;
+  position: relative;
+}
+
+.contentWrapperSecondary {
+  margin-left: $secondary-offset;
+  border-left: 2px solid white;
+  padding-top: 25px;
+  padding-bottom: 50px;
+  position: relative;
+}
+
+.wrapper-primary-outer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0;
+
+  &::before {
+    @include operator;
+    content: "And";
+    color: #003b46;
+  }
+}
+
+.wrapper-secondary-outer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 40px 0;
+
+  &::before {
+    @include operator;
+    left: -$secondary-offset;
+    content: "Or";
+  }
+}
+
+.distancer {
+  height: 50%;
+  border-bottom: 2px solid white;
+  flex: 1 0 auto;
+  min-width: 10px;
+}
+
+.append-primary {
+  @include append;
+
+  left: 0;
+  transform: translateX(-50%);
+  width: $primary-plus-width;
+  height: $primary-plus-width;
+}
+
+.append-secondary {
+  @include append;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: $secondary-plus-width;
+  height: $secondary-plus-width;
+}
+
+.append__cross {
+  width: 75%;
+  height: 75%;
+  background-image: url("../graphics/plus.png");
+  background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  :hover,
+  :focus {
+    outline: none;
+    text-decoration: none;
+  }
+
+}
+
+.delete {
+  color: #f66182;
+  font-size: 30px;
+  border-radius: 15px;
+  @include delete-box-shadow;
+  cursor: pointer;
+}
+
+.invisible_button {
+  border: none;
+  background: transparent;
+  padding: none;
+  margin: none;
+  :focus{ outline:none; text-decoration:none;}
+}

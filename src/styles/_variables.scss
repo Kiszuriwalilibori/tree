@@ -1,0 +1,20 @@
+$radius: 6px;
+$short: 250px;
+$secondary-offset: 0.25 * $short;
+$top-header-button: 300px;
+$basic-font-size: 24px;
+$primary-plus-width: 120px;
+$secondary-left-indent: 10px;
+$line-bolder: 2px;
+$secondary-plus-width: 0.4 * $primary-plus-width;
+$local-blue: #7176f7;
+$small-font: 20px;
+
+@font-face {
+  font-family: "Brandon Grotesque Black";
+  src: url(brandon.eot);
+  src: url(brandon.woff2);
+  src: url(brandon.woff);
+  src: url(brandon.ttf);
+  font-display: swap;
+}

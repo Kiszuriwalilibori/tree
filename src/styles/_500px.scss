@@ -1,0 +1,19 @@
+@media only screen and (max-width: 500px) {
+  .element {
+    @include small-font;
+  }
+  .wrapper-primary-outer::before,
+  .wrapper-secondary-outer::before {
+    @include small-font;
+  }
+  #root {
+    padding: 5vw;
+  }
+  .top-header {
+    @include small-font;
+    padding: 10px 25px;
+  }
+  .delete {
+    @include delete-small-font;
+  }
+}
