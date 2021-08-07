@@ -1,13 +1,13 @@
-import React from "react";
+import * as React from "react";
 import { connect } from "react-redux";
 import { initAppend } from "../redux/input";
 import { useCallback } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 //type ButtonProps = { onClick:Function,string:string, primary:boolean };
 interface ButtonProps {
   onClick: Function;
-  string: string|string[];
+  string: string | string[];
   primary: boolean;
 }
 
@@ -27,15 +27,15 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: (arg0: { payload: string[]; type: string; }) => void) => ({
-  onClick: (data:string[]):void => dispatch(initAppend(data)),
+const mapDispatchToProps = (dispatch: (arg0: { payload: string[]; type: string }) => void) => ({
+  onClick: (data: string[]): void => dispatch(initAppend(data)),
 });
 
 const AppendItemButton = connect(null, mapDispatchToProps)(React.memo(Button));
 export default AppendItemButton;
 
-Button.propTypes ={
+Button.propTypes = {
   onClick: PropTypes.func,
   string: PropTypes.string,
   primary: PropTypes.bool,
-}
+};

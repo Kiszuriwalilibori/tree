@@ -1,4 +1,4 @@
-# Zadanie rekrutacyjne dla Hype4Mobile
+# stare zadanie rekrutacyjne, rozwinięte w osobny projekcike
 
 [![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)](https://nodesource.com/products/nsolid)
 
@@ -32,18 +32,20 @@
 - Not for IE  and Opera Mini
 
 ## Versions
-##### 1 
+##### 0.1.0 
 - initial
-##### 2
+##### 0.2.0
 - better keyboard navigability
 - better background
 - follow duck guideline
 - more logic in reducer and not action
 
-#### 3
+#### 0.3.0
 - array.flat partially replaced flatten function
 - removing items debounced
 
+#### 0.4.0 
+- appendItemModal now with formik & yup
 ### To do
 
 - functions try catch
