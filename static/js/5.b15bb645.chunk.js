@@ -1,2 +1,2 @@
 (this.webpackJsonptree=this.webpackJsonptree||[]).push([[5],{256:function(e,n,t){"use strict";t.r(n);var c=t(0),r=t(11),a=t(14),o=Object(r.b)(null,(function(e){return{onClick:function(n){return e(Object(a.c)(n))}}}))(c.memo((function(e){var n=e.onClick,t=e.string,r=e.primary,a=Object(c.useCallback)((function(e){n(t)}),[n,t]);return c.createElement("button",{className:r?"append-primary":"append-secondary",onClick:a,"role-label":"append-button"},c.createElement("div",{className:"append__cross"}))})));n.default=o}}]);
-//# sourceMappingURL=5.e499b12a.chunk.js.map
+//# sourceMappingURL=5.b15bb645.chunk.js.map
