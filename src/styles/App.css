@@ -107,6 +107,11 @@ body {
   margin: 0 auto;
 }
 
+.modal-content__button {
+  width: 150px;
+  margin: 0 auto !important;
+}
+
 .TextItem {
   font-size: inherit;
   display: inline-block;

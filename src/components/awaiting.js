@@ -1,11 +1,11 @@
-import React, { Suspense } from "react";
-import EmptyLoader from "./EmptyLoader";
+import React, { Suspense } from 'react';
+import EmptyLoader from './EmptyLoader';
 
-const Awaiting = (Component) => {
-  return (props) => (
-    <Suspense fallback={EmptyLoader()}>
-      <Component {...props} />
-    </Suspense>
-  );
+const Awaiting = Component => {
+    return props => (
+        <Suspense fallback={EmptyLoader()}>
+            <Component {...props} />
+        </Suspense>
+    );
 };
 export default Awaiting;

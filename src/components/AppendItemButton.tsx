@@ -1,41 +1,51 @@
-import * as React from "react";
-import { connect } from "react-redux";
-import { initAppend } from "../redux/input";
-import { useCallback } from "react";
-import PropTypes from "prop-types";
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { initAppend } from '../redux/input';
+import { useCallback } from 'react';
+import PropTypes from 'prop-types';
 
-//type ButtonProps = { onClick:Function,string:string, primary:boolean };
 interface ButtonProps {
-  onClick: Function;
-  string: string | string[];
-  primary: boolean;
+    onClick: Function;
+    string: string | string[];
+    primary: boolean;
 }
 
+/**
+ * Renders the button which initializes creation of new node
+ * @param {Function} onClick the function which does the job
+ * @param {string} string   indicates node (its text content) to be created
+ * @param {boolean} primary defines whether givennode is primary(directly in main tree) or not
+ * @returns button component
+ */
 const Button = (props: ButtonProps) => {
-  const { onClick, string, primary } = props;
-  const click = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement>): void => {
-      onClick(string);
-    },
-    [onClick, string]
-  );
+    const { onClick, string, primary } = props;
+    const handleClick = useCallback(
+        (e: React.MouseEvent<HTMLButtonElement>): void => {
+            onClick(string);
+        },
+        [onClick, string],
+    );
 
-  return (
-    <button className={primary ? "append-primary" : "append-secondary"} onClick={click} role-label="append-button">
-      <div className="append__cross"></div>
-    </button>
-  );
+    return (
+        <button
+            className={primary ? 'append-primary' : 'append-secondary'}
+            onClick={handleClick}
+            role-label="append-button"
+        >
+            <div className="append__cross"></div>
+        </button>
+    );
 };
 
 const mapDispatchToProps = (dispatch: (arg0: { payload: string[]; type: string }) => void) => ({
-  onClick: (data: string[]): void => dispatch(initAppend(data)),
+    onClick: (data: string[]): void => dispatch(initAppend(data)),
 });
 
 const AppendItemButton = connect(null, mapDispatchToProps)(React.memo(Button));
 export default AppendItemButton;
 
 Button.propTypes = {
-  onClick: PropTypes.func,
-  string: PropTypes.string,
-  primary: PropTypes.bool,
+    onClick: PropTypes.func,
+    string: PropTypes.string,
+    primary: PropTypes.bool,
 };
