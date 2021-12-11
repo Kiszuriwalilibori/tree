@@ -1,0 +1,2 @@
+(this.webpackJsonptree=this.webpackJsonptree||[]).push([[5],{267:function(e,n,t){"use strict";t.r(n);var a=t(0),p=t(72),r=t(7),s=function(e){var n=e.string,t=e.primary,a=Object(p.a)().initAppend;return Object(r.jsx)("button",{className:t?"append-primary":"append-secondary",onClick:function(){a(n)},"role-label":"append-button",children:Object(r.jsx)("div",{className:"append__cross"})})},c=a.memo(s);n.default=c}}]);
+//# sourceMappingURL=5.03a003b9.chunk.js.map
