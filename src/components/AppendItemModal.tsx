@@ -5,8 +5,8 @@ import { validateAgainstDuplicate } from '../js/functions';
 import DuplicateWarning from './DuplicateWarning';
 import InvalidTextWarning from './InvalidTextWarning';
 import PropTypes from 'prop-types';
-import { itemsType, itemType } from '../redux/types';
-//import { RootStateType } from '../index';
+import { itemType } from '../redux/types';
+import { RootStateType } from '../index';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import useDispatchAction from '../hooks/useDispatchAction';
@@ -19,8 +19,6 @@ interface appendProps {
 interface input {
     current: null | any;
 }
-
-const button = { width: '150px', margin: '0 auto' };
 
 /**
  * @description Renders the modal for adding a new node
@@ -122,7 +120,7 @@ const Modal = (props: appendProps): JSX.Element => {
     );
 };
 
-const mapStateToProps = (state: { items: { items: itemsType }; input: { activeScope: string } }) => ({
+const mapStateToProps = (state: RootStateType) => ({
     items: state.items.items,
     activeScope: state.input.activeScope,
 });

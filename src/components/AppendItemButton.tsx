@@ -17,7 +17,6 @@ interface ButtonProps {
  */
 const Button = (props: ButtonProps) => {
     const { string, primary } = props;
-    console.log(string, 'string from appenditem');
     const { initAppend } = useDispatchAction();
 
     return (

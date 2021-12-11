@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import IconButton from './styles';
 import useDispatchAction from '../../hooks/useDispatchAction';
-
+import { useDebouncedCallback } from '../../hooks/createDebouncedCallback';
 interface ButtonProps {
     string: string;
     header: string | undefined;
@@ -18,13 +17,7 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
     const { string, header } = props;
     const { removeItem } = useDispatchAction();
-
-    const handleClick = React.useCallback(
-        debounce((e: React.MouseEvent<HTMLButtonElement>): void => {
-            removeItem([header, string]);
-        }, 200),
-        [header, string],
-    );
+    const handleClick = useDebouncedCallback(removeItem, [header, string]);
 
     return (
         <IconButton onClick={handleClick}>

@@ -1,10 +1,10 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { tablesFit } from '../../js/functions';
-import { ItemsStore, itemsType } from '../types';
+import { itemsType } from '../types';
 import { actionCreators } from '..';
 
 const { removeItem, appendItem } = actionCreators;
-const initialState: ItemsStore = {
+const initialState = {
     items: ['People', 'Age 40+', ['Ethnicity', 'Black', 'Hispanic'], 'Income yearly 45kUSD+'],
 };
 
