@@ -13,3 +13,7 @@ export interface StoreType {
     items: ItemsStore;
     input: InputStore;
 }
+
+export const Items = {
+    VERY_FIRST_ITEM: 'People',
+};

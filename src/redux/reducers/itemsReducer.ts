@@ -2,10 +2,10 @@ import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { tablesFit } from '../../js/functions';
 import { itemsType } from '../types';
 import { actionCreators } from '..';
-
+import { initialData } from '../../config';
 const { removeItem, appendItem } = actionCreators;
 const initialState = {
-    items: ['People', 'Age 40+', ['Ethnicity', 'Black', 'Hispanic'], 'Income yearly 45kUSD+'],
+    items: initialData,
 };
 
 const itemsReducer = createReducer(initialState, builder => {
