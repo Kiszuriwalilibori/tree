@@ -51,6 +51,16 @@
 
 -   appendItemModal now with formik & yup
 
+#### 0.4.1
+
+-   minor recompositions rather for better file order
+
+#### 0.4.2
+
+#### 0.4.3
+
+dispatches now with useDispatchAction
+
 ### To do
 
 -   functions try catch

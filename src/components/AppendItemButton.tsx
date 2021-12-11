@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { initAppend } from '../redux/input';
+import { initAppend } from '../redux/actionCreators';
+import useDispatchAction from '../hooks/useDispatchAction';
 import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
@@ -19,17 +20,15 @@ interface ButtonProps {
  */
 const Button = (props: ButtonProps) => {
     const { onClick, string, primary } = props;
-    const handleClick = useCallback(
-        (e: React.MouseEvent<HTMLButtonElement>): void => {
-            onClick(string);
-        },
-        [onClick, string],
-    );
+    console.log(string, 'string from appenditem');
+    const { initAppend } = useDispatchAction();
 
     return (
         <button
             className={primary ? 'append-primary' : 'append-secondary'}
-            onClick={handleClick}
+            onClick={() => {
+                onClick(string);
+            }}
             role-label="append-button"
         >
             <div className="append__cross"></div>
