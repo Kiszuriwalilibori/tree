@@ -23,7 +23,7 @@ export default itemsReducer;
 
 // FUNCTIONS //////////////////////////////////////////////////////////////
 // SUPPORTING FUNCTIONS ///////////////////////////////////////////////////
-const checkArray = (ary: itemsType, arg: itemsType): boolean => {
+const checkArray = (ary: itemsType, arg: string[]): boolean => {
     return tablesFit(ary, arg) && ary.includes(arg[1]) ? false : true; //false if element is contained true when element IS NOT contained
 };
 
