@@ -30,7 +30,6 @@ interface input {
  */
 const Modal = (props: appendProps): JSX.Element => {
     const { items, activeScope } = props;
-    console.log(activeScope, 'activescope');
     const primary = items[0] === activeScope;
     const { closeInput, appendItem } = useDispatchAction();
 
