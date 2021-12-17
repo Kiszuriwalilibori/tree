@@ -1,7 +1,6 @@
-import { itemsType } from '../redux/types';
+import { itemsType } from '../types';
 
 export function tablesFit(ary1: itemsType, ary2: itemsType): boolean {
-    console.log(ary1, ary2);
     return ary1[0] === ary2[0];
 }
 

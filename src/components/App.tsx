@@ -3,15 +3,16 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import { AppendItemModal } from './AppendItemModal';
 import { Tree } from './Tree';
-import { RootStateType } from '../index';
+import { RootStateType } from './AppProvider';
+import { itemsType } from '../types';
 interface PropsTypes {
-    items: any;
+    items: itemsType;
     isInputActive: boolean;
 }
-const localApp = (props: PropsTypes): JSX.Element => {
+export const LocalApp = (props: PropsTypes): JSX.Element => {
     const { items, isInputActive } = props;
     const criterias = _.cloneDeep(items);
-    const header = criterias.shift();
+    const header = criterias.shift() as string;
 
     return items ? (
         <React.Fragment>
@@ -25,5 +26,5 @@ const mapStateToProps = (state: RootStateType) => ({
     items: state.items.items,
     isInputActive: state.input.isInputActive,
 });
-const App = connect(mapStateToProps)(localApp);
+const App = connect(mapStateToProps)(LocalApp);
 export default App;

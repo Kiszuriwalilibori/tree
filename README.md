@@ -70,4 +70,6 @@ dispatches now with useDispatchAction
 
 -   upraszczać i poprawić nazewnictwo
 
-oba ostrzeżenia -duplicate i noalpha - nadawałyby się na rendering props bo środek mają ten sam
+oba ostrzeżenia -duplicate i missingAlphaChars - nadawałyby się na rendering props bo środek mają ten sam
+
+role treeitem dla elementów tekstowych

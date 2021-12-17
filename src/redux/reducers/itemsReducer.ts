@@ -1,6 +1,6 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { tablesFit } from '../../js/functions';
-import { itemsType, itemType } from '../types';
+import { itemsType, itemType } from '../../types';
 import { actionCreators } from '..';
 import { initialData } from '../../config';
 const { removeItem, appendItem } = actionCreators;

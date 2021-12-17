@@ -17,8 +17,8 @@
         "noImplicitAny": false,
         "strictNullChecks": false,
         "isolatedModules": true,
-        "noFallthroughCasesInSwitch": true,
-        "types": ["node"]
+        "noFallthroughCasesInSwitch": true
+        //"types": ["node"]
     },
-    "include": ["src"]
+    "include": ["src", "src/index.tsx"]
 }

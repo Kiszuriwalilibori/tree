@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
 import { validateAgainstDuplicate } from '../js/functions';
-import DuplicateWarning from './DuplicateWarning';
-import InvalidTextWarning from './InvalidTextWarning';
+import Warning from './Warning';
+import { warnings } from '../config';
 import PropTypes from 'prop-types';
-import { itemType } from '../redux/types';
-import { RootStateType } from '../index';
+import { itemType } from '../types';
+import { RootStateType } from './AppProvider';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import useDispatchAction from '../hooks/useDispatchAction';
@@ -73,8 +73,13 @@ const Modal = (props: appendProps): JSX.Element => {
     return (
         <div className="modal">
             <form className="modal-content" onSubmit={handleSubmit}>
-                <DuplicateWarning isNotValidated={isNotValidated} />
-                <InvalidTextWarning noAlpha={Boolean(Object.keys(errors).length && submitCount)} />
+                {/* <DuplicateWarning isNotValidated={isNotValidated} /> */}
+
+                <Warning isActive={isNotValidated} warningText={warnings.duplicate} />
+                <Warning
+                    isActive={Boolean(Object.keys(errors).length && submitCount)}
+                    warningText={warnings.missingAlphaChars}
+                />
                 <span>Wpisz nowe kryterium</span>
                 <TextField
                     required

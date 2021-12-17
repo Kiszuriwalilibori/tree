@@ -2,8 +2,8 @@
 
 import React, { lazy, Suspense } from 'react';
 import DeleteItemButton from './DeleteItemButton';
-import EmptyLoader from './EmptyLoader';
 import PropTypes from 'prop-types';
+import { itemsType } from '../types';
 
 interface headerPropsType {
     string: string;
@@ -16,7 +16,8 @@ interface elementPropsType {
     header: string | undefined;
 }
 interface treePropsType {
-    ary: string[];
+    //ary: string[];
+    ary: itemsType;
     primary: boolean;
     head: string;
 }
@@ -39,7 +40,11 @@ const enhanced = (Component, classInner = '', classOuter = '', distancer = '') =
 //basic element -string within <span>
 const TextItem = (props: textElementPropsType) => {
     const { string } = props;
-    return <span className="TextItem">{string}</span>;
+    return (
+        <span role="treeitem" className="TextItem">
+            {string}
+        </span>
+    );
 };
 
 //Element renders node of scheme which could be single criterium field or subtree of fields, depending of props.
@@ -86,7 +91,7 @@ Header.set(false, function (props: headerPropsType) {
 
 export const Tree = (props: treePropsType) => {
     const { ary, primary, head } = props;
-    const header = primary ? head : ary.shift();
+    const header = primary ? head : (ary.shift() as string);
     const HeadingElement = Header.get(primary);
     const WrapperStyle = primary ? 'contentWrapperPrimary' : 'contentWrapperSecondary';
     const EnhancedElement = enhancedElement.get(primary);
@@ -98,7 +103,7 @@ export const Tree = (props: treePropsType) => {
                 {ary.map(item => (
                     <EnhancedElement key={item} string={item} header={header} />
                 ))}
-                <Suspense fallback={EmptyLoader()}>
+                <Suspense fallback={null}>
                     <AppendItemButton string={header} primary={primary} />
                 </Suspense>
             </div>

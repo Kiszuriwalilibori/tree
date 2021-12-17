@@ -20,7 +20,7 @@ const Button = (props: ButtonProps) => {
     const handleClick = useDebouncedCallback(removeItem, [header, string]);
 
     return (
-        <IconButton onClick={handleClick}>
+        <IconButton role-label="delete-button" onClick={handleClick}>
             <i className="fas fa-minus-circle delete"></i>
         </IconButton>
     );
