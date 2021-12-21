@@ -9,7 +9,7 @@ const config: Config.InitialOptions = {
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
     testEnvironment: 'jsdom',
-    collectCoverage: true,
+    collectCoverage: false,
     collectCoverageFrom: ['src/**/*.{ts,tsx}'],
 };
 

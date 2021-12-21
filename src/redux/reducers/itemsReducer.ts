@@ -1,5 +1,5 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
-import { tablesFit } from '../../js/functions';
+import { tablesFit } from '../../js/functions/functions';
 import { itemsType, itemType } from '../../types';
 import { actionCreators } from '..';
 import { initialData } from '../../config';

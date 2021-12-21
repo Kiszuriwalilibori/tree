@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import { validateAgainstDuplicate } from '../js/functions';
+import { validateAgainstDuplicate } from '../js/functions/functions';
 import Warning from './Warning';
 import { warnings } from '../config';
 import PropTypes from 'prop-types';
@@ -73,8 +73,6 @@ const Modal = (props: appendProps): JSX.Element => {
     return (
         <div className="modal">
             <form className="modal-content" onSubmit={handleSubmit}>
-                {/* <DuplicateWarning isNotValidated={isNotValidated} /> */}
-
                 <Warning isActive={isNotValidated} warningText={warnings.duplicate} />
                 <Warning
                     isActive={Boolean(Object.keys(errors).length && submitCount)}

@@ -1,5 +1,10 @@
-import { itemsType } from '../types';
-
+import { itemsType } from '../../types';
+/**
+ * checks whether first elements in two arrays are equal
+ * @param ary1
+ * @param ary2
+ * @returns boolean result of check
+ */
 export function tablesFit(ary1: itemsType, ary2: itemsType): boolean {
     return ary1[0] === ary2[0];
 }
@@ -14,11 +19,13 @@ function getFlattenArray(arr: itemsType): string[] {
           );
 }
 
-export const containsAlphanumericKey = (str: string): boolean => {
-    return /\d|[A-z]/.test(str);
-};
+/**
+ * checks whether array contains element being second element of other array
+ * @param array first array
+ * @param item second array
+ * @returns
+ */
 export function validateAgainstDuplicate(array: itemsType, item: string[]): boolean {
     const flatten = getFlattenArray(array);
-
     return !flatten.includes(item[1]);
 }

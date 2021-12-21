@@ -73,3 +73,8 @@ dispatches now with useDispatchAction
 oba ostrzeżenia -duplicate i missingAlphaChars - nadawałyby się na rendering props bo środek mają ten sam
 
 role treeitem dla elementów tekstowych
+
+ten kawałek powinien być jedną funkcją
+
+let result: itemType | input; if (primary) { result = shouldInitializeCategory ? [inputValue] : inputValue; }
+else { result = values.inputValue; }
