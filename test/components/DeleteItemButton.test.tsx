@@ -14,12 +14,12 @@ describe('buttons react as expected', () => {
         jest.clearAllMocks();
     });
 
-    test('Initially renders 5 minus buttons', async () => {
+    test('Initially renders 5 minus buttons', () => {
         const minuses = document.querySelectorAll('[aria-label="delete-button"]');
         expect(minuses).toHaveLength(5);
     });
 
-    test('When minus button is clicked proper element disappears', async () => {
+    test('When minus button is clicked proper element disappears', () => {
         const minuses = document.querySelectorAll('[aria-label="delete-button"]');
 
         minuses.forEach(minus => {
