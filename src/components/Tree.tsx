@@ -1,9 +1,10 @@
 //Header mógłby być funkcją przyjmującą dwa propsy i zawracającą komponent a nie obiekt
 
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import DeleteItemButton from './DeleteItemButton';
 import PropTypes from 'prop-types';
 import { itemsType } from '../types';
+import AppendItemButton from './AppendItemButton';
 
 interface headerPropsType {
     string: string;
@@ -16,17 +17,16 @@ interface elementPropsType {
     header: string | undefined;
 }
 interface treePropsType {
-    //ary: string[];
     ary: itemsType;
     primary: boolean;
     head: string;
 }
 
-const AppendItemButton = lazy(() => import('./AppendItemButton'));
+//const AppendItemButton = lazy(() => import('./AppendItemButton'));
 
 //HOC creating function
 //distancer is entity that renders horizontal line to the left of elements. class_outer and _inner wrap component accordingly
-const enhanced = (Component, classInner = '', classOuter = '', distancer = '') => {
+const enhanced = (Component: any, classInner = '', classOuter = '', distancer = '') => {
     return props => (
         <div className={classOuter}>
             <div className={distancer}></div>
@@ -41,7 +41,7 @@ const enhanced = (Component, classInner = '', classOuter = '', distancer = '') =
 const TextItem = (props: textElementPropsType) => {
     const { string } = props;
     return (
-        <span role="treeitem" className="TextItem">
+        <span role="tree_item" className="TextItem" data-span-name={string}>
             {string}
         </span>
     );
@@ -55,7 +55,7 @@ const Element = (props: elementPropsType) => {
     const { string, header } = props;
     if (typeof string === 'string') {
         return (
-            <div className="element">
+            <div className="element" id={string}>
                 <TextItem string={string} />
                 <DeleteItemButton string={string} header={header} />
             </div>
@@ -103,9 +103,8 @@ export const Tree = (props: treePropsType) => {
                 {ary.map(item => (
                     <EnhancedElement key={item} string={item} header={header} />
                 ))}
-                <Suspense fallback={null}>
-                    <AppendItemButton string={header} primary={primary} />
-                </Suspense>
+
+                <AppendItemButton string={header} primary={primary} />
             </div>
         </React.Fragment>
     ) : null;

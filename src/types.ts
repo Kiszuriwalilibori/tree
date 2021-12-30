@@ -1,4 +1,4 @@
-export type itemsType = Array<string | Array<string>>;
+export type itemsType = Array<string | Array<string>> | null;
 export type itemType = string | string[];
 export interface InputStore {
     activeScope: string[];

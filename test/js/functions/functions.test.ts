@@ -9,7 +9,6 @@ describe('functions tests suite', () => {
     });
 
     test('function validateAgainstDuplicate', () => {
-        console.log(initialData);
         expect(validateAgainstDuplicate(initialData, ['xxxxxxxxxxxxxxxx', Items.VERY_FIRST_ITEM])).toBe(
             false,
         );

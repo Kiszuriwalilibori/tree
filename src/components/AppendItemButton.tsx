@@ -25,7 +25,7 @@ const Button = (props: ButtonProps) => {
             onClick={() => {
                 initAppend(string);
             }}
-            role-label="append-button"
+            aria-label="append-button"
         >
             <div className="append__cross"></div>
         </button>

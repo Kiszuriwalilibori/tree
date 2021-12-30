@@ -71,7 +71,7 @@ const Modal = (props: appendProps): JSX.Element => {
     });
 
     return (
-        <div className="modal">
+        <div className="modal" role="dialog">
             <form className="modal-content" onSubmit={handleSubmit}>
                 <Warning isActive={isNotValidated} warningText={warnings.duplicate} />
                 <Warning

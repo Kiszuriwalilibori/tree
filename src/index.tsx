@@ -1,9 +1,7 @@
-import React, { lazy } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/App.css';
-import * as serviceWorker from './js/serviceWorker';
 import AppProvider from './components/AppProvider';
-const App = lazy(() => import('./components/App'));
+import App from './components/App';
 
 ReactDOM.render(
     <AppProvider>
@@ -12,4 +10,4 @@ ReactDOM.render(
     document.getElementById('root'),
 );
 
-serviceWorker.unregister();
+//serviceWorker.unregister();
