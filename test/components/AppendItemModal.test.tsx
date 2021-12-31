@@ -36,5 +36,10 @@ describe('App by React', () => {
         render(<Modal />);
     });
 
-    test('modal hides when Zamknij is clicked', () => {});
+    test('modal hides when Zamknij is clicked', () => {
+        const close = screen.getByText(/zamknij/i);
+        userEvent.click(close);
+        const modal = screen.queryByRole('dialog');
+        expect(modal).toBeNull();
+    });
 });
