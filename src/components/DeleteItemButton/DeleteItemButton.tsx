@@ -3,24 +3,25 @@ import PropTypes from 'prop-types';
 import IconButton from './styles';
 import useDispatchAction from '../../hooks/useDispatchAction';
 import { useDebouncedCallback } from '../../hooks/createDebouncedCallback';
+import { ReactReduxContextValue } from 'react-redux';
 interface ButtonProps {
-    string: string;
+    nodeText: string;
     header: string | undefined;
+    handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
  * Renders the button which removes a node when clicked
- * @param {string} string   indicates node (its text content) to be removed
+ * @param {string} nodeText   indicates node (its text content) to be removed
  * @param {string |undefined} header indicates subtree/scope to which node blonggs, if any
+ * @param {React.MouseEventHandler<HTMLButtonElement>} handleClick which removes certain node
  * @returns button component
  */
 const Button = (props: ButtonProps) => {
-    const { string, header } = props;
-    const { removeItem } = useDispatchAction();
-    const handleClick = useDebouncedCallback(removeItem, [header, string]);
+    const { nodeText, handleClick } = props;
 
     return (
-        <IconButton aria-controls={string} aria-label="delete-button" onClick={handleClick}>
+        <IconButton aria-controls={nodeText} aria-label="delete-button" onClick={handleClick}>
             <i className="fas fa-minus-circle delete"></i>
         </IconButton>
     );
@@ -30,6 +31,7 @@ const DeleteItemButton = React.memo(Button);
 export default DeleteItemButton;
 
 Button.propTypes = {
-    string: PropTypes.string,
+    nodeText: PropTypes.string,
     header: PropTypes.string,
+    handleClick: PropTypes.func,
 };

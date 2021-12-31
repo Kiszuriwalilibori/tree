@@ -1,10 +1,12 @@
-//Header mógłby być funkcją przyjmującą dwa propsy i zawracającą komponent a nie obiekt
+//Header mógłby być funkcją przyjmującą dwa propsy i zwracającą komponent a nie obiekt
 
 import React from 'react';
 import DeleteItemButton from './DeleteItemButton';
 import PropTypes from 'prop-types';
 import { itemsType } from '../types';
 import AppendItemButton from './AppendItemButton';
+import useDispatchAction from '../hooks/useDispatchAction';
+import { useDebouncedCallback } from '../hooks/createDebouncedCallback';
 
 interface headerPropsType {
     string: string;
@@ -53,11 +55,14 @@ const TextItem = (props: textElementPropsType) => {
 
 const Element = (props: elementPropsType) => {
     const { string, header } = props;
+    const { removeItem } = useDispatchAction();
+    const handleClick = useDebouncedCallback(removeItem, [header, string]);
+
     if (typeof string === 'string') {
         return (
             <div className="element" id={string}>
                 <TextItem string={string} />
-                <DeleteItemButton string={string} header={header} />
+                <DeleteItemButton nodeText={string} header={header} handleClick={handleClick} />
             </div>
         );
     } else {
@@ -78,10 +83,12 @@ let Header = new Map();
 Header.set(true, enhanced(TextItem, 'top-header'));
 Header.set(false, function (props: headerPropsType) {
     const { string } = props;
+    const { removeItem } = useDispatchAction();
+    const handleClick = useDebouncedCallback(removeItem, [undefined, string]);
     return (
         <div className="element">
             <SecondaryHeaderText string={string} />
-            <DeleteItemButton string={string} header={undefined} />
+            <DeleteItemButton nodeText={string} header={undefined} handleClick={handleClick} />
         </div>
     );
 });

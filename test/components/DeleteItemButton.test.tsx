@@ -60,7 +60,8 @@ describe('buttons react as expected', () => {
 });
 
 describe('buttons fires event when clicked', () => {
-    var handleClickMock = jest.fn();
+    const mockedCallback = () => null;
+    var handleClick = jest.fn();
     beforeEach(() => {
         render(<DeleteItemButton string={'test'} header={'test'} />);
     });
@@ -71,8 +72,9 @@ describe('buttons fires event when clicked', () => {
     });
     test('buttons fires event when clicked', () => {
         const minus = document.querySelector('[aria-label="delete-button"]');
+        console.log(minus);
         fireEvent.click(minus);
-        //expect(handleClickMock).toHaveBeenCalled();
+        expect(handleClick).toHaveBeenCalled();
         //expect(handleClickMock).toBeCalled();
     });
 });
