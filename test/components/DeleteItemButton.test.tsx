@@ -2,7 +2,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../../src/components/App';
 import AppProvider from '../../src/components/AppProvider';
 import ReactDOM from 'react-dom';
-import { render, screen, cleanup } from '../../test/test-utils/testing-library-utils';
+import { render, screen, cleanup, waitFor } from '../../test/test-utils/testing-library-utils';
 
 describe('buttons react as expected', () => {
     beforeEach(() => {
@@ -19,19 +19,30 @@ describe('buttons react as expected', () => {
         expect(minuses).toHaveLength(5);
     });
 
-    test('When minus button is clicked proper element disappears', () => {
+    test('When minus button is clicked proper element disappears', async () => {
         const minuses = document.querySelectorAll('[aria-label="delete-button"]');
+        const tree_items = screen.getAllByRole('treeitem');
+        console.log();
+        // minuses.forEach(async minus => {
+        //     const name = minus.getAttribute('aria-controls');
+        //     //let element = document.getElementById(name);
+        //     const element = screen.getByText(new RegExp(name, 'i'));
+        //     //console.log(element, 'element');
+        //     //expect(element).toBeNull();
+        //     expect(element).toBeInTheDocument();
+        //     userEvent.click(minus);
+        //     //const target =  document.getElementById(name);
+        //     const target = await document.getElementById(name);
+        //     console.log(target);
+        //     expect(target).toBeNull();
+        // });
 
-        minuses.forEach(minus => {
-            const name = minus.getAttribute('aria-controls');
-            let element = document.getElementById(name);
-            //console.log(element, 'element');
-            //expect(element).toBeNull();
-            expect(element).toBeInTheDocument();
-            // userEvent.click(minus);
-            // const removed = document.getElementById(name);
-
-            // expect(removed).toBeInTheDocument();
-        });
+        const minus = minuses[0];
+        const name = minus.getAttribute('aria-controls');
+        const element = screen.getByText(new RegExp(name, 'i'));
+        expect(element).toBeInTheDocument();
+        userEvent.click(minus);
+        const target = await waitFor(() => document.getElementById(name));
+        expect(target).toBeNull();
     });
 });

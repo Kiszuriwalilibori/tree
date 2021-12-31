@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 describe('App tests suite', () => {
     test('App renders initially all nodes with tree_item role that are specified in InitialNodes, as well as buttons', () => {
         render(<App />);
-        const tree_items = screen.getAllByRole('tree_item');
+        const tree_items = screen.getAllByRole('treeitem');
         const tree_items_texts = tree_items.map(item => {
             return item.textContent;
         });
@@ -60,6 +60,18 @@ describe('App by Jest', () => {
             userEvent.click(plus);
             const modal = document.querySelector('[role="dialog"]');
             expect(modal).toBeInTheDocument();
+        });
+    });
+
+    test('When plus button is clicked append modal opens and when Zamknij is clicked modal is gone', () => {
+        const crosses = document.querySelectorAll('.append__cross');
+
+        crosses.forEach(plus => {
+            userEvent.click(plus);
+            const close = screen.getByText(/zamknij/i);
+            userEvent.click(close);
+            const modal = screen.queryByRole('dialog');
+            expect(modal).toBeNull();
         });
     });
 });

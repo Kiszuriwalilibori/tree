@@ -41,7 +41,7 @@ const enhanced = (Component: any, classInner = '', classOuter = '', distancer = 
 const TextItem = (props: textElementPropsType) => {
     const { string } = props;
     return (
-        <span role="tree_item" className="TextItem" data-span-name={string}>
+        <span role="treeitem" className="TextItem" data-span-name={string}>
             {string}
         </span>
     );
