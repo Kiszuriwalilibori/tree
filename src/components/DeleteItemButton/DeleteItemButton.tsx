@@ -1,19 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import IconButton from './styles';
-import useDispatchAction from '../../hooks/useDispatchAction';
-import { useDebouncedCallback } from '../../hooks/createDebouncedCallback';
-import { ReactReduxContextValue } from 'react-redux';
+
 interface ButtonProps {
     nodeText: string;
-    header: string | undefined;
+    // header: string | undefined;
     handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 /**
  * Renders the button which removes a node when clicked
  * @param {string} nodeText   indicates node (its text content) to be removed
- * @param {string |undefined} header indicates subtree/scope to which node blonggs, if any
+//  * @param {string |undefined} header indicates subtree/scope to which node blonggs, if any
  * @param {React.MouseEventHandler<HTMLButtonElement>} handleClick which removes certain node
  * @returns button component
  */
@@ -32,6 +30,6 @@ export default DeleteItemButton;
 
 Button.propTypes = {
     nodeText: PropTypes.string,
-    header: PropTypes.string,
+    // header: PropTypes.string,
     handleClick: PropTypes.func,
 };

@@ -62,7 +62,7 @@ const Element = (props: elementPropsType) => {
         return (
             <div className="element" id={string}>
                 <TextItem string={string} />
-                <DeleteItemButton nodeText={string} header={header} handleClick={handleClick} />
+                <DeleteItemButton nodeText={string} handleClick={handleClick} />
             </div>
         );
     } else {
@@ -88,7 +88,7 @@ Header.set(false, function (props: headerPropsType) {
     return (
         <div className="element">
             <SecondaryHeaderText string={string} />
-            <DeleteItemButton nodeText={string} header={undefined} handleClick={handleClick} />
+            <DeleteItemButton nodeText={string} handleClick={handleClick} />
         </div>
     );
 });
