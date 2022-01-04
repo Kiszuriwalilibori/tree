@@ -11,7 +11,6 @@ interface ButtonProps {
 /**
  * Renders the button which removes a node when clicked
  * @param {string} nodeText   indicates node (its text content) to be removed
-//  * @param {string |undefined} header indicates subtree/scope to which node blonggs, if any
  * @param {React.MouseEventHandler<HTMLButtonElement>} handleClick which removes certain node
  * @returns button component
  */

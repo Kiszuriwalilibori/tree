@@ -28,7 +28,7 @@ interface input {
  * @param {string} activeScope represents subtree or main tree to which item should be added
  * @returns modal component
  */
-const Modal = (props: appendProps): JSX.Element => {
+export const Modal = (props: appendProps): JSX.Element => {
     const { items, activeScope } = props;
     const primary = items[0] === activeScope;
     const { closeInput, appendItem } = useDispatchAction();

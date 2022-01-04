@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { AppendItemModal } from './AppendItemModal';
-import { Tree } from './Tree';
+import Tree from './Tree';
 import { RootStateType } from './AppProvider';
 import { itemsType } from '../types';
 

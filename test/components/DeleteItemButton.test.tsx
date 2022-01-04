@@ -35,7 +35,7 @@ describe('buttons react as expected', () => {
             userEvent.click(minus);
             //const target =  document.getElementById(name);
             const target = await document.getElementById(name);
-            console.log(target);
+            //console.log(target);
             expect(target).toBeNull();
         });
 
@@ -47,14 +47,10 @@ describe('buttons react as expected', () => {
         //screen.debug();
 
         userEvent.click(minus);
-        console.log('here goes screen debug');
-        screen.debug();
-        console.log('here stops screen debug');
+
         const target = await waitFor(() => document.getElementById(name));
         userEvent.click(minus);
-        console.log('here goes screen debug');
-        screen.debug();
-        console.log('here stops screen debug');
+
         expect(target).toBeNull();
     });
 });
@@ -71,7 +67,7 @@ describe('buttons fires event when clicked', () => {
     });
     test('buttons fires event when clicked', () => {
         const minus = document.querySelector('[aria-label="delete-button"]');
-        console.log(minus);
+        //console.log(minus);
         fireEvent.click(minus);
         expect(handleClickMock).toBeCalled();
     });

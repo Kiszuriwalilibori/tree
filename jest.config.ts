@@ -4,6 +4,7 @@ const config: Config.InitialOptions = {
     roots: ['<rootDir>/test', '<rootDir>/src'],
     transform: {
         '^.+\\.tsx?$': 'ts-jest',
+        '^.+\\.css$': '<rootDir>/jest-config/style-mock.js',
     },
     setupFilesAfterEnv: ['@testing-library/jest-dom/extend-expect'],
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
@@ -12,8 +13,6 @@ const config: Config.InitialOptions = {
     collectCoverage: false,
     collectCoverageFrom: ['src/**/*.{ts,tsx}'],
     moduleNameMapper: {
-        // '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-        //     '<rootDir>/__mocks__/fileMock.js',
         '\\.(scss|sass|css)$': 'identity-obj-proxy',
     },
 };

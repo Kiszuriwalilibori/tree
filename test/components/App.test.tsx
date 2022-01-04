@@ -55,7 +55,6 @@ describe('App by Jest', () => {
     test('When plus button is clicked append modal opens', () => {
         const crosses = document.querySelectorAll('.append__cross');
         expect(crosses).toHaveLength(2);
-
         crosses.forEach(plus => {
             userEvent.click(plus);
             const modal = document.querySelector('[role="dialog"]');
@@ -65,7 +64,7 @@ describe('App by Jest', () => {
 
     test('When plus button is clicked append modal opens and when Zamknij is clicked modal is gone', () => {
         const crosses = document.querySelectorAll('.append__cross');
-
+        expect(crosses).toHaveLength(2);
         crosses.forEach(plus => {
             userEvent.click(plus);
             const close = screen.getByText(/zamknij/i);
@@ -73,6 +72,26 @@ describe('App by Jest', () => {
             const modal = screen.queryByRole('dialog');
             expect(modal).toBeNull();
         });
+    });
+
+    test('When plus button with class "append-secondary" is clicked append modal opens without checkbox', () => {
+        const crossSecondary = document.querySelector('.append-secondary');
+        expect(crossSecondary).toBeInTheDocument();
+        userEvent.click(crossSecondary);
+        const modal = document.querySelector('[role="dialog"]');
+        expect(modal).toBeInTheDocument();
+        const checkbox = screen.queryByRole('checkbox');
+        expect(checkbox).toBeNull();
+    });
+
+    test('When plus button with class "append-primary" is clicked append modal opens with checkbox', () => {
+        const crossPrimary = document.querySelector('.append-primary');
+        expect(crossPrimary).toBeInTheDocument();
+        userEvent.click(crossPrimary);
+        const modal = document.querySelector('[role="dialog"]');
+        expect(modal).toBeInTheDocument();
+        const checkbox = screen.getByRole('checkbox');
+        expect(checkbox).toBeInTheDocument();
     });
 });
 
