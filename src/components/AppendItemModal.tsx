@@ -58,7 +58,7 @@ export const Modal = (props: appendProps): JSX.Element => {
                 } else {
                     result = values.inputValue;
                 }
-
+                console.log(activeScope, result);
                 appendItem([activeScope, result]);
                 closeInput();
 

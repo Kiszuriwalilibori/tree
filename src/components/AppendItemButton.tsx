@@ -26,6 +26,7 @@ const Button = (props: ButtonProps) => {
                 initAppend(string);
             }}
             aria-label="append-button"
+            title={primary ? 'append-primary-button' : 'append-secondary-button'}
         >
             <div className="append__cross"></div>
         </button>
