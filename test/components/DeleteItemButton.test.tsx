@@ -11,7 +11,9 @@ import {
 } from '../../test/test-utils/testing-library-utils';
 import DeleteItemButton from '../../src/components/DeleteItemButton';
 
-describe('buttons react as expected', () => {
+const handleClickMock = jest.fn();
+
+describe('DeleteItem Buttons(those with minus)', () => {
     beforeEach(() => {
         render(<App />);
     });
@@ -21,14 +23,13 @@ describe('buttons react as expected', () => {
         jest.clearAllMocks();
     });
 
-    test('Initially renders 5 minus buttons', () => {
+    test('render in 5 copies initially', () => {
         const minuses = document.querySelectorAll('[aria-label="delete-button"]');
         expect(minuses).toHaveLength(5);
     });
 
-    test('When minus button is clicked proper element disappears', async () => {
+    test('For each of them, when clicked, component it controls disappears', () => {
         const minuses = document.querySelectorAll('[aria-label="delete-button"]');
-
         minuses.forEach(async minus => {
             const name = minus.getAttribute('aria-controls');
             const element = screen.getByText(new RegExp(name, 'i'));
@@ -36,29 +37,21 @@ describe('buttons react as expected', () => {
             userEvent.click(minus);
             await waitForElementToBeRemoved(() => screen.queryByText(new RegExp(name, 'i')));
         });
-
-        const minus = minuses[0];
-        const name = minus.getAttribute('aria-controls');
-        const element = screen.getByText(new RegExp(name, 'i'));
-        expect(element).toBeInTheDocument();
-        userEvent.click(minus);
-        await waitForElementToBeRemoved(() => screen.queryByText(new RegExp(name, 'i')));
     });
 });
 
-describe('buttons fires event passed by handleClickProp when clicked', () => {
-    const handleClickMock = jest.fn();
-    beforeEach(() => {
-        render(<DeleteItemButton nodeText={'test'} handleClick={handleClickMock} />);
-    });
-
+describe('Each of DeleteItem buttons ', () => {
+    beforeEach(() => {});
     afterEach(() => {
         cleanup();
         jest.clearAllMocks();
     });
-    test('buttons fires event when clicked', () => {
-        const minus = document.querySelector('[aria-label="delete-button"]');
-        fireEvent.click(minus);
-        expect(handleClickMock).toBeCalled();
+    test('call function passed by handleClick Prop when clicked', () => {
+        render(<DeleteItemButton nodeText={'test'} handleClick={handleClickMock} />);
+        const minuses = document.querySelectorAll('[aria-label="delete-button"]');
+        minuses.forEach(minus => {
+            fireEvent.click(minus);
+            expect(handleClickMock).toBeCalled();
+        });
     });
 });
