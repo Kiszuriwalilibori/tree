@@ -103,3 +103,25 @@ describe('Test elements of Modal as Secondary', () => {
         expect(checkbox).toBeNull();
     });
 });
+
+describe('Test button actions', () => {
+    const closeInput = jest.fn();
+    jest.mock('../../src/hooks/useDispatchAction', () => closeInput);
+    beforeEach(() => {
+        render(<Modal />);
+    });
+    afterEach(() => cleanup());
+
+    test('component fires closeInput', async () => {
+        const closeButton = screen.getByRole('button', { name: 'Zamknij' });
+        expect(closeButton).toBeInTheDocument();
+        userEvent.click(closeButton);
+        await waitFor(() => expect(closeInput).toBeCalled());
+    });
+    test('component fires closeInput', () => {
+        const closeButton = screen.getByRole('button', { name: 'Zamknij' });
+        expect(closeButton).toBeInTheDocument();
+        userEvent.click(closeButton);
+        expect(closeInput).toBeCalled();
+    });
+});

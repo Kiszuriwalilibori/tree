@@ -100,9 +100,7 @@ export const Modal = (props: appendProps): JSX.Element => {
                     size="large"
                     className="modal-content__button"
                     color="secondary"
-                    onClick={() => {
-                        closeInput();
-                    }}
+                    onClick={() => closeInput()}
                 >
                     Zamknij
                 </Button>
