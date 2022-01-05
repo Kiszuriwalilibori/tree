@@ -13,7 +13,7 @@ const config: Config.InitialOptions = {
     collectCoverage: false,
     collectCoverageFrom: ['src/**/*.{ts,tsx}'],
     moduleNameMapper: {
-        '\\.(scss|sass|css)$': 'identity-obj-proxy',
+        '^.+\\.(css|sass|scss)$': 'identity-obj-proxy',
     },
 };
 

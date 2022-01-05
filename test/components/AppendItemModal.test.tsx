@@ -5,7 +5,7 @@ import { Modal as ModalWithProps } from '../../src/components/AppendItemModal';
 import { render, screen, cleanup, waitFor } from '../../test/test-utils/testing-library-utils';
 import { InitialNodes } from '../../src/config';
 import { Items } from '../../src/types';
-//import useDispatchAction from '../../src/hooks/useDispatchAction';
+import useDispatchAction from '../../src/hooks/useDispatchAction';
 
 describe('Modal is initially hidden and opens', () => {
     beforeEach(() => {
