@@ -1,11 +1,24 @@
 import userEvent from '@testing-library/user-event';
+
+import {
+    render,
+    screen,
+    cleanup,
+    fireEvent,
+} from '../../test/test-utils/testing-library-utils';
+
 import App from '../../src/components/App';
 import { AppendItemModal as Modal } from '../../src/components/AppendItemModal';
 import { Modal as ModalWithProps } from '../../src/components/AppendItemModal';
-import { render, screen, cleanup, waitFor } from '../../test/test-utils/testing-library-utils';
 import { InitialNodes } from '../../src/config';
 import { Items } from '../../src/types';
-//import useDispatchAction from '../../src/hooks/useDispatchAction';
+
+const actions = {
+    closeInput: jest.fn(),
+    appendItem: jest.fn(),
+};
+
+jest.mock('../../src/hooks/useDispatchAction', () => () => actions);
 
 describe('Modal is initially hidden and opens', () => {
     beforeEach(() => {
@@ -23,7 +36,7 @@ describe('Modal is initially hidden and opens', () => {
         const crosses = document.querySelectorAll('.append__cross');
         expect(crosses).toHaveLength(2);
 
-        crosses.forEach(plus => {
+        crosses.forEach((plus) => {
             userEvent.click(plus);
             const modal = document.querySelector('[role="dialog"]');
             expect(modal).toBeInTheDocument();
@@ -73,7 +86,12 @@ describe('Test elements of AppendItemModal', () => {
 
 describe('Test elements of Modal as Primary', () => {
     beforeEach(() => {
-        render(<ModalWithProps items={InitialNodes} activeScope={Items.VERY_FIRST_ITEM} />);
+        render(
+            <ModalWithProps
+                items={InitialNodes}
+                activeScope={Items.VERY_FIRST_ITEM}
+            />
+        );
     });
     afterEach(() => cleanup());
     test('Modal as Primary displays correctly initial elements', () => {
@@ -104,24 +122,17 @@ describe('Test elements of Modal as Secondary', () => {
     });
 });
 
-describe('Test button actions', () => {
-    const closeInput = jest.fn();
-    jest.mock('../../src/hooks/useDispatchAction', () => closeInput);
-    beforeEach(() => {
-        render(<Modal />);
-    });
-    afterEach(() => cleanup());
+describe('Given Modal component', () => {
+    describe('when "Zamknij" button is clicked', () => {
+        it('should call closeInput function', async () => {
+            actions.closeInput.mockClear();
 
-    test('component fires closeInput', async () => {
-        const closeButton = screen.getByRole('button', { name: 'Zamknij' });
-        expect(closeButton).toBeInTheDocument();
-        userEvent.click(closeButton);
-        await waitFor(() => expect(closeInput).toBeCalled());
-    });
-    test('component fires closeInput', () => {
-        const closeButton = screen.getByRole('button', { name: 'Zamknij' });
-        expect(closeButton).toBeInTheDocument();
-        userEvent.click(closeButton);
-        expect(closeInput).toBeCalled();
+            const { findByText } = render(<Modal />);
+            const closeButton = await findByText('Zamknij');
+
+            fireEvent.click(closeButton);
+
+            expect(actions.closeInput).toHaveBeenCalledTimes(1);
+        });
     });
 });
