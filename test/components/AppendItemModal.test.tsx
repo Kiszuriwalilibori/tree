@@ -130,12 +130,14 @@ describe('Given Modal component', () => {
             const appendButton = getByText('Dodaj');
             fireEvent.click(appendButton);
             expect(actions.appendItem).not.toHaveBeenCalled();
-            // const label = getByText('Kryterium');
-            // expect(label).toBeInTheDocument();
+
             await waitFor(() => {
                 const label = getByText('Kryterium');
                 expect(label).toBeInTheDocument();
                 expect(label).toHaveClass('Mui-focused');
+                const textInput = screen.getByRole('textbox');
+                expect(textInput).toBeInTheDocument();
+                expect(textInput).toHaveFocus();
             });
         });
     });
