@@ -12,9 +12,11 @@ interface PropsTypes {
 }
 export const LocalApp: React.FC<PropsTypes> = (props: PropsTypes): JSX.Element => {
     const { items, isInputActive } = props;
-    const criterias = _.cloneDeep(items);
-    const header = criterias.shift() as string;
 
+    //const criterias = _.cloneDeep(items);
+    //const header = criterias.shift() as string;
+    const criterias = items ? _.cloneDeep(items) : null;
+    const header = criterias ? (criterias.shift() as string) : null;
     return items ? (
         <React.Fragment>
             {isInputActive ? <AppendItemModal /> : null}

@@ -3,6 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen } from '../../test/test-utils/testing-library-utils';
 import { InitialNodes } from '../../src/config';
 import App from '../../src/components/App';
+import { LocalApp } from '../../src/components/App';
 import AppProvider from '../../src/components/AppProvider';
 import ReactDOM from 'react-dom';
 
@@ -94,5 +95,11 @@ describe('App by Jest', () => {
         expect(checkbox).toBeInTheDocument();
     });
 });
-
+describe('LocalApp when', () => {
+    test('receives empty items returns no element with "tree" role', () => {
+        const App = render(<LocalApp items={null} isInputActive={true} />);
+        const Tree = App.queryAllByRole('tree');
+        expect(Tree).toStrictEqual([]);
+    });
+});
 ////////////////////////////////////////////////////////////////////////

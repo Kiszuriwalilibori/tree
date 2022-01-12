@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { TextField, Button } from '@material-ui/core';
-import { validateAgainstDuplicate } from '../js/functions/functions';
+import validateAgainstDuplicate from '../js/functions/validateAgainstDuplicate';
 import Warning from './Warning';
 import { warnings } from '../config';
 import PropTypes from 'prop-types';
@@ -47,7 +47,7 @@ export const Modal = (props: appendProps): JSX.Element => {
         },
         validationSchema: Yup.object().shape({
             inputValue: Yup.string()
-                .matches(/\d|[A-z]/, 'Kryterium musi zawierać choć jeden znak alfanumeryczny')
+                .matches(/\d|[A-z]/, 'Kryterium musi zawierać choć jedną literę lub cyfrę')
                 .required('Required'),
         }),
         onSubmit(values, actions) {
@@ -58,10 +58,8 @@ export const Modal = (props: appendProps): JSX.Element => {
                 } else {
                     result = values.inputValue;
                 }
-                console.log(activeScope, result);
                 appendItem([activeScope, result]);
                 closeInput();
-
                 actions.setSubmitting(false);
             } else {
                 actions.setFieldValue('isNotValidated', true);

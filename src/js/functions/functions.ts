@@ -8,8 +8,13 @@ import { itemsType } from '../../types';
 export function tablesFit(ary1: itemsType, ary2: itemsType): boolean {
     return ary1[0] === ary2[0];
 }
+/**
+ * flattens array
+ * @param arr array possibly nested
+ * @returns flattened array
+ */
 
-function getFlattenArray(arr: itemsType): string[] {
+export function getFlattenArray(arr: itemsType): string[] {
     return arr.flat
         ? arr.flat()
         : arr.reduce(
@@ -23,7 +28,7 @@ function getFlattenArray(arr: itemsType): string[] {
  * checks whether array contains element being second element of other array
  * @param array first array
  * @param item second array
- * @returns
+ * @returns boolean with information whether above assertion is true
  */
 export function validateAgainstDuplicate(array: itemsType, item: string[]): boolean {
     const flatten = getFlattenArray(array);

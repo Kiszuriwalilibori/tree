@@ -78,3 +78,7 @@ ten kawałek powinien być jedną funkcją
 
 let result: itemType | input; if (primary) { result = shouldInitializeCategory ? [inputValue] : inputValue; }
 else { result = values.inputValue; }
+
+testy
+
+Dlaczego closeInput jest wywolywany dwa razy po kliknięciu dodaj z dobrym tekstem// patr testy
