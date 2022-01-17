@@ -1,7 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { AppendItemModal } from './AppendItemModal';
+
+import { AppendItemModal } from './AppendItemModal/AppendItemModal';
 import Tree from './Tree';
 import { RootStateType } from './AppProvider';
 import { itemsType } from '../types';
@@ -10,7 +11,9 @@ interface PropsTypes {
     items: itemsType;
     isInputActive: boolean;
 }
-export const LocalApp: React.FC<PropsTypes> = (props: PropsTypes): JSX.Element => {
+export const LocalApp: React.FC<PropsTypes> = (
+    props: PropsTypes
+): JSX.Element => {
     const { items, isInputActive } = props;
 
     //const criterias = _.cloneDeep(items);
