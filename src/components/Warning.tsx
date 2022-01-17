@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Alert, AlertTitle } from '@material-ui/lab';
 
-//import { warnings } from '../config';
 interface WarningProps {
     isActive: boolean;
     warningText: string;
@@ -26,6 +25,3 @@ let Warning = (props: WarningProps): JSX.Element => {
 
 Warning = React.memo(Warning);
 export default Warning;
-// Warning.propTypes = {
-//     missingAlphaChars: PropTypes.bool,
-// };
