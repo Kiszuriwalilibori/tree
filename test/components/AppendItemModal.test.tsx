@@ -16,7 +16,7 @@ const actions = {
 // };
 
 jest.mock('../../src/hooks/useDispatchAction', () => () => actions);
-//jest.mock('../../src/js/functions/validateAgainstDuplicate', () => fns);
+// jest.mock('../../src/js/functions/validateAgainstDuplicate', () => fns);
 const testValidInputString = 'abcdefghijk0123456789';
 const testActiveScope = 'testActiveScope';
 const testFalseInputsAry = ['', '   ', '@#$%^'];
@@ -181,6 +181,12 @@ describe('Given Modal component', () => {
                     expect(actions.appendItem).toHaveBeenCalledWith([Items.VERY_FIRST_ITEM, validInput]);
                     //expect(fns.validateAgainstDuplicate).toHaveBeenCalled();
                 });
+                // await waitFor(() => {
+                //     expect(fns.validateAgainstDuplicate).toHaveBeenCalledWith(InitialNodes, [
+                //         Items.VERY_FIRST_ITEM,
+                //         validInput,
+                //     ]);
+                // });
             });
         });
     });
