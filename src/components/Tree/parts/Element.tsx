@@ -4,10 +4,6 @@ import { TextItem } from './TextItem';
 import DeleteItemButton from '../../DeleteItemButton';
 import Tree from '../Tree';
 
-//Element renders node of scheme which could be single criterium field or subtree of fields, depending of props.
-//If prop 'string' is string it renders single field, if not it renders subtree
-//header prop is not read here but passed to Delete component which removes field
-
 interface elementPropsType {
     itemOrItemsArray: string | string[];
     header: string | undefined;

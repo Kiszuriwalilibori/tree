@@ -82,3 +82,7 @@ else { result = values.inputValue; }
 testy
 
 Dlaczego closeInput jest wywolywany dwa razy po kliknięciu dodaj z dobrym tekstem// patr testy
+
+Header mógłby być funkcją przyjmującą dwa propsy i zwracającą komponent a nie obiekt
+
+Dopisac komentarze do wszystkich funkcji arytmetycznych

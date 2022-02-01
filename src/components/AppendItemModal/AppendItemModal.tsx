@@ -2,12 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { FormikErrors, useFormik } from 'formik';
 import PropTypes from 'prop-types';
-
 import validateAgainstDuplicate from '../../js/functions/validateAgainstDuplicate';
 import { RootStateType } from '../AppProvider';
 import useDispatchAction from '../../hooks/useDispatchAction';
-import { AppendItemModalCriterion } from './AppendItemModalCriterion';
-import { AppendItemModalCategoryCheckbox } from './AppendItemModalCategoryCheckbox';
+import { AppendItemModalCriterion } from './parts/AppendItemModalCriterion';
+import { AppendItemModalCategoryCheckbox } from './parts/AppendItemModalCategoryCheckbox';
 import { validators as validationSchema } from './validators';
 import { warnings } from '../../config';
 import Warning from '../Warning';
@@ -32,7 +31,7 @@ function isPrimary(props: AppendModalProps): boolean {
 function createItem(
     props: AppendModalProps,
     visibleValues: AppendItemModalFormValues,
-    submittedValues: AppendItemModalFormValues
+    submittedValues: AppendItemModalFormValues,
 ): string | string[] {
     const { inputValue, shouldInitializeCategory } = visibleValues;
 
@@ -46,7 +45,7 @@ function createItem(
 function getWarningMessage(
     errors: FormikErrors<AppendItemModalFormValues>,
     values: AppendItemModalFormValues,
-    submitCount: number
+    submitCount: number,
 ): string | null {
     if (values.isNotValidated) {
         return warnings.duplicate;
@@ -71,8 +70,8 @@ export const Modal = (props: AppendModalProps): JSX.Element => {
     const { items, activeScope } = props;
     const { closeInput, appendItem } = useDispatchAction();
 
-    const { values, handleSubmit, getFieldProps, submitCount, errors } =
-        useFormik<AppendItemModalFormValues>({
+    const { values, handleSubmit, getFieldProps, submitCount, errors } = useFormik<AppendItemModalFormValues>(
+        {
             initialValues: {
                 inputValue: '',
                 isNotValidated: false,
@@ -82,10 +81,7 @@ export const Modal = (props: AppendModalProps): JSX.Element => {
             onSubmit(submittedValues, actions) {
                 const { inputValue } = values;
 
-                const isValidated = validateAgainstDuplicate(items, [
-                    activeScope,
-                    inputValue,
-                ]);
+                const isValidated = validateAgainstDuplicate(items, [activeScope, inputValue]);
 
                 if (isValidated) {
                     const item = createItem(props, values, submittedValues);
@@ -97,26 +93,20 @@ export const Modal = (props: AppendModalProps): JSX.Element => {
                 actions.setFieldValue('isNotValidated', !isValidated);
                 actions.setSubmitting(false);
             },
-        });
+        },
+    );
 
     const warningText = getWarningMessage(errors, values, submitCount);
 
     const warning = warningText ? (
-        <Warning
-            data-testid="warning"
-            isActive={true}
-            warningText={warningText}
-        />
+        <Warning data-testid="warning" isActive={true} warningText={warningText} />
     ) : null;
 
     return (
         <div className="modal" role="dialog">
             <form className="modal-content" onSubmit={handleSubmit}>
                 {warning}
-                <AppendItemModalCriterion
-                    inputProps={getFieldProps('inputValue')}
-                    onClose={closeInput}
-                />
+                <AppendItemModalCriterion inputProps={getFieldProps('inputValue')} onClose={closeInput} />
                 <AppendItemModalCategoryCheckbox
                     checkboxProps={getFieldProps('shouldInitializeCategory')}
                     id="checkbox"
@@ -132,8 +122,8 @@ const mapStateToProps = (state: RootStateType) => ({
     activeScope: state.input.activeScope,
 });
 
-export const AppendItemModal = connect(mapStateToProps, null)(Modal);
-
+const AppendItemModal = connect(mapStateToProps, null)(Modal);
+export default AppendItemModal;
 Modal.propTypes = {
     items: PropTypes.array,
     activeScope: PropTypes.string,

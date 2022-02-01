@@ -18,7 +18,6 @@
         "strictNullChecks": false,
         "isolatedModules": true,
         "noFallthroughCasesInSwitch": true
-        //"types": ["node"]
     },
     "include": ["src", "src/index.tsx", "test/js/functions/functions.test.ts"]
 }

@@ -4,12 +4,10 @@ import { FieldInputProps } from 'formik';
 import {
     AppendItemModalCategoryCheckbox,
     InitializeCategoryProps,
-} from '../../../src/components/AppendItemModal/AppendItemModalCategoryCheckbox';
-
+} from '../../../../src/components/AppendItemModal/parts/AppendItemModalCategoryCheckbox';
+// dlaczego one nie są act
 describe('Given AppendItemModalCategoryCheckbox component', () => {
-    function createProps(
-        props: Partial<InitializeCategoryProps>
-    ): InitializeCategoryProps {
+    function createProps(props: Partial<InitializeCategoryProps>): InitializeCategoryProps {
         return {
             checkboxProps: {} as FieldInputProps<any>,
             id: 'initialize',
@@ -22,11 +20,9 @@ describe('Given AppendItemModalCategoryCheckbox component', () => {
         it('should not render the component', () => {
             const props = createProps({ primary: false });
 
-            const { container } = render(
-                <AppendItemModalCategoryCheckbox {...props} />
-            );
+            const { container } = render(<AppendItemModalCategoryCheckbox {...props} />);
 
-            expect(container.firstChild).toBeNull();
+            expect(container.firstChild).toBeNull(); // czy są inne sposoby NIEwyrenderowania
         });
     });
 
@@ -36,9 +32,7 @@ describe('Given AppendItemModalCategoryCheckbox component', () => {
                 checkboxProps: { name: 'test' } as FieldInputProps<any>,
             });
 
-            const { getByLabelText } = render(
-                <AppendItemModalCategoryCheckbox {...props} />
-            );
+            const { getByLabelText } = render(<AppendItemModalCategoryCheckbox {...props} />);
 
             const checkbox = getByLabelText('Inicjować katalog?');
 

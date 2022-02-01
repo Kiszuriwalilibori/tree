@@ -4,9 +4,10 @@ import { FieldInputProps } from 'formik';
 import {
     AppendItemModalCriterion,
     CriterionProps,
-} from '../../../src/components/AppendItemModal/AppendItemModalCriterion';
+} from '../../../../src/components/AppendItemModal/parts/AppendItemModalCriterion';
 
 describe('Given AppendItemModalCriterion component', () => {
+    // o co tu chodzi po co ta funkcja chodzi o to żeby jedne propsy byłye defaultowa a inne knkretne
     function createProps(props: Partial<CriterionProps> = {}): CriterionProps {
         return {
             inputProps: {
@@ -25,9 +26,7 @@ describe('Given AppendItemModalCriterion component', () => {
                 inputProps: { ...inputProps, value: 'just a test' },
             });
 
-            const { getByRole } = render(
-                <AppendItemModalCriterion {...props} />
-            );
+            const { getByRole } = render(<AppendItemModalCriterion {...props} />);
             const textBox = getByRole('textbox');
 
             expect((textBox as HTMLInputElement).value).toBe('just a test');
@@ -38,9 +37,7 @@ describe('Given AppendItemModalCriterion component', () => {
         it('should execute onClose callback', () => {
             const onClose = jest.fn();
             const props = createProps({ onClose });
-            const { getByText } = render(
-                <AppendItemModalCriterion {...props} />
-            );
+            const { getByText } = render(<AppendItemModalCriterion {...props} />);
             const button = getByText('Zamknij');
 
             fireEvent.click(button);

@@ -6,9 +6,7 @@ export interface InitializeCategoryProps {
     primary?: boolean;
 }
 
-export const AppendItemModalCategoryCheckbox = (
-    props: InitializeCategoryProps
-): JSX.Element => {
+export const AppendItemModalCategoryCheckbox = (props: InitializeCategoryProps): JSX.Element => {
     const { checkboxProps, id, primary } = props;
 
     if (!primary) {
@@ -17,12 +15,7 @@ export const AppendItemModalCategoryCheckbox = (
 
     return (
         <div>
-            <input
-                className="styled-checkbox"
-                id={id}
-                type="checkbox"
-                {...checkboxProps}
-            ></input>
+            <input className="styled-checkbox" id={id} type="checkbox" {...checkboxProps}></input>
             <label htmlFor={id}>Inicjować katalog?</label>
         </div>
     );

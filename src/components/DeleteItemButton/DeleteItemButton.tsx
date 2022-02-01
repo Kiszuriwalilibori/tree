@@ -4,7 +4,6 @@ import IconButton from './styles';
 
 interface ButtonProps {
     nodeText: string;
-    // header: string | undefined;
     handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
@@ -16,7 +15,6 @@ interface ButtonProps {
  */
 const Button = (props: ButtonProps) => {
     const { nodeText, handleClick } = props;
-
     return (
         <IconButton aria-controls={nodeText} aria-label="delete-button" onClick={handleClick}>
             <i className="fas fa-minus-circle delete"></i>
@@ -29,6 +27,5 @@ export default DeleteItemButton;
 
 Button.propTypes = {
     nodeText: PropTypes.string,
-    // header: PropTypes.string,
     handleClick: PropTypes.func,
 };

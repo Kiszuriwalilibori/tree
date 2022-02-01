@@ -1,5 +1,3 @@
-//Header mógłby być funkcją przyjmującą dwa propsy i zwracającą komponent a nie obiekt
-
 import React from 'react';
 import DeleteItemButton from '../DeleteItemButton';
 import PropTypes from 'prop-types';
@@ -41,9 +39,6 @@ Header.set(false, function (props: headerPropsType) {
         </div>
     );
 });
-
-//Tree is quite versatile component that renders both main scheme and subtree
-// Prop 'primary' keeps information (as boolean) whether its main scheme or its subtree and rules its behavior and view.
 
 /**
  *  Versatile component which renders both main scheme or subtree

@@ -6,21 +6,13 @@ export interface CriterionProps {
     onClose(): unknown;
 }
 
-export const AppendItemModalCriterion = (
-    props: CriterionProps
-): JSX.Element => {
+export const AppendItemModalCriterion = (props: CriterionProps): JSX.Element => {
     const { inputProps, onClose } = props;
 
     return (
         <>
             <span>Wpisz nowe kryterium</span>
-            <TextField
-                required
-                size="small"
-                label="Kryterium"
-                variant="outlined"
-                {...inputProps}
-            />
+            <TextField required size="small" label="Kryterium" variant="outlined" {...inputProps} />
             <Button
                 variant="contained"
                 size="large"
