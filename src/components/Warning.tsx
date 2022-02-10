@@ -7,7 +7,7 @@ interface WarningProps {
 }
 
 /**
- * Renders warning text
+ *  @description Renders warning text
  * @param {bolean} isActive determines whether warning is displayed
  * @param {string} warningText determines text which will be displayed
  * @returns component displaying warning

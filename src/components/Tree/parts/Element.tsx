@@ -32,5 +32,4 @@ const Element = (props: elementPropsType): JSX.Element => {
         return <Tree ary={itemOrItemsArray} primary={false} head={''} />;
     }
 };
-
 export default Element;
