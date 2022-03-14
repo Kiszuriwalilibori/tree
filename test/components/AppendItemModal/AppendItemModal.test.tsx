@@ -117,13 +117,10 @@ describe('Given AppendItemModal', () => {
             );
 
             await act(async () => {
-                // dlaczego i to jest w asyncu skoro test jest? Czy na wszelki wypadek, że gdzieś jakiś debounce jest ukryty
                 const input = await findByRole('textbox');
 
                 userEvent.type(input, inputValue);
-
                 const submitButton = await findByText('Dodaj');
-
                 fireEvent.click(submitButton);
             });
 
@@ -146,7 +143,6 @@ describe('Given AppendItemModal', () => {
             );
 
             await act(async () => {
-                // czy koniecznie act reactem bo w tamtych tego nie bylo
                 const input = await findByRole('textbox');
 
                 userEvent.type(input, inputValue);

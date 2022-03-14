@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AppProvider from './components/AppProvider';
 import App from './components/App';
-
+//import * as serviceWorker from '../src/js/serviceWorker';
+import * as serviceWorker from './service-worker';
+import { register } from './serviceWorkerRegistration';
 ReactDOM.render(
     <AppProvider>
         <App />
@@ -10,4 +12,4 @@ ReactDOM.render(
     document.getElementById('root'),
 );
 
-//serviceWorker.unregister();
+register();
