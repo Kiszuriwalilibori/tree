@@ -86,3 +86,9 @@ Dlaczego closeInput jest wywolywany dwa razy po kliknięciu dodaj z dobrym tekst
 Header mógłby być funkcją przyjmującą dwa propsy i zwracającą komponent a nie obiekt
 
 Dopisac komentarze do wszystkich funkcji arytmetycznych
+
+Zastosować wynik z AXE:All rendered content must be placed inside of container elements with appropriate ARIA
+landmark roles. Dodać h1 jakiekolwiek. Może do people???
+
+Przyjrzeć się serviceWorker, jest wywoływany on jako on a nie registration, dziwne, bo działa ale jakby
+inaczej

@@ -56,7 +56,7 @@ const Tree = (props: treePropsType) => {
     const EnhancedElement = enhancedElement.get(primary);
 
     return ary ? (
-        <React.Fragment>
+        <main>
             <HeadingElement string={header} />
             <div id="Tree_of_choice" className={WrapperStyle}>
                 {ary.map(item => (
@@ -64,7 +64,7 @@ const Tree = (props: treePropsType) => {
                 ))}
                 <AppendItemButton string={header} primary={primary} />
             </div>
-        </React.Fragment>
+        </main>
     ) : null;
 };
 
