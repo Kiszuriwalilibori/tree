@@ -16,7 +16,7 @@ interface ButtonProps {
 const Button = (props: ButtonProps) => {
     const { nodeText, handleClick } = props;
     return (
-        <IconButton aria-controls={nodeText} aria-label="delete-button" onClick={handleClick}>
+        <IconButton itemProp={nodeText} aria-label="delete-button" onClick={handleClick}>
             <i className="fas fa-minus-circle delete"></i>
         </IconButton>
     );

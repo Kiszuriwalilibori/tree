@@ -9,9 +9,5 @@ interface textItemPropsType {
 
 export const TextItem = (props: textItemPropsType) => {
     const { string } = props;
-    return (
-        <span role="treeitem" className="TextItem">
-            {string}
-        </span>
-    );
+    return <span className="TextItem">{string}</span>;
 };

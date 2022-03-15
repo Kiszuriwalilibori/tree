@@ -4,7 +4,6 @@ import {
     AppendItemModalCategoryCheckbox,
     InitializeCategoryProps,
 } from '../../../../src/components/AppendItemModal/parts/AppendItemModalCategoryCheckbox';
-// dlaczego one nie są act
 describe('Given AppendItemModalCategoryCheckbox component', () => {
     function createProps(props: Partial<InitializeCategoryProps>): InitializeCategoryProps {
         return {

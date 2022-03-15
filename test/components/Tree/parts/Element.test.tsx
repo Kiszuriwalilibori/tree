@@ -18,7 +18,7 @@ describe('Element test suite with itemOrItemsArray being string', () => {
     test('when two strings are passed as props it renders single element with delete button', () => {
         const element = document.getElementById(stringProp);
         expect(element).toBeInTheDocument();
-        const treeItems = screen.getAllByRole('treeitem');
+        const treeItems = Array.prototype.slice.call(document.querySelectorAll('.TextItem'));
         expect(treeItems).toHaveLength(1);
         const button = screen.getByRole('button');
         expect(button).toBeInTheDocument();

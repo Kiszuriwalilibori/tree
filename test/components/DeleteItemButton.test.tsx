@@ -31,7 +31,7 @@ describe('DeleteItem Buttons(those with minus)', () => {
     test('For each of them, when clicked, component it controls disappears', () => {
         const minuses = document.querySelectorAll('[aria-label="delete-button"]');
         minuses.forEach(async minus => {
-            const name = minus.getAttribute('aria-controls');
+            const name = minus.getAttribute('itemprop');
             const element = screen.getByText(new RegExp(name, 'i'));
             expect(element).toBeInTheDocument();
             userEvent.click(minus);

@@ -2,7 +2,6 @@ import { act, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { screen, render, cleanup } from '../../../test/test-utils/testing-library-utils';
 import * as Yup from 'yup';
-// ate wszystkie cleanup i jest.clearAllMocks to gdzie poszły?
 import { Modal as AppendModal } from '../../../src/components/AppendItemModal/AppendItemModal';
 import AppendItemModal from '../../../src/components/AppendItemModal/AppendItemModal';
 import { InitialNodes } from '../../../src/config';

@@ -8,9 +8,10 @@ import AppProvider from '../../src/components/AppProvider';
 import ReactDOM from 'react-dom';
 
 describe('App tests suite', () => {
-    test('App renders initially all nodes with tree_item role that are specified in InitialNodes, as well as buttons', () => {
+    test('App renders initially all nodes with TextItem class that are specified in InitialNodes, as well as buttons', () => {
         render(<App />);
-        const tree_items = screen.getAllByRole('treeitem');
+
+        const tree_items = Array.prototype.slice.call(document.querySelectorAll('.TextItem'));
         const tree_items_texts = tree_items.map(item => {
             return item.textContent;
         });
@@ -96,9 +97,9 @@ describe('App by Jest', () => {
     });
 });
 describe('LocalApp when', () => {
-    test('receives empty items returns no element with "tree" role', () => {
-        const App = render(<LocalApp items={null} isInputActive={true} />);
-        const Tree = App.queryAllByRole('tree');
+    test('receives falsey items prop returns no element with id of #Tree_of_choice', () => {
+        render(<LocalApp items={null} isInputActive={true} />);
+        const Tree = Array.prototype.slice.call(document.querySelectorAll('#Tree_of_choice'));
         expect(Tree).toStrictEqual([]);
     });
 });

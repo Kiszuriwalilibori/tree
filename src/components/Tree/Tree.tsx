@@ -58,7 +58,7 @@ const Tree = (props: treePropsType) => {
     return ary ? (
         <React.Fragment>
             <HeadingElement string={header} />
-            <div role="tree" className={WrapperStyle}>
+            <div id="Tree_of_choice" className={WrapperStyle}>
                 {ary.map(item => (
                     <EnhancedElement key={item} itemOrItemsArray={item} header={header} />
                 ))}
