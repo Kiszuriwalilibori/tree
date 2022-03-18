@@ -61,34 +61,40 @@
 
 dispatches now with useDispatchAction
 
+#### 0.4.4
+
+004 fixed
+
+010 fixed
+
+005 fixed
+
+006 fixed
+
 ### To do
 
--   functions try catch
--   przepisac append na na thunka
--   trochę problematyczne input.current.checked bo w niektórych sytuacjach łapie nulla i TS się wali w
-    komponencie
+001 functions try catch
 
--   upraszczać i poprawić nazewnictwo
+002 przepisać append na na thunka
 
-oba ostrzeżenia -duplicate i missingAlphaChars - nadawałyby się na rendering props bo środek mają ten sam
+003 trochę problematyczne input.current.checked bo w niektórych sytuacjach łapie nulla i TS się wali w
+komponencie
 
-role treeitem dla elementów tekstowych
+--004 oba ostrzeżenia -duplicate i missingAlphaChars - nadawałyby się na rendering props bo środek mają ten
+sam
 
-ten kawałek powinien być jedną funkcją
+--005 ten kawałek powinien być jedną funkcją
 
 let result: itemType | input; if (primary) { result = shouldInitializeCategory ? [inputValue] : inputValue; }
 else { result = values.inputValue; }
 
-testy
+--006 Dlaczego closeInput jest wywolywany dwa razy po kliknięciu dodaj z dobrym tekstem// patr testy
 
-Dlaczego closeInput jest wywolywany dwa razy po kliknięciu dodaj z dobrym tekstem// patr testy
+007 Header mógłby być funkcją przyjmującą dwa propsy i zwracającą komponent a nie obiekt
 
-Header mógłby być funkcją przyjmującą dwa propsy i zwracającą komponent a nie obiekt
+008 Dopisac komentarze do wszystkich funkcji arytmetycznych
 
-Dopisac komentarze do wszystkich funkcji arytmetycznych
+--009 A jednak, id = "Tree_of_choice" się duplikuje, trzeba zanaleźć jakiś inny selektor dla celu testów bo
+tylko tam jest użyte. Klasa?
 
-Zastosować wynik z AXE:All rendered content must be placed inside of container elements with appropriate ARIA
-landmark roles. Dodać h1 jakiekolwiek. Może do people???
-
-Przyjrzeć się serviceWorker, jest wywoływany on jako on a nie registration, dziwne, bo działa ale jakby
-inaczej
+--010 Dodać h1

@@ -56,15 +56,15 @@ const Tree = (props: treePropsType) => {
     const EnhancedElement = enhancedElement.get(primary);
 
     return ary ? (
-        <main>
+        <>
             <HeadingElement string={header} />
-            <div id="Tree_of_choice" className={WrapperStyle}>
+            <div className={WrapperStyle}>
                 {ary.map(item => (
                     <EnhancedElement key={item} itemOrItemsArray={item} header={header} />
                 ))}
                 <AppendItemButton string={header} primary={primary} />
             </div>
-        </main>
+        </>
     ) : null;
 };
 

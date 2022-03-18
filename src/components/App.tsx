@@ -16,10 +16,11 @@ export const LocalApp: React.FC<PropsTypes> = (props: PropsTypes): JSX.Element =
     const criterias = items ? _.cloneDeep(items) : null;
     const header = criterias ? (criterias.shift() as string) : null;
     return items ? (
-        <React.Fragment>
+        <main>
+            <h1 className="header">Drzewo wyboru</h1>
             {isInputActive ? <AppendItemModal /> : null}
             <Tree ary={criterias} primary={true} head={header} />
-        </React.Fragment>
+        </main>
     ) : null;
 };
 

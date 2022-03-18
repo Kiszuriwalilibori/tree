@@ -1,7 +1,7 @@
 {
     "name": "decision_tree",
     "homepage": "http://kiszuriwalilibori.github.io/tree",
-    "version": "0.4.3",
+    "version": "0.4.4",
     "private": true,
     "dependencies": {
         "@material-ui/core": "^4.11.0",

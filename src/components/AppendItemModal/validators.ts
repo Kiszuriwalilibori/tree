@@ -1,10 +1,8 @@
 import * as Yup from 'yup';
+import { warnings } from '../../config';
 
 export const validators = Yup.object().shape({
     inputValue: Yup.string()
-        .matches(
-            /\d|[A-z]/,
-            'Kryterium musi zawierać choć jedną literę lub cyfrę'
-        )
+        .matches(/\d|[A-z]/, warnings.missingAlphaChars)
         .required('Required'),
 });
