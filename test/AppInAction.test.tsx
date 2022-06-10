@@ -97,7 +97,7 @@ describe('App by Jest', () => {
     });
 });
 describe('LocalApp when', () => {
-    test('receives falsey items prop returns no element with id of #Tree_of_choice', () => {
+    test('receives falsey items prop returns no component with id of #Tree_of_choice', () => {
         render(<LocalApp items={null} isInputActive={true} />);
         const Tree = Array.prototype.slice.call(document.querySelectorAll('.contentWarpperPrimary'));
         expect(Tree).toStrictEqual([]);

@@ -28,11 +28,11 @@ afterEach(() => cleanup());
 describe('Given BranchRootNode component', () => {
     describe('when called with given props', () => {
         test('It displays div with proper class', () => {
-            const div = document.querySelector('div.element');
+            const div = document.querySelector('div.node');
             expect(div).toBeInTheDocument();
         });
         test('It has second child being component DeleteItemButton', () => {
-            const secondChild = document.querySelector('div.element').children[1];
+            const secondChild = document.querySelector('div.node').children[1];
             expect(secondChild).toBeInTheDocument();
             expect(secondChild).toHaveTextContent(deleteButtonText);
         });
@@ -44,7 +44,7 @@ describe('Given BranchRootNode component', () => {
             );
         });
         test('It has first child being component SecondaryHeaderText', () => {
-            const firstChild = document.querySelector('div.element').children[0];
+            const firstChild = document.querySelector('div.node').children[0];
             expect(firstChild).toBeInTheDocument();
             expect(firstChild).toHaveTextContent(secondaryHeaderText);
         });

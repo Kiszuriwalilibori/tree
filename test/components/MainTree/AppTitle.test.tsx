@@ -22,7 +22,6 @@ describe('App title test suite', () => {
             expect(appTitle).toBeInTheDocument();
         });
         test('renders component with given text content', () => {
-            screen.debug();
             const title = screen.getByText(appTitle);
             expect(title).toBeInTheDocument();
         });

@@ -31,7 +31,7 @@ jest.mock('../../../src/components/DeleteItemButton/DeleteItemButton', () => pro
 describe('Given BasicNode component', () => {
     describe('when called with given props', () => {
         test('It displays div with id being item and proper class', () => {
-            const div = document.querySelector('div.element#testItem');
+            const div = document.querySelector('div.node#testItem');
             expect(div).toBeInTheDocument();
         });
         test('It has first child being span with text content being item', () => {
@@ -46,7 +46,7 @@ describe('Given BasicNode component', () => {
         test('passes expected props to TextItem child component', () => {
             expect(mockTextItem).toHaveBeenCalledWith(
                 expect.objectContaining({
-                    string: props.item,
+                    str: props.item,
                 }),
             );
         });

@@ -17,7 +17,7 @@ export const BranchRootNode = (props: branchRootNodePropsType) => {
     const handleClick = useDebouncedCallback(removeItem, [undefined, string]);
 
     return (
-        <div className="element">
+        <div className="node">
             <SecondaryHeaderText str={string} />
             <DeleteItemButton nodeText={string} handleClick={handleClick} />
         </div>

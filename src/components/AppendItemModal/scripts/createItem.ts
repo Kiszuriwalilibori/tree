@@ -8,10 +8,6 @@ function createItem(
 ): string | string[] {
     const { inputValue, shouldInitializeCategory } = visibleValues;
 
-    console.log(props, 'props');
-    console.log(visibleValues, 'visibleValues');
-    console.log(submittedValues, 'submittedValues');
-
     if (isMainTree(props)) {
         return shouldInitializeCategory ? [inputValue] : inputValue;
     }

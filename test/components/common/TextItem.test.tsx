@@ -4,7 +4,7 @@ import { render, screen, cleanup } from '../../test-utils/testing-library-utils'
 var testString = 'testString';
 
 beforeEach(() => {
-    render(<TextItem string={testString} />);
+    render(<TextItem str={testString} />);
 });
 afterEach(() => cleanup());
 
@@ -14,7 +14,7 @@ describe('Given TextItem component', () => {
             const text = screen.getByText(new RegExp(testString, 'i'));
             expect(text).toBeInTheDocument();
         });
-        test('It displays element with proper class', () => {
+        test('It displays component with proper class', () => {
             const text = screen.getByText(new RegExp(testString, 'i'));
             expect(text).toHaveClass('TextItem');
         });

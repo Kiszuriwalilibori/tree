@@ -13,7 +13,7 @@ const BasicNode = (props: propsType) => {
     const { removeItem } = useDispatchAction();
     const handleClick = useDebouncedCallback(removeItem, [header, item]);
     return (
-        <div className="element" id={item}>
+        <div className="node" id={item}>
             <TextItem str={item} />
             <DeleteItemButton nodeText={item} handleClick={handleClick} />
         </div>

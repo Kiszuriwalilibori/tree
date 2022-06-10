@@ -4,8 +4,7 @@
     color: inherit;
     letter-spacing: inherit;
 }
-
-.element {
+.node {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -43,7 +42,7 @@
     }
 }
 
-.wrapper-primary > .element {
+.wrapper-primary > .node {
     padding-right: $secondary-left-indent + $line-bolder;
 }
 

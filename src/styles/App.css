@@ -119,7 +119,7 @@ body {
   letter-spacing: inherit;
 }
 
-.element {
+.node {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -168,7 +168,7 @@ body {
   border-radius: 6px 0 0 6px;
 }
 
-.wrapper-primary > .element {
+.wrapper-primary > .node {
   padding-right: 12px;
 }
 
@@ -468,6 +468,10 @@ body {
     border-radius: 6px 6px 6px 0;
     width: calc(36.7vw - 30px);
   }
+  .wrapper-primary > .node .wrapper-secondary {
+    border-radius: 6px 6px 6px 0;
+    width: calc(36.7vw - 30px);
+  }
   .top-header {
     width: 44vw;
     padding: calc(10px + 10 * ((100vw - 500px) / 180)) 25px;
@@ -493,7 +497,7 @@ body {
 }
 
 @media only screen and (max-width: 500px) {
-  .element {
+  .node {
     font-size: calc(18px + 6 * ((100vw - 320px) / 180));
   }
   .wrapper-primary-outer::before,
