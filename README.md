@@ -71,6 +71,10 @@ dispatches now with useDispatchAction
 
 006 fixed
 
+### 0.5.0
+
+Generally refactored. More tests added
+
 ### To do
 
 001 functions try catch

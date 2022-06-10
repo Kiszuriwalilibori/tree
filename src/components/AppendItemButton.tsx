@@ -1,29 +1,29 @@
 import * as React from 'react';
-
-import useDispatchAction from '../hooks/useDispatchAction';
 import PropTypes from 'prop-types';
 
+import useDispatchAction from '../hooks/useDispatchAction';
+
 interface ButtonProps {
-    string: string;
+    str: string;
     primary: boolean;
 }
 
 /**
  * Renders the button which initializes creation of new node
  * @param initAppend the function which does the job
- * @param {string} string   indicates node (its text content) to be created
+ * @param {str} string   indicates node (its text content) to be created
  * @param {boolean} primary defines whether givennode is primary(directly in main tree) or not
  * @returns button component
  */
 const Button = (props: ButtonProps) => {
-    const { string, primary } = props;
+    const { str, primary } = props;
     const { initAppend } = useDispatchAction();
 
     return (
         <button
             className={primary ? 'append-primary' : 'append-secondary'}
             onClick={() => {
-                initAppend(string);
+                initAppend(str);
             }}
             aria-label="append-button"
             title={primary ? 'append-primary-button' : 'append-secondary-button'}

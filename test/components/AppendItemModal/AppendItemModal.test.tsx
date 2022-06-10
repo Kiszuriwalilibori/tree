@@ -16,7 +16,7 @@ const actions = {
 
 jest.mock('../../../src/hooks/useDispatchAction.ts', () => () => actions);
 
-const validateAgainstDuplicate: jest.Mock = jest.fn(); // to w zestawieniu z liniami 17-20 mało jasna składnia
+const validateAgainstDuplicate: jest.Mock = jest.fn();
 
 jest.mock('../../../src/js/functions/validateAgainstDuplicate.ts', () => () => validateAgainstDuplicate());
 

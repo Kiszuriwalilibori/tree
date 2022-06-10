@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
 import IconButton from './styles';
 
 interface ButtonProps {
@@ -24,8 +24,3 @@ const Button = (props: ButtonProps) => {
 
 const DeleteItemButton = React.memo(Button);
 export default DeleteItemButton;
-
-Button.propTypes = {
-    nodeText: PropTypes.string,
-    handleClick: PropTypes.func,
-};

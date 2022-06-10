@@ -1,5 +1,5 @@
 interface textItemPropsType {
-    string: string;
+    str: string;
 }
 /**
  * Displays span with text inside
@@ -7,7 +7,9 @@ interface textItemPropsType {
  * @returns component being single span with strng content
  */
 
-export const TextItem = (props: textItemPropsType) => {
-    const { string } = props;
-    return <span className="TextItem">{string}</span>;
+const TextItem = (props: textItemPropsType) => {
+    const { str } = props;
+    return <span className="TextItem">{str}</span>;
 };
+
+export default TextItem;

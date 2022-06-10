@@ -15,3 +15,5 @@ export const warnings = {
     missingAlphaChars: 'Kryterium musi zawierać choć jedną literę lub cyfrę',
     duplicate: 'Takie kryterium już jest. Nie można dodać go po raz drugi.',
 };
+
+export const appTitle = 'Drzewo wyboru';

@@ -1,11 +1,16 @@
+/**
+ * TODO sprawdzić co sie dziej przy pustym propsie items bo może być błąd albo pustej tabeli
+ */
+
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
 import AppendItemModal from './AppendItemModal';
-import Tree from './Tree';
+import MainTree from './MainTree';
 import { RootStateType } from './AppProvider';
 import { itemsType } from '../types';
+import AppTitle from './MainTree/AppTitle';
 
 interface PropsTypes {
     items: itemsType;
@@ -17,9 +22,9 @@ export const LocalApp: React.FC<PropsTypes> = (props: PropsTypes): JSX.Element =
     const header = criterias ? (criterias.shift() as string) : null;
     return items ? (
         <main>
-            <h1 className="header">Drzewo wyboru</h1>
+            <AppTitle />
             {isInputActive ? <AppendItemModal /> : null}
-            <Tree ary={criterias} primary={true} head={header} />
+            <MainTree ary={criterias} header={header} />
         </main>
     ) : null;
 };

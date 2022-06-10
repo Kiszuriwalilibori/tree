@@ -1,105 +1,66 @@
-import { fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../test/test-utils/testing-library-utils';
-import { InitialNodes } from '../../src/config';
-import App from '../../src/components/App';
+import { cleanup, render, screen } from '../../test/test-utils/testing-library-utils';
 import { LocalApp } from '../../src/components/App';
-import AppProvider from '../../src/components/AppProvider';
-import ReactDOM from 'react-dom';
 
-describe('App tests suite', () => {
-    test('App renders initially all nodes with TextItem class that are specified in InitialNodes, as well as buttons', () => {
-        render(<App />);
+import _ from 'lodash';
+const mockItems = ['test123', '123test'];
 
-        const tree_items = Array.prototype.slice.call(document.querySelectorAll('.TextItem'));
-        const tree_items_texts = tree_items.map(item => {
-            return item.textContent;
-        });
-        expect(tree_items.length).toBe(InitialNodes.length);
-        expect(tree_items_texts).toEqual(InitialNodes);
-    });
+const mockAppTitleText = 'Hi from MockAppTitle';
+const mockAppTitle = jest.fn();
+
+jest.mock('../../src/components/MainTree/AppTitle', () => props => {
+    mockAppTitle(props);
+    return <div>{mockAppTitleText}</div>;
 });
 
-describe('App by Jest', () => {
-    let container: HTMLDivElement;
+const mockAppendItemModalText = 'Hi from MockAppendItemModal';
+const mockAppendItemModal = jest.fn();
 
-    beforeEach(() => {
-        container = document.createElement('div');
-        document.body.appendChild(container);
-        ReactDOM.render(
-            <AppProvider>
-                <App />
-            </AppProvider>,
-            container,
-        );
-    });
-
-    afterEach(() => {
-        document.body.removeChild(container);
-        container.remove();
-        jest.clearAllMocks();
-    });
-
-    test('checks total number of buttons', () => {
-        const inputs = document.querySelectorAll('button');
-        expect(inputs).toHaveLength(7);
-    });
-    test('checks total number of crosses', () => {
-        const crosses = document.querySelectorAll('.append__cross');
-        expect(crosses).toHaveLength(2);
-    });
-
-    test('Initially, no modal is opened', () => {
-        let modal = document.querySelector('[role="dialog"]');
-        expect(modal).not.toBeInTheDocument();
-    });
-
-    test('When plus button is clicked append modal opens', () => {
-        const crosses = document.querySelectorAll('.append__cross');
-        expect(crosses).toHaveLength(2);
-        crosses.forEach(plus => {
-            userEvent.click(plus);
-            const modal = document.querySelector('[role="dialog"]');
-            expect(modal).toBeInTheDocument();
-        });
-    });
-
-    test('When plus button is clicked append modal opens and when Zamknij is clicked modal is gone', () => {
-        const crosses = document.querySelectorAll('.append__cross');
-        expect(crosses).toHaveLength(2);
-        crosses.forEach(plus => {
-            userEvent.click(plus);
-            const close = screen.getByText(/zamknij/i);
-            userEvent.click(close);
-            const modal = screen.queryByRole('dialog');
-            expect(modal).toBeNull();
-        });
-    });
-
-    test('When plus button with class "append-secondary" is clicked append modal opens without checkbox', () => {
-        const crossSecondary = document.querySelector('.append-secondary');
-        expect(crossSecondary).toBeInTheDocument();
-        userEvent.click(crossSecondary);
-        const modal = document.querySelector('[role="dialog"]');
-        expect(modal).toBeInTheDocument();
-        const checkbox = screen.queryByRole('checkbox');
-        expect(checkbox).toBeNull();
-    });
-
-    test('When plus button with class "append-primary" is clicked append modal opens with checkbox', () => {
-        const crossPrimary = document.querySelector('.append-primary');
-        expect(crossPrimary).toBeInTheDocument();
-        userEvent.click(crossPrimary);
-        const modal = document.querySelector('[role="dialog"]');
-        expect(modal).toBeInTheDocument();
-        const checkbox = screen.getByRole('checkbox');
-        expect(checkbox).toBeInTheDocument();
-    });
+jest.mock('../../src/components/AppendItemModal/AppendItemModal', () => props => {
+    mockAppendItemModal(props);
+    return <div>{mockAppendItemModalText}</div>;
 });
-describe('LocalApp when', () => {
-    test('receives falsey items prop returns no element with id of #Tree_of_choice', () => {
-        render(<LocalApp items={null} isInputActive={true} />);
-        const Tree = Array.prototype.slice.call(document.querySelectorAll('.contentWarpperPrimary'));
-        expect(Tree).toStrictEqual([]);
+
+const mockMainTreeText = 'Hi from MockMainTree';
+const mockMainTree = jest.fn();
+
+jest.mock('../../src/components/MainTree/MainTree', () => props => {
+    mockMainTree(props);
+    return <div>{mockMainTreeText}</div>;
+});
+
+afterEach(() => {
+    cleanup();
+    jest.clearAllMocks();
+});
+describe('Given App component', () => {
+    describe('when renders', () => {
+        test('it renders component with main tag', () => {
+            const { container } = render(<LocalApp items={mockItems} isInputActive={true} />);
+            expect(container.children[0]).toBe(document.querySelector('main'));
+        });
+        test('this main has AppTitle as first child', () => {
+            const { container } = render(<LocalApp items={mockItems} isInputActive={true} />);
+            expect(container.children[0].children[0]).toHaveTextContent(mockAppTitleText);
+        });
+        test('if prop isInputActive is false, it does not render AppendItemModal', () => {
+            const { container } = render(<LocalApp items={mockItems} isInputActive={false} />);
+            expect(mockAppendItemModal).not.toBeCalled();
+        });
+        test('if prop isInputActive is true, it renders AppendItemModal as second child of main', () => {
+            const { container } = render(<LocalApp items={mockItems} isInputActive={true} />);
+            expect(container.children[0].children[1]).toHaveTextContent(mockAppendItemModalText);
+        });
+        test('it renders MainTree as third child of main with proper props', () => {
+            const { container } = render(<LocalApp items={mockItems} isInputActive={true} />);
+            const criterias = mockItems ? _.cloneDeep(mockItems) : null;
+            const header = criterias ? (criterias.shift() as string) : null;
+            expect(mockMainTree).toBeCalledWith(
+                expect.objectContaining({
+                    ary: criterias,
+                    header: header,
+                }),
+            );
+            expect(container.children[0].children[2]).toHaveTextContent(mockMainTreeText);
+        });
     });
 });
