@@ -89,7 +89,7 @@ sam
 
 --005 ten kawałek powinien być jedną funkcją
 
-let result: itemType | input; if (primary) { result = shouldInitializeCategory ? [inputValue] : inputValue; }
+let result: Item | input; if (primary) { result = shouldInitializeCategory ? [inputValue] : inputValue; }
 else { result = values.inputValue; }
 
 --006 Dlaczego closeInput jest wywolywany dwa razy po kliknięciu dodaj z dobrym tekstem// patr testy

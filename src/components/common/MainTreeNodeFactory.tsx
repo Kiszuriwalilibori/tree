@@ -1,7 +1,7 @@
-import Branch from '../Branch';
-import BasicNode from './BasicNode';
+import Branch from "../Branch";
+import BasicNode from "./BasicNode";
 
-interface elementPropsType {
+interface Props {
     itemOrItemsArray: string | string[];
     header: string | undefined;
 }
@@ -11,10 +11,10 @@ interface elementPropsType {
  * @param itemOrItemsArray defines whether it returns single field(string) or subtree(array of strings) and keeps its content
  * @returns component
  */
-const MainTreeNodeFactory = (props: elementPropsType): JSX.Element => {
+const MainTreeNodeFactory = (props: Props): JSX.Element => {
     const { itemOrItemsArray, header } = props;
 
-    if (typeof itemOrItemsArray === 'string') {
+    if (typeof itemOrItemsArray === "string") {
         return <BasicNode item={itemOrItemsArray} header={header} />;
     }
 

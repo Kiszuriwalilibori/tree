@@ -1,6 +1,6 @@
-import { FieldInputProps } from 'formik';
+import { FieldInputProps } from "formik";
 
-export interface InitializeCategoryProps {
+interface Props {
     checkboxProps: FieldInputProps<any>;
     id?: string;
     primary?: boolean;
@@ -10,7 +10,7 @@ export interface InitializeCategoryProps {
  * @param props primary: informs whether it is main tree node or branch node, id: node id, checkboxProps: Formik
  * @returns react checkbox component if primary === true or null otherwise
  */
-export const AppendItemModalCategoryCheckbox = (props: InitializeCategoryProps): JSX.Element => {
+export const AppendItemModalCategoryCheckbox = (props: Props): JSX.Element => {
     const { checkboxProps, id, primary } = props;
 
     if (!primary) {

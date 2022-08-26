@@ -1,8 +1,8 @@
-import * as React from 'react';
+import * as React from "react";
 
-import IconButton from './styles';
+import IconButton from "./styles";
 
-interface ButtonProps {
+interface Props {
     nodeText: string;
     handleClick: React.MouseEventHandler<HTMLButtonElement>;
 }
@@ -13,7 +13,7 @@ interface ButtonProps {
  * @param {React.MouseEventHandler<HTMLButtonElement>} handleClick which removes certain node
  * @returns button component
  */
-const Button = (props: ButtonProps) => {
+const Button = (props: Props) => {
     const { nodeText, handleClick } = props;
     return (
         <IconButton itemProp={nodeText} aria-label="delete-button" onClick={handleClick}>

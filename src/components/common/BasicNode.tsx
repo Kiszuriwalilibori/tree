@@ -1,14 +1,14 @@
-import useDebouncedCallback from '../../hooks/useDebouncedCallback';
-import useDispatchAction from '../../hooks/useDispatchAction';
-import DeleteItemButton from '../DeleteItemButton';
-import TextItem from './TextItem';
+import useDebouncedCallback from "../../hooks/useDebouncedCallback";
+import useDispatchAction from "../../hooks/useDispatchAction";
+import DeleteItemButton from "../DeleteItemButton";
+import TextItem from "./TextItem";
 
-interface propsType {
+interface Props {
     item: string;
     header: string | undefined;
 }
 
-const BasicNode = (props: propsType) => {
+const BasicNode = (props: Props) => {
     const { item, header } = props;
     const { removeItem } = useDispatchAction();
     const handleClick = useDebouncedCallback(removeItem, [header, item]);

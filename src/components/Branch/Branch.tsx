@@ -1,19 +1,19 @@
-import AppendItemButton from '../AppendItemButton';
-import BranchRootNode from './BranchRootNode';
-import EnhancedElement from './EnhancedElement';
+import AppendItemButton from "../AppendItemButton";
+import BranchRootNode from "./BranchRootNode";
+import EnhancedElement from "./EnhancedElement";
 
-interface branchPropsType {
+interface Props {
     ary: string[];
 }
 
-export const Branch = (props: branchPropsType) => {
+export const Branch = (props: Props) => {
     const { ary } = props;
     const header = ary.shift() as string;
 
     return ary ? (
         <>
             <BranchRootNode string={header} />
-            <div className={'contentWrapperSecondary'}>
+            <div className={"contentWrapperSecondary"}>
                 {ary.map(item => (
                     <EnhancedElement key={item} item={item} header={header} />
                 ))}

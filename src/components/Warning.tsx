@@ -1,7 +1,7 @@
-import * as React from 'react';
-import { Alert, AlertTitle } from '@material-ui/lab';
+import * as React from "react";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
-interface WarningProps {
+interface Props {
     isActive: boolean;
     warningText: string;
 }
@@ -13,7 +13,7 @@ interface WarningProps {
  * @returns component displaying warning
  */
 
-let Warning = (props: WarningProps): JSX.Element => {
+let Warning = (props: Props): JSX.Element => {
     const { isActive, warningText } = props;
     return isActive && warningText ? (
         <Alert role="alert" severity="error">

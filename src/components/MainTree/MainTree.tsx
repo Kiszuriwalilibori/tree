@@ -1,30 +1,30 @@
-import { itemsType } from '../../types';
-import AppendItemButton from '../AppendItemButton';
-import TextItem from '../common/TextItem';
-import Enhanced from '../../HOCs/enhanced';
-import MainTreeNodeFactory from '../common/MainTreeNodeFactory';
+import { Items } from "../../types";
+import AppendItemButton from "../AppendItemButton";
+import TextItem from "../common/TextItem";
+import enhanced from "../../HOCs/enhanced";
+import MainTreeNodeFactory from "../common/MainTreeNodeFactory";
 
-const MainTreeRootNode = Enhanced(TextItem, 'top-header');
+const MainTreeRootNode = enhanced(TextItem, "top-header");
 
-const MainTreeRegularNodeFactory = Enhanced(
+const MainTreeRegularNodeFactory = enhanced(
     MainTreeNodeFactory,
-    'wrapper-primary',
-    'wrapper-primary-outer',
-    'distancer',
+    "wrapper-primary",
+    "wrapper-primary-outer",
+    "distancer"
 );
 
-interface treePropsType {
-    ary: itemsType;
+interface Props {
+    ary: Items;
     header: string;
 }
 
-const MainTree = (props: treePropsType) => {
+const MainTree = (props: Props) => {
     const { ary, header } = props;
 
     return ary ? (
         <>
             <MainTreeRootNode str={header} />
-            <div className={'contentWrapperPrimary'}>
+            <div className={"contentWrapperPrimary"}>
                 {ary.map(item => (
                     <MainTreeRegularNodeFactory key={item} itemOrItemsArray={item} header={header} />
                 ))}

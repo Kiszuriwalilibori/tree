@@ -1,4 +1,4 @@
-export interface AppendModalProps {
+export interface AppendModal {
     items: (string | string[])[];
     activeScope: string;
 }

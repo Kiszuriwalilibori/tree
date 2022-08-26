@@ -2,21 +2,21 @@
  * TODO sprawdzić co sie dziej przy pustym propsie items bo może być błąd albo pustej tabeli
  */
 
-import React from 'react';
-import _ from 'lodash';
-import { connect } from 'react-redux';
+import React from "react";
+import _ from "lodash";
+import { connect } from "react-redux";
 
-import AppendItemModal from './AppendItemModal';
-import MainTree from './MainTree';
-import { RootStateType } from './AppProvider';
-import { itemsType } from '../types';
-import AppTitle from './MainTree/AppTitle';
+import AppendItemModal from "./AppendItemModal";
+import MainTree from "./MainTree";
+import { RootStateType } from "./AppProvider";
+import { Items } from "../types";
+import AppTitle from "./MainTree/AppTitle";
 
-interface PropsTypes {
-    items: itemsType;
+interface Props {
+    items: Items;
     isInputActive: boolean;
 }
-export const LocalApp: React.FC<PropsTypes> = (props: PropsTypes): JSX.Element => {
+export const LocalApp: React.FC<Props> = (props: Props): JSX.Element => {
     const { items, isInputActive } = props;
     const criterias = items ? _.cloneDeep(items) : null;
     const header = criterias ? (criterias.shift() as string) : null;

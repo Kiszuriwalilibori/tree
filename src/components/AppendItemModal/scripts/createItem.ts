@@ -1,11 +1,12 @@
-import isMainTree from './isMainTree';
-import { AppendItemModalFormValues, AppendModalProps } from '../model';
+import isMainTree from "./isMainTree";
+import { AppendItemModalFormValues, AppendModal } from "../model";
+import { Item } from "../../../types";
 
 function createItem(
-    props: AppendModalProps,
+    props: AppendModal,
     visibleValues: AppendItemModalFormValues,
-    submittedValues: AppendItemModalFormValues,
-): string | string[] {
+    submittedValues: AppendItemModalFormValues
+): Item {
     const { inputValue, shouldInitializeCategory } = visibleValues;
 
     if (isMainTree(props)) {

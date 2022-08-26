@@ -1,7 +1,7 @@
-import { getFlattenArray } from './functions';
-import { itemsType } from '../../types';
+import { getFlattenArray } from "./functions";
+import { Items } from "../../types";
 
-function validateAgainstDuplicate(array: itemsType, item: string[]): boolean {
+function validateAgainstDuplicate(array: Items, item: string[]): boolean {
     const flatten = getFlattenArray(array);
     return !flatten.includes(item[1]);
 }

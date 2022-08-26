@@ -1,9 +1,9 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import * as React from "react";
+import PropTypes from "prop-types";
 
-import useDispatchAction from '../hooks/useDispatchAction';
+import useDispatchAction from "../hooks/useDispatchAction";
 
-interface ButtonProps {
+interface Props {
     str: string;
     primary: boolean;
 }
@@ -15,18 +15,18 @@ interface ButtonProps {
  * @param {boolean} primary defines whether givennode is primary(directly in main tree) or not
  * @returns button component
  */
-const Button = (props: ButtonProps) => {
+const Button = (props: Props) => {
     const { str, primary } = props;
     const { initAppend } = useDispatchAction();
 
     return (
         <button
-            className={primary ? 'append-primary' : 'append-secondary'}
+            className={primary ? "append-primary" : "append-secondary"}
             onClick={() => {
                 initAppend(str);
             }}
             aria-label="append-button"
-            title={primary ? 'append-primary-button' : 'append-secondary-button'}
+            title={primary ? "append-primary-button" : "append-secondary-button"}
         >
             <div className="append__cross"></div>
         </button>

@@ -1,11 +1,11 @@
-import { itemsType } from '../../types';
+import { Items } from "../../types";
 /**
  * checks whether first elements in two arrays are equal
  * @param ary1
  * @param ary2
  * @returns boolean result of check
  */
-export function tablesFit(ary1: itemsType, ary2: itemsType): boolean {
+export function tablesFit(ary1: Items, ary2: Items): boolean {
     return ary1[0] === ary2[0];
 }
 /**
@@ -14,13 +14,13 @@ export function tablesFit(ary1: itemsType, ary2: itemsType): boolean {
  * @returns flattened array
  */
 
-export function getFlattenArray(arr: itemsType): string[] {
+export function getFlattenArray(arr: Items): string[] {
     return arr.flat
         ? arr.flat()
         : arr.reduce(
               (acc: string[], val: string[] | string) =>
                   Array.isArray(val) ? acc.concat(getFlattenArray(val)) : acc.concat(val),
-              [],
+              []
           );
 }
 
@@ -30,7 +30,7 @@ export function getFlattenArray(arr: itemsType): string[] {
  * @param item second array
  * @returns boolean with information whether above assertion is true
  */
-export function validateAgainstDuplicate(array: itemsType, item: string[]): boolean {
+export function validateAgainstDuplicate(array: Items, item: string[]): boolean {
     const flatten = getFlattenArray(array);
     return !flatten.includes(item[1]);
 }

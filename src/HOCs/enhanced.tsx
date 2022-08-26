@@ -7,7 +7,7 @@
  * @returns enhanced component
  */
 
-const Enhanced = (Component: any, classInner = '', classOuter = '', distancer = '') => {
+const enhanced = (Component: any, classInner = "", classOuter = "", distancer = "") => {
     return (props: any) => (
         <div className={classOuter}>
             <div className={distancer}></div>
@@ -17,4 +17,4 @@ const Enhanced = (Component: any, classInner = '', classOuter = '', distancer = 
         </div>
     );
 };
-export default Enhanced;
+export default enhanced;

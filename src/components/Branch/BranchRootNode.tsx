@@ -2,16 +2,16 @@
  TODO brakuje testu czy przekazuje akurat ten callback jako drugi parametr
  */
 
-import useDispatchAction from '../../hooks/useDispatchAction';
-import useDebouncedCallback from '../../hooks/useDebouncedCallback';
-import SecondaryHeaderText from './SecondaryHeaderText';
-import DeleteItemButton from '../DeleteItemButton';
+import useDispatchAction from "../../hooks/useDispatchAction";
+import useDebouncedCallback from "../../hooks/useDebouncedCallback";
+import SecondaryHeaderText from "./SecondaryHeaderText";
+import DeleteItemButton from "../DeleteItemButton";
 
-interface branchRootNodePropsType {
+interface Props {
     string: string;
 }
 
-export const BranchRootNode = (props: branchRootNodePropsType) => {
+export const BranchRootNode = (props: Props) => {
     const { string } = props;
     const { removeItem } = useDispatchAction();
     const handleClick = useDebouncedCallback(removeItem, [undefined, string]);
