@@ -5,10 +5,9 @@ import {
     render,
     screen,
     cleanup,
-    waitFor,
     fireEvent,
     waitForElementToBeRemoved,
-} from '../../test/test-utils/testing-library-utils';
+} from '../test-utils/testing-library-utils';
 import DeleteItemButton from '../../src/components/DeleteItemButton';
 
 const handleClickMock = jest.fn();

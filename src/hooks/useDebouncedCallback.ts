@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import debounce from 'lodash/debounce';
 
-export const useDebouncedCallback = (fn: Function, args: any): React.MouseEventHandler<HTMLButtonElement> => {
+const useDebouncedCallback = (fn: Function, args: any): React.MouseEventHandler<HTMLButtonElement> => {
     const result = useCallback(
         debounce(() => {
             fn(args);
@@ -10,3 +10,5 @@ export const useDebouncedCallback = (fn: Function, args: any): React.MouseEventH
     );
     return result;
 };
+
+export default useDebouncedCallback;

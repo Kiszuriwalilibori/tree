@@ -71,6 +71,10 @@ dispatches now with useDispatchAction
 
 006 fixed
 
+### 0.5.0
+
+Generally refactored. More tests added
+
 ### To do
 
 001 functions try catch
@@ -97,4 +101,4 @@ else { result = values.inputValue; }
 --009 A jednak, id = "Tree_of_choice" się duplikuje, trzeba zanaleźć jakiś inny selektor dla celu testów bo
 tylko tam jest użyte. Klasa?
 
---010 Dodać h1
+--010 Dodać h1 011 dodać test dla getWarningMessage

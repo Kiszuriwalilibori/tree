@@ -1,11 +1,16 @@
 import { TextField, Button } from '@material-ui/core';
+import { ActionCreatorWithoutPayload } from '@reduxjs/toolkit/dist/createAction';
 import { FieldInputProps } from 'formik';
 
 export interface CriterionProps {
     inputProps: FieldInputProps<unknown>;
     onClose(): unknown;
 }
-
+/**
+ * Renders component with input which accepts string and delivers functionality of closing modal or creating the new node
+ * @param props
+ * @returns component
+ */
 export const AppendItemModalCriterion = (props: CriterionProps): JSX.Element => {
     const { inputProps, onClose } = props;
 

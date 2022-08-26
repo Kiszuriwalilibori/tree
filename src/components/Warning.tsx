@@ -7,7 +7,7 @@ interface WarningProps {
 }
 
 /**
- *  @description Renders warning text
+ * @description Renders warning text
  * @param {bolean} isActive determines whether warning is displayed
  * @param {string} warningText determines text which will be displayed
  * @returns component displaying warning
@@ -15,7 +15,7 @@ interface WarningProps {
 
 let Warning = (props: WarningProps): JSX.Element => {
     const { isActive, warningText } = props;
-    return isActive ? (
+    return isActive && warningText ? (
         <Alert role="alert" severity="error">
             <AlertTitle>Uwaga!!!</AlertTitle>
             {warningText}

@@ -1,33 +1,57 @@
-import userEvent from '@testing-library/user-event';
-import App from '../../src/components/App';
-import AppProvider from '../../src/components/AppProvider';
-import ReactDOM from 'react-dom';
-import { render, screen, cleanup } from '../../test/test-utils/testing-library-utils';
+import AppendItemButton from '../../src/components/AppendItemButton';
+import { render, cleanup } from '../test-utils/testing-library-utils';
+import { fireEvent } from '@testing-library/react';
 
-describe('App by React', () => {
-    beforeEach(() => {
-        render(<App />);
+afterEach(() => cleanup());
+
+const propsFalse = {
+    str: '123testString',
+    primary: false,
+};
+const propsTrue = {
+    str: '123testString',
+    primary: true,
+};
+
+const actions = {
+    initAppend: jest.fn(),
+};
+
+jest.mock('../../src/hooks/useDispatchAction.ts', () => () => actions);
+
+describe('Given AppendItem component', () => {
+    describe('when called with propsFalse props', () => {
+        test('It displays button with proper class, title and aria-label and div with cross', () => {
+            render(<AppendItemButton {...propsFalse} />);
+            const button = document.querySelector(
+                `button.append-secondary[title=${`append-secondary-button`}][aria-label=${`append-button`}]`,
+            );
+            expect(button).toBeInTheDocument();
+            const cross = document.querySelector('div.append__cross');
+            expect(cross).toBeInTheDocument();
+        });
     });
 
-    afterEach(() => cleanup());
-
-    test('checks total number of buttons', () => {
-        const inputs = document.querySelectorAll('button');
-        expect(inputs).toHaveLength(7);
+    describe('when called with propsTrue props', () => {
+        test('It displays button with proper class, title and aria-label and div with cross', () => {
+            render(<AppendItemButton {...propsTrue} />);
+            const button = document.querySelector(
+                `button.append-primary[title=${`append-primary-button`}][aria-label=${`append-button`}]`,
+            );
+            expect(button).toBeInTheDocument();
+            const cross = document.querySelector('div.append__cross');
+            expect(cross).toBeInTheDocument();
+        });
     });
-    test('checks total number of crosses', () => {
-        const crosses = document.querySelectorAll('.append__cross');
-        expect(crosses).toHaveLength(2);
-    });
-
-    test('When plus button is clicked append modal opens', () => {
-        const crosses = document.querySelectorAll('.append__cross');
-        expect(crosses).toHaveLength(2);
-
-        crosses.forEach(plus => {
-            userEvent.click(plus);
-            const modal = document.querySelector('[role="dialog"]');
-            expect(modal).toBeInTheDocument();
+    describe('displayed button, when clicked', () => {
+        test('dispatches proper action', () => {
+            render(<AppendItemButton {...propsTrue} />);
+            const button = document.querySelector(
+                `button.append-primary[title=${`append-primary-button`}][aria-label=${`append-button`}]`,
+            );
+            fireEvent.click(button);
+            expect(actions.initAppend).toHaveBeenCalledTimes(1);
+            expect(actions.initAppend).toHaveBeenCalledWith(propsTrue.str);
         });
     });
 });
