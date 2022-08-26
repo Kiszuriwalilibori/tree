@@ -1,1 +1,1 @@
-export const appTitle = 'Drzewo wyboru';
+export const appTitle = "Drzewo wyboru";
