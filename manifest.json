@@ -1,6 +1,7 @@
 {
     "short_name": "Decision Tree",
     "name": "Decision Tree React App",
+    "description": "App to create branched structure of options, enforcing them being unique, developed with create-react-app",
     "icons": [
         {
             "src": "favicon.ico",
