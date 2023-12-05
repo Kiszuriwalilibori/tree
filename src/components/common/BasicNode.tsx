@@ -1,23 +1,25 @@
+import { memo } from "react";
 import useDebouncedCallback from "../../hooks/useDebouncedCallback";
-import useDispatchAction from "../../hooks/useDispatchAction";
+import useItems from "../../store/items.store";
 import DeleteItemButton from "../DeleteItemButton";
 import TextItem from "./TextItem";
 
 interface Props {
-    item: string;
+    nodeTextContent: string;
     header: string | undefined;
 }
 
 const BasicNode = (props: Props) => {
-    const { item, header } = props;
-    const { removeItem } = useDispatchAction();
-    const handleClick = useDebouncedCallback(removeItem, [header, item]);
+    const { nodeTextContent, header } = props;
+    const { removeItem } = useItems();
+    const handleClick = useDebouncedCallback(removeItem, [header, nodeTextContent]);
+
     return (
-        <div className="node" id={item}>
-            <TextItem str={item} />
-            <DeleteItemButton nodeText={item} handleClick={handleClick} />
+        <div className="node" id={nodeTextContent}>
+            <TextItem text={nodeTextContent} />
+            <DeleteItemButton nodeText={nodeTextContent} handleClick={handleClick} />
         </div>
     );
 };
 
-export default BasicNode;
+export default memo(BasicNode);

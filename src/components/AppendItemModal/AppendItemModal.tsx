@@ -1,18 +1,17 @@
-import * as React from "react";
-import { connect } from "react-redux";
 import { useFormik } from "formik";
+import { useMemo } from "react";
 
-import validateAgainstDuplicate from "../../js/functions/validateAgainstDuplicate";
-import { RootStateType } from "../AppProvider";
-import useDispatchAction from "../../hooks/useDispatchAction";
-import createItem from "./scripts/createItem";
-import isMainTree from "./scripts/isMainTree";
+import validateAgainstDuplicate from "js/functions/validateAgainstDuplicate";
+
 import Warning from "../Warning";
-import getWarningMessage from "./scripts/getWarningMessage";
 
-import { AppendItemModalFormValues, AppendModal } from "./model";
+import { useItems, useInput } from "store";
+import { AppendItemModalFormValues, AppendModal } from "types";
 import { AppendItemModalCriterion, AppendItemModalCategoryCheckbox } from "./parts";
 import { validators as validationSchema } from "./validators";
+import { getWarningMessage, createItem, isMainTree } from "./scripts";
+import { renderConditionally } from "HOCs";
+import { Modal } from "@material-ui/core";
 
 /**
  * @description Renders the modal for adding a new node
@@ -20,9 +19,15 @@ import { validators as validationSchema } from "./validators";
  * @param {string} activeScope represents subtree or main tree to which item should be added
  * @returns modal component
  */
-export const Modal = (props: AppendModal): JSX.Element => {
-    const { items, activeScope } = props;
-    const { closeInput, appendItem } = useDispatchAction();
+export const AppendItemModal = (): JSX.Element => {
+    const {
+        closeInput,
+        input: { activeScope },
+    } = useInput();
+
+    const { items, appendItem } = useItems();
+    const mainTreeData: AppendModal = { items: items, activeScope: activeScope };
+
     const { values, handleSubmit, getFieldProps, submitCount, errors } = useFormik<AppendItemModalFormValues>({
         initialValues: {
             inputValue: "",
@@ -32,11 +37,10 @@ export const Modal = (props: AppendModal): JSX.Element => {
         validationSchema,
         onSubmit(submittedValues, actions) {
             const { inputValue } = values;
-
             const isValidated = validateAgainstDuplicate(items, [activeScope, inputValue]);
 
             if (isValidated) {
-                const item = createItem(props, values, submittedValues);
+                const item = createItem(mainTreeData, values, submittedValues);
                 item && appendItem([activeScope, item]);
                 closeInput();
             }
@@ -45,30 +49,23 @@ export const Modal = (props: AppendModal): JSX.Element => {
         },
     });
 
+    const warning = useMemo(() => getWarningMessage(errors, values, submitCount), [errors, values, submitCount]);
+
     return (
-        <div className="modal" role="dialog">
+        <Modal open={true}>
             <form className="modal-content" onSubmit={handleSubmit}>
-                <Warning
-                    data-testid="warning"
-                    isActive={true}
-                    warningText={getWarningMessage(errors, values, submitCount)}
-                />
-                <AppendItemModalCriterion inputProps={getFieldProps("inputValue")} onClose={closeInput} />
+                {warning && (
+                    <Warning data-testid="warning" warningText={getWarningMessage(errors, values, submitCount)} />
+                )}
+                <AppendItemModalCriterion fieldProps={getFieldProps("inputValue")} onClose={closeInput} />
                 <AppendItemModalCategoryCheckbox
-                    checkboxProps={getFieldProps("shouldInitializeCategory")}
+                    fieldProps={getFieldProps("shouldInitializeCategory")}
                     id="checkbox"
-                    primary={isMainTree(props)}
+                    condition={isMainTree(mainTreeData)}
                 />
             </form>
-        </div>
+        </Modal>
     );
 };
 
-const mapStateToProps = (state: RootStateType) => ({
-    items: state.items.items,
-    activeScope: state.input.activeScope,
-});
-
-const AppendItemModal = connect(mapStateToProps, null)(Modal);
-
-export default AppendItemModal;
+export default renderConditionally(AppendItemModal);

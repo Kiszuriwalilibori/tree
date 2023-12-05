@@ -1,8 +1,10 @@
 import { TextField, Button } from "@material-ui/core";
 import { FieldInputProps } from "formik";
 
+import useDebouncedCallback from "hooks/useDebouncedCallback";
+
 interface Props {
-    inputProps: FieldInputProps<unknown>;
+    fieldProps: FieldInputProps<unknown>;
     onClose(): unknown;
 }
 /**
@@ -11,12 +13,13 @@ interface Props {
  * @returns component
  */
 export const AppendItemModalCriterion = (props: Props): JSX.Element => {
-    const { inputProps, onClose } = props;
+    const { fieldProps, onClose } = props;
+    const handleClose = useDebouncedCallback(onClose, undefined);
 
     return (
         <>
             <span>Wpisz nowe kryterium</span>
-            <TextField required size="small" label="Kryterium" variant="outlined" {...inputProps} />
+            <TextField autoFocus required size="small" label="Kryterium" variant="outlined" {...fieldProps} />
             <Button variant="contained" size="large" color="primary" type="submit" className="modal-content__button">
                 Dodaj
             </Button>
@@ -25,12 +28,10 @@ export const AppendItemModalCriterion = (props: Props): JSX.Element => {
                 size="large"
                 className="modal-content__button"
                 color="secondary"
-                onClick={() => onClose()}
+                onClick={handleClose}
             >
                 Zamknij
             </Button>
         </>
     );
 };
-
-//TODO Button chyba może mieć domyślne propsy niektóre

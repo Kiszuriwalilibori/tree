@@ -1,25 +1,21 @@
-/*
- TODO brakuje testu czy przekazuje akurat ten callback jako drugi parametr
- */
-
-import useDispatchAction from "../../hooks/useDispatchAction";
 import useDebouncedCallback from "../../hooks/useDebouncedCallback";
-import SecondaryHeaderText from "./SecondaryHeaderText";
+import BranchHeader from "./BranchHeader";
 import DeleteItemButton from "../DeleteItemButton";
+import useItems from "../../store/items.store";
 
 interface Props {
-    string: string;
+    nodeData: string;
 }
 
 export const BranchRootNode = (props: Props) => {
-    const { string } = props;
-    const { removeItem } = useDispatchAction();
-    const handleClick = useDebouncedCallback(removeItem, [undefined, string]);
+    const { nodeData } = props;
+    const { removeItem } = useItems();
+    const handleClick = useDebouncedCallback(removeItem, [undefined, nodeData]);
 
     return (
         <div className="node">
-            <SecondaryHeaderText str={string} />
-            <DeleteItemButton nodeText={string} handleClick={handleClick} />
+            <BranchHeader text={nodeData} />
+            <DeleteItemButton nodeText={nodeData} handleClick={handleClick} />
         </div>
     );
 };

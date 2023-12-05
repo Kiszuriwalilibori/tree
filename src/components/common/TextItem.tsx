@@ -1,5 +1,7 @@
+import { memo } from "react";
+
 interface Props {
-    str: string;
+    text: string;
 }
 /**
  * Displays span with text inside
@@ -7,9 +9,10 @@ interface Props {
  * @returns component being single span with string content
  */
 
-const TextItem = (props: Props) => {
-    const { str } = props;
-    return <span className="TextItem">{str}</span>;
+export const TextItem = (props: Props) => {
+    const { text } = props;
+
+    return <span className="TextItem">{text}</span>;
 };
 
-export default TextItem;
+export default memo(TextItem);

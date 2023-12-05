@@ -18,7 +18,7 @@
 -   SASS/SCSS
 -   JS
 -   REACT
--   REDUX
+-   ZUSTAND
 -   MATERIAL UI for REACT
 
 ## Installation
@@ -102,3 +102,5 @@ else { result = values.inputValue; }
 tylko tam jest użyte. Klasa?
 
 --010 Dodać h1 011 dodać test dla getWarningMessage
+
+011 update testów

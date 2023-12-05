@@ -7,7 +7,7 @@
  * @returns enhanced component
  */
 
-const enhanced = (Component: any, classInner = "", classOuter = "", distancer = "") => {
+const withEnhancement = (Component: React.FC<any>, classInner = "", classOuter = "", distancer = "") => {
     return (props: any) => (
         <div className={classOuter}>
             <div className={distancer}></div>
@@ -17,4 +17,4 @@ const enhanced = (Component: any, classInner = "", classOuter = "", distancer = 
         </div>
     );
 };
-export default enhanced;
+export default withEnhancement;

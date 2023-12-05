@@ -32,7 +32,7 @@
 
     &::before {
         position: absolute;
-        content: '';
+        content: "";
         @include gradient;
         left: 0px;
         height: 100%;
@@ -83,7 +83,7 @@
 
     &::before {
         @include operator;
-        content: 'And';
+        content: "And";
         color: #003b46;
     }
 }
@@ -98,7 +98,7 @@
     &::before {
         @include operator;
         left: -$secondary-offset;
-        content: 'Or';
+        content: "Or";
     }
 }
 
@@ -130,7 +130,7 @@
 .append__cross {
     width: 75%;
     height: 75%;
-    background-image: url('../graphics/plus.png');
+    background-image: url("../assets/images/plus.png");
     background-size: cover;
     position: absolute;
     top: 50%;
@@ -177,7 +177,7 @@
 }
 
 .AppTitle {
-    color: #f15c6a;
+    color: white;
     background-color: #06575b;
     border-radius: 6px;
     padding: 12px;
@@ -187,4 +187,10 @@
     margin: 0 auto;
     top: -80px;
     position: relative;
+}
+
+*:focus {
+    outline: 2px ridge #0ca4f6;
+    outline-offset: 1px;
+    z-index: 2000;
 }

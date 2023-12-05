@@ -1,38 +1,30 @@
-/**
- * TODO sprawdzić co sie dziej przy pustym propsie items bo może być błąd albo pustej tabeli
- */
-
 import React from "react";
-import _ from "lodash";
-import { connect } from "react-redux";
+import cloneDeep from "lodash/cloneDeep";
 
 import AppendItemModal from "./AppendItemModal";
 import MainTree from "./MainTree";
-import { RootStateType } from "./AppProvider";
-import { Items } from "../types";
-import AppTitle from "./MainTree/AppTitle";
+import useHandleConnectionStatus from "../hooks/useHandleConnectionStatus";
 
-interface Props {
-    items: Items;
-    isInputActive: boolean;
-}
-export const LocalApp: React.FC<Props> = (props: Props): JSX.Element => {
-    const { items, isInputActive } = props;
-    const criterias = items ? _.cloneDeep(items) : null;
-    const header = criterias ? (criterias.shift() as string) : null;
-    return items ? (
+import { useItems, useInput } from "store";
+
+export const App: React.FC = (): JSX.Element => {
+    useHandleConnectionStatus();
+    const { items } = useItems();
+
+    const {
+        input: { isAppendItemModalVisible },
+    } = useInput();
+    const content = items ? cloneDeep(items) : null;
+
+    const header = content ? (content.shift() as string) : undefined;
+
+    return items && items.length ? (
         <main>
-            <AppTitle />
-            {isInputActive ? <AppendItemModal /> : null}
-            <MainTree ary={criterias} header={header} />
+            <h1 className="AppTitle">Drzewo wyboru</h1>
+            <AppendItemModal condition={isAppendItemModalVisible} />
+            <MainTree treeContent={content} header={header} />
         </main>
     ) : null;
 };
 
-const mapStateToProps = (state: RootStateType) => ({
-    items: state.items.items,
-    isInputActive: state.input.isInputActive,
-});
-
-const App = connect(mapStateToProps)(LocalApp);
 export default App;

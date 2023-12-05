@@ -13,3 +13,14 @@ export interface StoreType {
     items: ItemsStore;
     input: InputStore;
 }
+
+export interface AppendModal {
+    items: (string | string[])[];
+    activeScope: string;
+}
+
+export interface AppendItemModalFormValues {
+    inputValue: string;
+    isNotValidated: boolean;
+    shouldInitializeCategory: boolean;
+}

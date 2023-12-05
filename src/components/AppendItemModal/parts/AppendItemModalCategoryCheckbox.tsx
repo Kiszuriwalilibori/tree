@@ -1,26 +1,25 @@
 import { FieldInputProps } from "formik";
 
+import { renderConditionally } from "HOCs";
+
 interface Props {
-    checkboxProps: FieldInputProps<any>;
+    fieldProps: FieldInputProps<any>;
     id?: string;
-    primary?: boolean;
 }
 /**
  * creates checkbox to choose whether it should be created regular node or branch
- * @param props primary: informs whether it is main tree node or branch node, id: node id, checkboxProps: Formik
+ * @param props id: node id, checkboxProps: Formik
  * @returns react checkbox component if primary === true or null otherwise
  */
-export const AppendItemModalCategoryCheckbox = (props: Props): JSX.Element => {
-    const { checkboxProps, id, primary } = props;
-
-    if (!primary) {
-        return null;
-    }
+const Checkbox = (props: Props): JSX.Element => {
+    const { fieldProps, id } = props;
 
     return (
         <div>
-            <input className="styled-checkbox" id={id} type="checkbox" {...checkboxProps}></input>
+            <input className="styled-checkbox" id={id} type="checkbox" {...fieldProps}></input>
             <label htmlFor={id}>Inicjować katalog?</label>
         </div>
     );
 };
+
+export default renderConditionally(Checkbox);

@@ -1,26 +1,27 @@
+import uuid from "react-uuid";
 import AppendItemButton from "../AppendItemButton";
 import BranchRootNode from "./BranchRootNode";
-import EnhancedElement from "./EnhancedElement";
+import EnhancedNode from "./EnhancedNode";
 
 interface Props {
-    ary: string[];
+    branchNodesData: string[];
 }
 
 export const Branch = (props: Props) => {
-    const { ary } = props;
-    const header = ary.shift() as string;
-
-    return ary ? (
+    const { branchNodesData } = props;
+    const header = branchNodesData.shift();
+    if (!header) return null;
+    return (
         <>
-            <BranchRootNode string={header} />
+            <BranchRootNode nodeData={header} />
             <div className={"contentWrapperSecondary"}>
-                {ary.map(item => (
-                    <EnhancedElement key={item} item={item} header={header} />
+                {branchNodesData.map(item => (
+                    <EnhancedNode key={uuid()} nodeTextContent={item} header={header} />
                 ))}
                 <AppendItemButton str={header} primary={false} />
             </div>
         </>
-    ) : null;
+    );
 };
 
 export default Branch;

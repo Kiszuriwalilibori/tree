@@ -1,7 +1,7 @@
 import { FormikErrors } from "formik";
 
-import { AppendItemModalFormValues } from "../model";
-import { warnings } from "../../../config";
+import { AppendItemModalFormValues } from "types";
+import { warnings } from "config";
 
 /**
  * Returns error message suitable to situation

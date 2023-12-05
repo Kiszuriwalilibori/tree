@@ -1,8 +1,9 @@
-import Branch from "../Branch";
+import BranchNode from "../Branch";
 import BasicNode from "./BasicNode";
+import { Item } from "../../types";
 
 interface Props {
-    itemOrItemsArray: string | string[];
+    nodeContent: Item;
     header: string | undefined;
 }
 /**
@@ -12,14 +13,14 @@ interface Props {
  * @returns component
  */
 const MainTreeNodeFactory = (props: Props): JSX.Element => {
-    const { itemOrItemsArray, header } = props;
+    const { nodeContent, header } = props;
 
-    if (typeof itemOrItemsArray === "string") {
-        return <BasicNode item={itemOrItemsArray} header={header} />;
+    if (typeof nodeContent === "string") {
+        return <BasicNode nodeTextContent={nodeContent} header={header} />;
     }
 
-    if (Array.isArray(itemOrItemsArray)) {
-        return <Branch ary={itemOrItemsArray} />;
+    if (nodeContent && Array.isArray(nodeContent)) {
+        return <BranchNode branchNodesData={nodeContent} />;
     }
 };
 export default MainTreeNodeFactory;

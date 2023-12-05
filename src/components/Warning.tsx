@@ -1,8 +1,8 @@
-import * as React from "react";
+import { memo } from "react";
+
 import { Alert, AlertTitle } from "@material-ui/lab";
 
 interface Props {
-    isActive: boolean;
     warningText: string;
 }
 
@@ -14,14 +14,13 @@ interface Props {
  */
 
 let Warning = (props: Props): JSX.Element => {
-    const { isActive, warningText } = props;
-    return isActive && warningText ? (
+    const { warningText } = props;
+    return (
         <Alert role="alert" severity="error">
-            <AlertTitle>Uwaga!!!</AlertTitle>
-            {warningText}
+            <AlertTitle>Uwaga !!!</AlertTitle>
+            {warningText ? warningText : "Non-described problem"}
         </Alert>
-    ) : null;
+    );
 };
 
-Warning = React.memo(Warning);
-export default Warning;
+export default memo(Warning);

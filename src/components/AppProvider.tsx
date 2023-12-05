@@ -1,20 +1,16 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { SnackbarProvider } from "notistack";
 
-import "../styles/App.css";
-import itemsReducer from "../redux/reducers/itemsReducer";
-import inputsReducer from "../redux/reducers/inputReducer";
-
-const rootReducer = combineReducers({ items: itemsReducer, input: inputsReducer });
-
-const store = configureStore({
-    reducer: rootReducer,
-});
-
-const AppProvider: React.FC = ({ children }) => {
-    return <Provider store={store}>{children}</Provider>;
+export const AppProvider: React.FC = ({ children }) => {
+    return (
+        <SnackbarProvider
+            maxSnack={3}
+            anchorOrigin={{
+                vertical: "top",
+                horizontal: "left",
+            }}
+        >
+            {children}
+        </SnackbarProvider>
+    );
 };
-
 export default AppProvider;
-export type RootStateType = ReturnType<typeof store.getState>;

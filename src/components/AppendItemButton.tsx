@@ -1,7 +1,7 @@
 import * as React from "react";
-import PropTypes from "prop-types";
 
-import useDispatchAction from "../hooks/useDispatchAction";
+import useInput from "../store/input.store";
+import useDebouncedCallback from "hooks/useDebouncedCallback";
 
 interface Props {
     str: string;
@@ -17,14 +17,14 @@ interface Props {
  */
 const Button = (props: Props) => {
     const { str, primary } = props;
-    const { initAppend } = useDispatchAction();
+    const { initAppend } = useInput();
+
+    const handleClick = useDebouncedCallback(initAppend, str);
 
     return (
         <button
             className={primary ? "append-primary" : "append-secondary"}
-            onClick={() => {
-                initAppend(str);
-            }}
+            onClick={handleClick}
             aria-label="append-button"
             title={primary ? "append-primary-button" : "append-secondary-button"}
         >
@@ -35,8 +35,3 @@ const Button = (props: Props) => {
 
 const AppendItemButton = React.memo(Button);
 export default AppendItemButton;
-
-Button.propTypes = {
-    string: PropTypes.string,
-    primary: PropTypes.bool,
-};

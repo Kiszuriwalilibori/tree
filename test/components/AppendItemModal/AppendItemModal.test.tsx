@@ -1,3 +1,4 @@
+import * as React from "react";
 import { act, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { screen, render, cleanup } from "../../../test/test-utils/testing-library-utils";

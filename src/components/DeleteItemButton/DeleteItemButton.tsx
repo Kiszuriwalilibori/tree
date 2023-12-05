@@ -13,14 +13,14 @@ interface Props {
  * @param {React.MouseEventHandler<HTMLButtonElement>} handleClick which removes certain node
  * @returns button component
  */
-const Button = (props: Props) => {
+const DeleteItemButton = (props: Props) => {
     const { nodeText, handleClick } = props;
+
     return (
         <IconButton itemProp={nodeText} aria-label="delete-button" onClick={handleClick}>
-            <i className="fas fa-minus-circle delete"></i>
+            <span className="fas fa-minus-circle delete"></span>
         </IconButton>
     );
 };
 
-const DeleteItemButton = React.memo(Button);
 export default DeleteItemButton;

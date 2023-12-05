@@ -1,32 +1,27 @@
-import { Items } from "../../types";
+import withEnhancement from "../../HOCs/withEnhancement";
 import AppendItemButton from "../AppendItemButton";
-import TextItem from "../common/TextItem";
-import enhanced from "../../HOCs/enhanced";
-import MainTreeNodeFactory from "../common/MainTreeNodeFactory";
+import { MainTreeNodeFactory } from "../common";
+import { TextItem } from "../common/TextItem";
+import { Items } from "../../types";
 
-const MainTreeRootNode = enhanced(TextItem, "top-header");
+const TreeTitle = withEnhancement(TextItem, "top-header");
 
-const MainTreeRegularNodeFactory = enhanced(
-    MainTreeNodeFactory,
-    "wrapper-primary",
-    "wrapper-primary-outer",
-    "distancer"
-);
+const NodesFactory = withEnhancement(MainTreeNodeFactory, "wrapper-primary", "wrapper-primary-outer", "distancer");
 
 interface Props {
-    ary: Items;
+    treeContent: Items;
     header: string;
 }
 
 const MainTree = (props: Props) => {
-    const { ary, header } = props;
+    const { treeContent, header } = props;
 
-    return ary ? (
+    return treeContent ? (
         <>
-            <MainTreeRootNode str={header} />
+            <TreeTitle text={header} />
             <div className={"contentWrapperPrimary"}>
-                {ary.map(item => (
-                    <MainTreeRegularNodeFactory key={item} itemOrItemsArray={item} header={header} />
+                {treeContent.map(item => (
+                    <NodesFactory key={item} nodeContent={item} header={header} />
                 ))}
                 <AppendItemButton str={header} primary={true} />
             </div>

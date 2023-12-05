@@ -17,7 +17,22 @@
         "noImplicitAny": false,
         "strictNullChecks": false,
         "isolatedModules": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": "src",
+        "paths": {
+            "models/*": ["models/*"],
+            "types/*": ["types/*"],
+            "HOCs/*": ["HOCs/*"],
+            "contexts/*": ["contexts/*"],
+            "js/functions/*": ["js/functions/*"],
+            "hooks/*": ["hooks/*"],
+            "components/*": ["components/*"],
+            "styles/*": ["styles/*"],
+            "images/*": ["images/*"],
+            "fixtures": ["fixtures"],
+            "routes": ["routes"],
+            "store": ["store"]
+        }
     },
     "include": ["src", "src/index.tsx", "test/js/functions/functions.test.ts"]
 }
