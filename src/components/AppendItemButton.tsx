@@ -4,8 +4,8 @@ import useInput from "../store/input.store";
 import useDebouncedCallback from "hooks/useDebouncedCallback";
 
 interface Props {
-    str: string;
-    primary: boolean;
+    nodeText: string;
+    isPrimary: boolean;
 }
 
 /**
@@ -16,17 +16,17 @@ interface Props {
  * @returns button component
  */
 const Button = (props: Props) => {
-    const { str, primary } = props;
+    const { nodeText, isPrimary } = props;
     const { initAppend } = useInput();
 
-    const handleClick = useDebouncedCallback(initAppend, str);
+    const handleClick = useDebouncedCallback(initAppend, nodeText);
 
     return (
         <button
-            className={primary ? "append-primary" : "append-secondary"}
+            className={isPrimary ? "append-primary" : "append-secondary"}
             onClick={handleClick}
             aria-label="append-button"
-            title={primary ? "append-primary-button" : "append-secondary-button"}
+            title={isPrimary ? "append-primary-button" : "append-secondary-button"}
         >
             <div className="append__cross"></div>
         </button>

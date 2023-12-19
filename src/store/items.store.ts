@@ -1,8 +1,9 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+
 import { Items } from "../types";
 import { INITIAL_ITEMS } from "../config";
-import { createCompletedStore, removeNode } from "../js/functions/functions";
+import { createComplementedStore, removeNode } from "../functions";
 
 interface ItemsState {
     items: Items;
@@ -17,7 +18,7 @@ const useItems = create<ItemsState>()(
             set((state: ItemsState) => ({ items: removeNode([...state.items], payload) }));
         },
         appendItem: (payload: Items) => {
-            set((state: ItemsState) => ({ items: createCompletedStore([...state.items], payload) }));
+            set((state: ItemsState) => ({ items: createComplementedStore([...state.items], payload) }));
         },
     }))
 );

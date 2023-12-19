@@ -18,7 +18,7 @@ export const Branch = (props: Props) => {
                 {branchNodesData.map(item => (
                     <EnhancedNode key={uuid()} nodeTextContent={item} header={header} />
                 ))}
-                <AppendItemButton str={header} primary={false} />
+                <AppendItemButton nodeText={header} isPrimary={false} />
             </div>
         </>
     );

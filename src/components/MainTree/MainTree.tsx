@@ -23,7 +23,7 @@ const MainTree = (props: Props) => {
                 {treeContent.map(item => (
                     <NodesFactory key={item} nodeContent={item} header={header} />
                 ))}
-                <AppendItemButton str={header} primary={true} />
+                <AppendItemButton nodeText={header} isPrimary={true} />
             </div>
         </>
     ) : null;

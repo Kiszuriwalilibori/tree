@@ -1,7 +1,6 @@
 import { useFormik } from "formik";
 import { useMemo } from "react";
-
-import validateAgainstDuplicate from "js/functions/validateAgainstDuplicate";
+import { Modal } from "@material-ui/core";
 
 import Warning from "../Warning";
 
@@ -11,7 +10,7 @@ import { AppendItemModalCriterion, AppendItemModalCategoryCheckbox } from "./par
 import { validators as validationSchema } from "./validators";
 import { getWarningMessage, createItem, isMainTree } from "./scripts";
 import { renderConditionally } from "HOCs";
-import { Modal } from "@material-ui/core";
+import { isNotDuplicate } from "functions";
 
 /**
  * @description Renders the modal for adding a new node
@@ -37,7 +36,7 @@ export const AppendItemModal = (): JSX.Element => {
         validationSchema,
         onSubmit(submittedValues, actions) {
             const { inputValue } = values;
-            const isValidated = validateAgainstDuplicate(items, [activeScope, inputValue]);
+            const isValidated = isNotDuplicate(items, [activeScope, inputValue]);
 
             if (isValidated) {
                 const item = createItem(mainTreeData, values, submittedValues);

@@ -1,4 +1,4 @@
-import { areTablesFittingEachOther, validateAgainstDuplicate } from "../../../src/js/functions/functions";
+import { areTablesFittingEachOther, validateAgainstDuplicate } from "../../../src/functions/common";
 import { INITIAL_ITEMS } from "../../../src/config";
 import { Items } from "../../../src/config";
 
