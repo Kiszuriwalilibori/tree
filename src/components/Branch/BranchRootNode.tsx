@@ -10,7 +10,7 @@ interface Props {
 export const BranchRootNode = (props: Props) => {
     const { nodeData } = props;
     const { removeItem } = useItems();
-    const handleClick = useDebouncedCallback(removeItem, [undefined, nodeData]);
+    const handleClick = useDebouncedCallback<HTMLButtonElement>(removeItem, [undefined, nodeData]);
 
     return (
         <div className="node">

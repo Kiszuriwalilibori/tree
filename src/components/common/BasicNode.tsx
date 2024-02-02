@@ -12,7 +12,7 @@ interface Props {
 const BasicNode = (props: Props) => {
     const { nodeTextContent, header } = props;
     const { removeItem } = useItems();
-    const handleClick = useDebouncedCallback(removeItem, [header, nodeTextContent]);
+    const handleClick = useDebouncedCallback<HTMLButtonElement>(removeItem, [header, nodeTextContent]);
 
     return (
         <div className="node" id={nodeTextContent}>

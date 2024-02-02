@@ -14,7 +14,7 @@ interface Props {
  */
 export const AppendItemModalCriterion = (props: Props): JSX.Element => {
     const { fieldProps, onClose } = props;
-    const handleClose = useDebouncedCallback(onClose, undefined);
+    const handleClose = useDebouncedCallback<HTMLButtonElement>(onClose, undefined);
 
     return (
         <>

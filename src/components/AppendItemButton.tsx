@@ -19,7 +19,7 @@ const Button = (props: Props) => {
     const { nodeText, isPrimary } = props;
     const { initAppend } = useInput();
 
-    const handleClick = useDebouncedCallback(initAppend, nodeText);
+    const handleClick = useDebouncedCallback<HTMLButtonElement>(initAppend, nodeText);
 
     return (
         <button
