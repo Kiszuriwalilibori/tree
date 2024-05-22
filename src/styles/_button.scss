@@ -1,0 +1,24 @@
+.Button {
+    @include button;
+    &--large {
+        width: $button-large-size;
+        height: $button-large-size;
+    }
+    &--small {
+        left: $not-root-child-left-distance;
+        bottom: 0;
+        transform: translateX(-50%);
+        width: $button-small-size;
+        height: $button-small-size;
+        position: relative;
+        &:before {
+            position: absolute;
+            content: "";
+            height: $button-small-anchor-size;
+            left: 50%;
+            top: -$button-small-anchor-size;
+            width: 2px;
+            background-color: white;
+        }
+    }
+}

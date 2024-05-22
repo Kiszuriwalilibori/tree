@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+#root {
+    max-width: 800px;
+    width: 100%;
+    margin: 85px auto;
+    color: #4b597b;
+    padding: 70px 75px;
+}
+
+body {
+    margin: 0;
+    font-family: "Brandon Grotesque Black";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: linear-gradient(-45deg, #c4dfe6, #68829e, #66a5ad, dodgerblue);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+br {
+    line-height: unset;
+}

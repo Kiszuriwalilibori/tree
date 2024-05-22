@@ -1,0 +1,69 @@
+.common-box {
+    display: block;
+    border-radius: $radius;
+    &-green {
+        background-color: $item-background-1;
+    }
+}
+
+.relation-text {
+    font-size: 22px;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+    color: $relation-color;
+    letter-spacing: normal;
+    text-shadow: none;
+}
+
+.cross {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+
+    :hover,
+    :focus {
+        outline: none;
+        text-decoration: none;
+    }
+}
+
+.item-lower-level {
+    position: relative;
+    width: 420px;
+    background-color: $item-background-2;
+    margin-left: $lower-level-distance;
+    padding-left: 45px;
+    margin-top: 30px;
+    & .relation-distancing-span-lower-level {
+        position: absolute;
+        top: 50%;
+
+        &:before {
+            content: "XOR";
+            position: absolute;
+            left: -($lower-level-distance + $root-child-left-padding + $root-child-gradient-width + 50px);
+            @extend .relation-text;
+            transform: translateY(50%);
+            bottom: 50%;
+        }
+    }
+    &:before {
+        position: absolute;
+        content: "";
+        background-image: linear-gradient(#a375f3, #7176f7);
+        left: 0px;
+        height: 100%;
+        width: $root-child-gradient-width;
+        top: 0;
+        border-radius: 6px 0 0 6px;
+    }
+    &:after {
+        position: absolute;
+        content: "";
+        left: -$lower-level-distance;
+        height: 2px;
+        top: 50%;
+        width: $lower-level-distance;
+        background-color: white;
+    }
+}

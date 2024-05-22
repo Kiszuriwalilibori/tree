@@ -1,0 +1,52 @@
+$radius: 6px;
+$short: 250px;
+$secondary-offset: 0.25 * $short;
+
+$root-item-width: 300px;
+$root-item-height: 80px;
+$item-height: 60px;
+
+$root-child-gradient-width: 20px;
+$root-child-width: 420px;
+$root-child-left-padding: 25px;
+$root-child-left-distance: 80px;
+$not-root-child-left-distance: 60px;
+$header-width: 300px;
+
+$subchild-left-distance: 50px;
+
+$relation-color: #003b46;
+
+$button-large-size: 120px;
+$button-small-size: 48px;
+$button-small-anchor-size: 15px;
+
+$basic-font-size: 24px;
+$primary-plus-width: 120px;
+$secondary-left-indent: 10px;
+$line-bolder: 2px;
+$secondary-plus-width: 0.4 * $primary-plus-width;
+$local-blue: #7176f7;
+
+$color-violet: #7176f7;
+
+$item-background-1: #06575b;
+$item-background-2: #37597b;
+$item-background-3: #0c645a;
+$item-background-4: #145f76;
+$item-background-5: #5a5086;
+
+$lower-level-distance: calc(0.5 * $root-child-left-distance);
+
+$small-font: 20px;
+
+$root-text-shadow: 0px 2px 2px rgb(74, 74, 155);
+
+@font-face {
+    font-family: "Brandon Grotesque Black";
+    src: url(brandon.eot);
+    src: url(brandon.woff2);
+    src: url(brandon.woff);
+    src: url(brandon.ttf);
+    font-display: swap;
+}

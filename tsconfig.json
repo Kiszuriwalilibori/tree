@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "removeComments": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "isolatedModules": true,
+        "noFallthroughCasesInSwitch": true,
+        "baseUrl": "src",
+        "paths": {
+            "models/*": ["models/*"],
+            "types/*": ["types/*"],
+            "HOCs/*": ["HOCs/*"],
+            "contexts/*": ["contexts/*"],
+            "js/functions/*": ["js/functions/*"],
+            "hooks/*": ["hooks/*"],
+            "components/*": ["components/*"],
+            "styles/*": ["styles/*"],
+            "images/*": ["images/*"],
+            "fixtures": ["fixtures"],
+            "routes": ["routes"],
+            "store": ["store"],
+            "assets": ["assets/*"]
+        }
+    },
+    "include": ["src", "src/index.tsx", "test/js/functions/functions.test.ts"]
+}
