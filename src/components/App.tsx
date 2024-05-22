@@ -1,4 +1,5 @@
 import { AddItemModal, Item } from "components";
+import { ROOT_ID } from "config";
 
 function App() {
     return (
@@ -7,7 +8,7 @@ function App() {
                 <h1 className="App-title">Drzewo wyboru</h1>
             </header>
             <main>
-                <Item id={"root"} />
+                <Item id={ROOT_ID} />
             </main>
             <AddItemModal />
         </div>

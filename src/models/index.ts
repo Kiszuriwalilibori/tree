@@ -1,3 +1,4 @@
+import { ROOT_ID } from "config";
 import { Classes, ID, Item, Items } from "../types";
 import { isIdUnique } from "./local";
 // const initialContent = "";
@@ -17,10 +18,10 @@ function createID(items: Items) {
 //     const result = items.find(item => item.isRoot === true);
 //     return result;
 // }
-export function isItemNotYetDefined(items: Items, content: string) {
-    const result = items.findIndex(item => item.content === content);
-    return result === -1 ? true : false;
-}
+// export function isItemNotYetDefined(items: Items, content: string) {
+//     const result = items.findIndex(item => item.content === content);
+//     return result === -1 ? true : false;
+// }
 
 export function createItem(items: Items, parent: ID, content: string, hasChildren: boolean) {
     const id = createID(items);
@@ -74,20 +75,6 @@ export function getParent(items: Items, parent: ID) {
     return items[index];
 }
 
-export function getLevel(items: Items, item: Item) {
-    let level: number = 0;
-    if (item.parent === null) {
-        return level;
-    } else {
-        let ancestor = item;
-        do {
-            ancestor = getParent(items, ancestor.parent);
-            level = level + 1;
-        } while (ancestor.id !== "root");
-        return level;
-    }
-}
-
 export function getClasses(item, level = 0) {
     const classes: Classes = {} as Classes;
     if (item.isRoot) {
@@ -105,4 +92,61 @@ export function getClasses(item, level = 0) {
     }
 
     return classes;
+}
+
+export default abstract class ItemsManager {
+    static getItemByID(items: Items, id: ID): Item {
+        const result = items.find(item => item.id === id);
+        return result;
+    }
+    static getItemLevel(items: Items, item: Item) {
+        if (!item) return undefined;
+        let level: number = 0;
+        if (item.parent === null) {
+            return level;
+        } else {
+            let ancestor = item;
+            do {
+                ancestor = getParent(items, ancestor.parent);
+                level = level + 1;
+            } while (ancestor.id !== ROOT_ID);
+            return level;
+        }
+    }
+    static removeItem(items: Items, item: Item) {
+        const parentIndex = item.parent ? findParentIndex(items, item.parent) : undefined;
+        const childIndex = parentIndex ? items[parentIndex].children?.indexOf(item.id) : undefined;
+        parentIndex && childIndex && hasChildren(items[parentIndex]) && items[parentIndex].children?.indexOf(item.id) && items[parentIndex].children?.splice(childIndex, 1);
+        return items.filter(element => element.id !== item.id);
+        // wypadaloby jeszcze usuwać nody które straciły rodzica. najprościej przefiltrować po tym, czy rodzicc, którego mają wpisanego sitnieje
+    }
+    static addItem(items: Items, newItem: Item) {
+        items.push(newItem);
+        const parentIndex = items.findIndex(item => item.id === newItem.parent);
+
+        if (items[parentIndex].children) {
+            items[parentIndex].children.push(newItem.id);
+        } else {
+            items[parentIndex].children = [newItem.id];
+        }
+        return [...items];
+    }
+    static isItemNotYetDefined(items: Items, content: string) {
+        const result = items.findIndex(item => item.content === content);
+        return result === -1 ? true : false;
+    }
+
+    static createItem(items: Items, parent: ID, content: string, hasChildren: boolean) {
+        const id = createID(items);
+
+        const item = {
+            children: undefined,
+            content,
+            hasChildren,
+            id,
+            isRoot: false,
+            parent,
+        };
+        return item;
+    }
 }

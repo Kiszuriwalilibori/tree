@@ -6,9 +6,11 @@ import { useCallback, useId, useRef } from "react";
 
 import { useMessage, useEnhancedState } from "hooks";
 
-import { createItem, isItemNotYetDefined, update } from "models/index";
+import ItemsManager from "models";
 
 import { useActiveItemStore, useItemsStore, useModalStore } from "store";
+
+const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
 export const AddItemModal = () => {
     const parent = useActiveItemStore.use.activeItem();
@@ -16,7 +18,7 @@ export const AddItemModal = () => {
     const isOpen = useModalStore.use.isModalOpen();
     const closeModal = useModalStore.use.closeModal();
     const handleClose = useModalStore.use.closeModal();
-    const updateItemsStore = useItemsStore.use.update();
+    const updateItemsStore = useItemsStore.use.updateItemsStore();
     const [criterion, clearCriterion, setCriterion, isCriterionSet] = useEnhancedState("");
     const refCheckbox = useRef<HTMLInputElement>(null);
 
@@ -24,15 +26,14 @@ export const AddItemModal = () => {
     const showMessage = useMessage();
 
     const handleSubmit = useCallback(() => {
-        if (isItemNotYetDefined(items, criterion)) {
-            const newItem = createItem(items, parent.id, criterion, refCheckbox.current.checked);
-            const updatedItems = update(items, newItem);
+        if (ItemsManager.isItemNotYetDefined(items, criterion)) {
+            const newItem = ItemsManager.createItem(items, parent.id, criterion, refCheckbox.current.checked);
+            const updatedItems = ItemsManager.addItem(items, newItem); // właściwie całe updat itemu można zebrać do jednej funkcji
             updateItemsStore(updatedItems);
             clearCriterion();
             closeModal();
-            console.log(updatedItems);
         } else {
-            showMessage.warning("Takie kryterium już istnieje i nie może być zduplikowane");
+            showMessage.warning(WARNING_DUPLICATE);
         }
     }, [criterion, parent, items]);
 

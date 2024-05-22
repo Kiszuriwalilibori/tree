@@ -5,12 +5,12 @@ import createSelectors from "./createSelectors";
 
 interface ItemsState {
     items: Items;
-    update: (updatedItems: Items) => void;
+    updateItemsStore: (updatedItems: Items) => void;
 }
 
 const useItemsStoreBase = create<ItemsState>()(set => ({
     items: InitialItems,
-    update: updatedItems => {
+    updateItemsStore: updatedItems => {
         set(() => ({ items: updatedItems }));
     },
 }));

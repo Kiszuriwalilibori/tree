@@ -1,10 +1,13 @@
 import * as React from "react";
 import uuid from "react-uuid";
 
-import { /*getItemClassName, getChildrenClassName,*/ getItemById, getClasses, hasChildren, getLevel, removeItem } from "../models";
 import AddButton from "./AddButton";
-import { useItemsStore } from "store/ItemsStore";
 import RemoveButton from "./RemoveButton";
+import ItemsManager from "../models";
+
+import { getClasses, hasChildren } from "../models";
+
+import { useItemsStore } from "store/ItemsStore";
 
 interface Props {
     id: string;
@@ -12,32 +15,34 @@ interface Props {
 export const ItemComponent = (props: Props) => {
     const { id } = props;
     const items = useItemsStore.use.items();
-    const update = useItemsStore.use.update();
+    const update = useItemsStore.use.updateItemsStore();
 
-    const item = getItemById(items, id);
-    const level = item ? getLevel(items, item) : undefined;
+    const item = ItemsManager.getItemByID(items, id);
+    const level = ItemsManager.getItemLevel(items, item); /// przypuszczalnie level jest niepotrzebne - chodzi tylko o classes naprawdę
+    const classes = getClasses(item, level);
     const handleRemove = React.useCallback(() => {
-        const updatedItems = [...removeItem(items, item)];
-        update(updatedItems);
+        if (item) {
+            const updatedItems = [...ItemsManager.removeItem(items, item)];
+            update(updatedItems);
+        }
     }, [items, item, update]);
 
     if (!item) return null;
 
     return (
-        <div className={getClasses(item, level).item}>
-            <span className={getClasses(item, level).relation}></span>
-            <div className={getClasses(item, level).text}>
+        <div className={classes.item}>
+            <span className={classes.relation}></span>
+            <div className={classes.text}>
                 {item.content}
                 {!item.isRoot && <RemoveButton handleClick={handleRemove} />}
             </div>
             {hasChildren(item) && (
-                <div className={getClasses(item, level).children}>
+                <div className={classes.children}>
                     {item.children?.map(id => {
                         return <ItemComponent key={uuid()} id={id} />;
                     })}
                 </div>
             )}
-            {/* {item.hasChildren && !item.isRoot && <br />} */}
             {item.hasChildren && <AddButton item={item} />}
         </div>
     );
