@@ -117,4 +117,23 @@ export default abstract class ItemsManager {
         };
         return item;
     }
+    static getClasses(item, level = 0) {
+        if (!item) return undefined;
+        const classes: Classes = {} as Classes;
+        if (item.isRoot) {
+            classes.item = "Item Item-root";
+            classes.children = "Children--root";
+            classes.addButton = "Button Button--large";
+            classes.text = "Item-root-text";
+            classes.relation = "Item-root--distancing-span";
+        } else {
+            classes.item = "Item Item--level-" + level;
+            classes.children = "Children--not-root";
+            classes.addButton = "Button Button--small";
+            classes.text = "Item--text";
+            classes.relation = level === 1 ? "relation-distancing-span-level-1" : "relation-distancing-span-lower-level";
+        }
+
+        return classes;
+    }
 }

@@ -19,7 +19,7 @@ export const ItemComponent = (props: Props) => {
 
     const item = ItemsManager.getItemByID(items, id);
     const level = ItemsManager.getItemLevel(items, item); /// przypuszczalnie level jest niepotrzebne - chodzi tylko o classes naprawdę
-    const classes = getClasses(item, level);
+    const classes = ItemsManager.getClasses(item, level);
     const handleRemove = React.useCallback(() => {
         if (item) {
             const updatedItems = [...ItemsManager.removeItem(items, item)];
