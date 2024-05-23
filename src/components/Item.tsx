@@ -5,8 +5,6 @@ import AddButton from "./AddButton";
 import RemoveButton from "./RemoveButton";
 import ItemsManager from "../models";
 
-import { getClasses } from "../models";
-
 import { useItemsStore } from "store/ItemsStore";
 
 interface Props {
@@ -18,8 +16,8 @@ export const ItemComponent = (props: Props) => {
     const update = useItemsStore.use.updateItemsStore();
 
     const item = ItemsManager.getItemByID(items, id);
-    const level = ItemsManager.getItemLevel(items, item); /// przypuszczalnie level jest niepotrzebne - chodzi tylko o classes naprawdę
-    const classes = ItemsManager.getClasses(item, level);
+
+    const classes = ItemsManager.getClasses(items, item);
     const handleRemove = React.useCallback(() => {
         if (item) {
             const updatedItems = [...ItemsManager.removeItem(items, item)];

@@ -1,37 +1,17 @@
 import { ROOT_ID } from "config";
 import { Classes, ID, Item, Items } from "../types";
 
-export function update(items: Items, newItem: Item) {
-    items.push(newItem);
-    const parentIndex = items.findIndex(item => item.id === newItem.parent);
+// export function update(items: Items, newItem: Item) {
+//     items.push(newItem);
+//     const parentIndex = items.findIndex(item => item.id === newItem.parent);
 
-    if (items[parentIndex].children) {
-        items[parentIndex].children.push(newItem.id);
-    } else {
-        items[parentIndex].children = [newItem.id];
-    }
-    return [...items];
-}
-
-export function getClasses(item, level = 0) {
-    if (!item) return undefined;
-    const classes: Classes = {} as Classes;
-    if (item.isRoot) {
-        classes.item = "Item Item-root";
-        classes.children = "Children--root";
-        classes.addButton = "Button Button--large";
-        classes.text = "Item-root-text";
-        classes.relation = "Item-root--distancing-span";
-    } else {
-        classes.item = "Item Item--level-" + level;
-        classes.children = "Children--not-root";
-        classes.addButton = "Button Button--small";
-        classes.text = "Item--text";
-        classes.relation = level === 1 ? "relation-distancing-span-level-1" : "relation-distancing-span-lower-level";
-    }
-
-    return classes;
-}
+//     if (items[parentIndex].children) {
+//         items[parentIndex].children.push(newItem.id);
+//     } else {
+//         items[parentIndex].children = [newItem.id];
+//     }
+//     return [...items];
+// }
 
 export default abstract class ItemsManager {
     static #isIdUnique(items: Items, id: ID) {
@@ -117,7 +97,8 @@ export default abstract class ItemsManager {
         };
         return item;
     }
-    static getClasses(item, level = 0) {
+    static getClasses(items, item) {
+        const level = this.getItemLevel(items, item);
         if (!item) return undefined;
         const classes: Classes = {} as Classes;
         if (item.isRoot) {

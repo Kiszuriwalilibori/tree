@@ -1,7 +1,7 @@
-import { getClasses } from "models/index";
+import ItemsManager from "models/index";
 import { Item } from "types";
 import { Plus } from "components";
-import { useActiveItemStore, useModalStore } from "store";
+import { useActiveItemStore, useItemsStore, useModalStore } from "store";
 import { useCallback } from "react";
 
 interface Props {
@@ -10,8 +10,8 @@ interface Props {
 
 export const AddButton = (props: Props) => {
     const { item } = props;
-
-    const classes = getClasses(item);
+    const items = useItemsStore.use.items();
+    const classes = ItemsManager.getClasses(items, item);
     const setActiveItem = useActiveItemStore.use.setActiveItem();
     const openModal = useModalStore.use.openModal();
 
