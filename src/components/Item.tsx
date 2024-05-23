@@ -5,7 +5,7 @@ import AddButton from "./AddButton";
 import RemoveButton from "./RemoveButton";
 import ItemsManager from "../models";
 
-import { getClasses, hasChildren } from "../models";
+import { getClasses } from "../models";
 
 import { useItemsStore } from "store/ItemsStore";
 
@@ -27,7 +27,7 @@ export const ItemComponent = (props: Props) => {
         }
     }, [items, item, update]);
 
-    if (!item) return null;
+    if (!item || !classes) return null;
 
     return (
         <div className={classes.item}>
@@ -36,7 +36,7 @@ export const ItemComponent = (props: Props) => {
                 {item.content}
                 {!item.isRoot && <RemoveButton handleClick={handleRemove} />}
             </div>
-            {hasChildren(item) && (
+            {ItemsManager.hasChildren(item) && (
                 <div className={classes.children}>
                     {item.children?.map(id => {
                         return <ItemComponent key={uuid()} id={id} />;
