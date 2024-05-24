@@ -3,28 +3,28 @@ import uuid from "react-uuid";
 
 import AddButton from "./AddButton";
 import RemoveButton from "./RemoveButton";
-import ItemsManager from "../models";
 
 import { useItemsStore } from "store/ItemsStore";
-import { useTestStore } from "store/class";
+import { ItemsClass, useTestItemsStore } from "store/TestItemsStore";
 
 interface Props {
     id: string;
 }
 export const ItemComponent = (props: Props) => {
     const { id } = props;
-    const items = useItemsStore.use.items();
+
+    const { testItems: items, updateTestItems } = useTestItemsStore();
     const update = useItemsStore.use.updateItemsStore();
 
-    const item = ItemsManager.getItemByID(items, id);
+    const item = items.getItemByID(id);
 
-    const classes = ItemsManager.getClasses(items, item);
-    const { testItems } = useTestStore();
-    console.log(testItems.area);
+    const classes = items.getClasses(item);
+
     const handleRemove = React.useCallback(() => {
         if (item) {
-            const updatedItems = [...ItemsManager.removeItem(items, item)];
-            update(updatedItems);
+            const updatedItems = [...items.removeItem(item)]; // lepiej by było jakby z metody zwracało this
+
+            updateTestItems(new ItemsClass(updatedItems));
         }
     }, [items, item, update]);
 
@@ -37,7 +37,7 @@ export const ItemComponent = (props: Props) => {
                 {item.content}
                 {!item.isRoot && <RemoveButton handleClick={handleRemove} />}
             </div>
-            {ItemsManager.hasChildren(item) && (
+            {items.hasChildren(item) && (
                 <div className={classes.children}>
                     {item.children?.map(id => {
                         return <ItemComponent key={uuid()} id={id} />;

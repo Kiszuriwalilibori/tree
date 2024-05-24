@@ -6,19 +6,17 @@ import { useCallback, useId, useRef } from "react";
 
 import { useMessage, useEnhancedState } from "hooks";
 
-import ItemsManager from "models";
-
-import { useActiveItemStore, useItemsStore, useModalStore } from "store";
+import { useActiveItemStore, useModalStore, useTestItemsStore } from "store";
+import { ItemsClass } from "store/TestItemsStore";
 
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
 export const AddItemModal = () => {
     const parent = useActiveItemStore.use.activeItem();
-    const items = useItemsStore.use.items();
+    const { testItems: items, updateTestItems } = useTestItemsStore();
     const isOpen = useModalStore.use.isModalOpen();
     const closeModal = useModalStore.use.closeModal();
     const handleClose = useModalStore.use.closeModal();
-    const updateItemsStore = useItemsStore.use.updateItemsStore();
     const [criterion, clearCriterion, setCriterion, isCriterionSet] = useEnhancedState("");
     const refCheckbox = useRef<HTMLInputElement>(null);
 
@@ -26,10 +24,10 @@ export const AddItemModal = () => {
     const showMessage = useMessage();
 
     const handleSubmit = useCallback(() => {
-        if (ItemsManager.isItemNotYetDefined(items, criterion)) {
-            const newItem = ItemsManager.createItem(items, parent.id, criterion, refCheckbox.current.checked);
-            const updatedItems = ItemsManager.addItem(items, newItem); // właściwie całe updat itemu można zebrać do jednej funkcji
-            updateItemsStore(updatedItems);
+        if (items.isItemNotYetDefined(criterion)) {
+            const newItem = items.createItem(parent.id, criterion, refCheckbox.current.checked);
+            const updatedItems = items.addItem(newItem);
+            updateTestItems(new ItemsClass(updatedItems));
             clearCriterion();
             closeModal();
         } else {
