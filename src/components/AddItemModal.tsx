@@ -4,14 +4,14 @@ import TextField from "@mui/material/TextField";
 
 import { useCallback, useId, useRef } from "react";
 import { useMessage, useEnhancedState } from "hooks";
-import { useActiveItemStore, useModalStore, useTestItemsStore } from "store";
+import { useModalStore, useTestItemsStore } from "store";
 
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
 export const AddItemModal = () => {
-    const parent = useActiveItemStore.use.activeItem();
     const { testItems: items, updateTestItems } = useTestItemsStore();
     const isOpen = useModalStore.use.isModalOpen();
+    const parent = useModalStore.use.currentItem();
     const closeModal = useModalStore.use.closeModal();
     const handleClose = useModalStore.use.closeModal();
     const [criterion, clearCriterion, setCriterion, isCriterionSet] = useEnhancedState("");
