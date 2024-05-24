@@ -1,18 +1,6 @@
 import { ROOT_ID } from "config";
 import { Classes, ID, Item, Items } from "../types";
 
-// export function update(items: Items, newItem: Item) {
-//     items.push(newItem);
-//     const parentIndex = items.findIndex(item => item.id === newItem.parent);
-
-//     if (items[parentIndex].children) {
-//         items[parentIndex].children.push(newItem.id);
-//     } else {
-//         items[parentIndex].children = [newItem.id];
-//     }
-//     return [...items];
-// }
-
 export default abstract class ItemsManager {
     static #isIdUnique(items: Items, id: ID) {
         const result = items.some(item => item.id === id);

@@ -3,11 +3,8 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 
 import { useCallback, useId, useRef } from "react";
-
 import { useMessage, useEnhancedState } from "hooks";
-
 import { useActiveItemStore, useModalStore, useTestItemsStore } from "store";
-import { ItemsClass } from "store/TestItemsStore";
 
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
@@ -27,7 +24,7 @@ export const AddItemModal = () => {
         if (items.isItemNotYetDefined(criterion)) {
             const newItem = items.createItem(parent.id, criterion, refCheckbox.current.checked);
             const updatedItems = items.addItem(newItem);
-            updateTestItems(new ItemsClass(updatedItems));
+            updateTestItems(updatedItems);
             clearCriterion();
             closeModal();
         } else {

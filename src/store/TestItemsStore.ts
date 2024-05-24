@@ -2,7 +2,6 @@ import { InitialItems } from "assets/InitialItems";
 import { ROOT_ID } from "config";
 import { Classes, ID, Item, Items } from "types";
 import { create } from "zustand";
-
 export class ItemsClass {
     items: Items;
 
@@ -62,7 +61,8 @@ export class ItemsClass {
         const parentIndex = item.parent ? this.#findParentIndex(item.parent) : undefined;
         const childIndex = parentIndex ? this.items[parentIndex].children?.indexOf(item.id) : undefined;
         parentIndex && childIndex && this.hasChildren(this.items[parentIndex]) && this.items[parentIndex].children?.indexOf(item.id) && this.items[parentIndex].children?.splice(childIndex, 1);
-        return this.items.filter(element => element.id !== item.id);
+        this.items = this.items.filter(element => element.id !== item.id);
+        return this;
         // wypadaloby jeszcze usuwać nody które straciły rodzica. najprościej przefiltrować po tym, czy rodzicc, którego mają wpisanego sitnieje
     }
     addItem(newItem: Item) {
@@ -74,7 +74,7 @@ export class ItemsClass {
         } else {
             this.items[parentIndex].children = [newItem.id];
         }
-        return [...this.items];
+        return this;
     }
     isItemNotYetDefined(content: string) {
         const result = this.items.findIndex(item => item.content === content);
