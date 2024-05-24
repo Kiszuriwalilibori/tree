@@ -6,6 +6,7 @@ import RemoveButton from "./RemoveButton";
 import ItemsManager from "../models";
 
 import { useItemsStore } from "store/ItemsStore";
+import { useTestStore } from "store/class";
 
 interface Props {
     id: string;
@@ -18,6 +19,8 @@ export const ItemComponent = (props: Props) => {
     const item = ItemsManager.getItemByID(items, id);
 
     const classes = ItemsManager.getClasses(items, item);
+    const { testItems } = useTestStore();
+    console.log(testItems.area);
     const handleRemove = React.useCallback(() => {
         if (item) {
             const updatedItems = [...ItemsManager.removeItem(items, item)];
