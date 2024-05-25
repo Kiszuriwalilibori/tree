@@ -8,7 +8,7 @@ const iconHoverColor = "rgba(241, 92, 106, 0.34)";
 const StyledButton = styled(IconButton)({
     color: iconColor,
     position: "absolute",
-    right: "15px",
+    right: "0px",
     top: "50%",
     transform: "translateY(-50%)",
     transition: "background-color 0.5s ease-in-out",
