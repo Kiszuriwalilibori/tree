@@ -34,8 +34,8 @@
     margin-left: $lower-level-distance;
     padding-left: 45px;
     margin-top: 30px;
-    padding-top: 30px; //
-    padding-bottom: 30px; //
+    padding-top: 30px;
+    padding-bottom: 30px;
     & .relation-distancing-span-lower-level {
         position: absolute;
         top: 50%;
@@ -47,6 +47,7 @@
             @extend .relation-text;
             transform: translateY(50%);
             bottom: 50%;
+            color: $text-color;
         }
     }
     &:before {

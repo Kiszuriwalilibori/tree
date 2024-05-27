@@ -88,6 +88,7 @@
                 @extend .relation-text;
                 transform: translateY(50%);
                 bottom: 50%;
+                color: $text-color;
             }
         }
         &:before {

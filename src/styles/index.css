@@ -54,6 +54,7 @@
   left: -135px;
   transform: translateY(50%);
   bottom: 50%;
+  color: #fff;
 }
 .item-lower-level:before, .Item--level-0:before, .Item--level-9:before, .Item--level-8:before, .Item--level-7:before, .Item--level-6:before, .Item--level-5:before, .Item--level-4:before, .Item--level-3:before, .Item--level-2:before {
   position: absolute;
@@ -235,6 +236,7 @@ br {
   left: -175px;
   transform: translateY(50%);
   bottom: 50%;
+  color: #fff;
 }
 .Item--level-1:before {
   position: absolute;
