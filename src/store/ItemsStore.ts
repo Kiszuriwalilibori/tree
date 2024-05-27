@@ -101,14 +101,14 @@ export class ItemsClass {
         if (!item) return undefined;
         const classes: Classes = {} as Classes;
         if (item.isRoot) {
-            classes.item = "Item Item-root";
-            classes.children = "Children--root";
+            classes.item = "Item Item_root";
+            classes.children = "Children_root";
             classes.addButton = "Button Button_large";
-            classes.text = "Item-root__heading";
+            classes.text = "Item_root__heading";
             classes.relation = "Item-root--distancing-span";
         } else {
-            classes.item = "Item Item--level-" + level;
-            classes.children = "Children--not-root";
+            classes.item = "Item Item_level-" + level;
+            classes.children = "Children_not-root";
             classes.addButton = "Button Button_small";
             classes.text = "Item__heading";
             classes.relation = level === 1 ? "relation-distancing-span_top-level" : "relation-distancing-span_lower-level";

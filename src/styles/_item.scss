@@ -14,7 +14,7 @@
         white-space: nowrap;
         overflow: hidden;
     }
-    &-root {
+    &_root {
         position: relative;
         left: calc(((50% - $header-width / 2)) - $root-item-width / 2);
         @include box_shadow;
@@ -26,46 +26,48 @@
         height: $root-item-height;
         line-height: $root-item-height;
         text-shadow: $root-text-shadow;
+        &__heading {
+        }
     }
 
-    &--level-2 {
+    &_level-2 {
         @extend .item-lower-level;
         background-color: $item-background-2;
     }
-    &--level-3 {
+    &_level-3 {
         @extend .item-lower-level;
         background-color: $item-background-3;
     }
-    &--level-4 {
+    &_level-4 {
         @extend .item-lower-level;
         background-color: $item-background-4;
     }
-    &--level-5 {
+    &_level-5 {
         @extend .item-lower-level;
         background-color: $item-background-5;
     }
-    &--level-6 {
+    &_level-6 {
         @extend .item-lower-level;
         background-color: $item-background-6;
     }
-    &--level-7 {
+    &_level-7 {
         @extend .item-lower-level;
         background-color: $item-background-7;
     }
-    &--level-8 {
+    &_level-8 {
         @extend .item-lower-level;
         background-color: $item-background-8;
     }
-    &--level-9 {
+    &_level-9 {
         @extend .item-lower-level;
         background-color: $item-background-9;
     }
-    &--level-0 {
+    &_level-0 {
         @extend .item-lower-level;
         background-color: $item-background-0;
     }
 
-    &--level-1 {
+    &_level-1 {
         background-color: $item-background-1;
         position: relative;
         margin: 40px 0;
@@ -114,14 +116,14 @@
 }
 
 .Children {
-    &--root {
+    &_root {
         position: relative;
         bottom: 0;
         left: 50%;
         border-left: 2px solid white;
         padding: 25px 0;
     }
-    &--not-root {
+    &_not-root {
         position: relative;
         bottom: 0;
         left: $not-root-child-left-distance;
