@@ -1,10 +1,10 @@
 .Button {
     @include button;
-    &--large {
+    &_large {
         width: $button-large-size;
         height: $button-large-size;
     }
-    &--small {
+    &_small {
         left: $not-root-child-left-distance;
         bottom: 0;
         transform: translateX(-50%);
