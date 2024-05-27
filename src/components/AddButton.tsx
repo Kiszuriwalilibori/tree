@@ -9,7 +9,7 @@ interface Props {
 
 export const AddButton = (props: Props) => {
     const { item } = props;
-    const { testItems: items } = useTestItemsStore();
+    const { items: items } = useTestItemsStore();
     const classes = items.getClasses(item);
     const openModal = useModalStore.use.openModal();
 

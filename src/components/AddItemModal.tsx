@@ -9,7 +9,7 @@ import { useModalStore, useTestItemsStore } from "store";
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
 export const AddItemModal = () => {
-    const { testItems: items, updateTestItems } = useTestItemsStore();
+    const { items: items, updateItems: updateTestItems } = useTestItemsStore();
     const isOpen = useModalStore.use.isModalOpen();
     const parent = useModalStore.use.currentItem();
     const closeModal = useModalStore.use.closeModal();

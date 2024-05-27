@@ -62,8 +62,9 @@ export class ItemsClass {
         const childIndex = parentIndex ? this.items[parentIndex].children?.indexOf(item.id) : undefined;
         parentIndex && childIndex && this.hasChildren(this.items[parentIndex]) && this.items[parentIndex].children?.indexOf(item.id) && this.items[parentIndex].children?.splice(childIndex, 1);
         this.items = this.items.filter(element => element.id !== item.id);
+
         return this;
-        // wypadaloby jeszcze usuwać nody które straciły rodzica. najprościej przefiltrować po tym, czy rodzicc, którego mają wpisanego sitnieje
+        // wypadaloby jeszcze usuwać nody które straciły rodzica. najprościej przefiltrować po tym, czy rodzicc, którego mają wpisanego istnieje
     }
     addItem(newItem: Item) {
         this.items.push(newItem);
@@ -94,7 +95,9 @@ export class ItemsClass {
         return item;
     }
     getClasses(item) {
-        const level = this.#getItemLevel(item);
+        const longLevel = this.#getItemLevel(item);
+        const level = longLevel % 10;
+
         if (!item) return undefined;
         const classes: Classes = {} as Classes;
         if (item.isRoot) {
@@ -116,13 +119,13 @@ export class ItemsClass {
 }
 
 interface State {
-    testItems: ItemsClass;
-    updateTestItems: (updatedItems: ItemsClass) => void;
+    items: ItemsClass;
+    updateItems: (updatedItems: ItemsClass) => void;
 }
 
-export const useTestItemsStore = create<State>(set => ({
-    testItems: new ItemsClass(InitialItems),
-    updateTestItems: (updatedItems: ItemsClass) => {
-        set(() => ({ testItems: updatedItems }));
+export const useItemsStore = create<State>(set => ({
+    items: new ItemsClass(InitialItems),
+    updateItems: (updatedItems: ItemsClass) => {
+        set(() => ({ items: updatedItems }));
     },
 }));

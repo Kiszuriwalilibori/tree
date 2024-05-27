@@ -4,14 +4,14 @@ import uuid from "react-uuid";
 import AddButton from "./AddButton";
 import RemoveButton from "./RemoveButton";
 
-import { ItemsClass, useTestItemsStore } from "store/TestItemsStore";
+import { ItemsClass, useItemsStore } from "store/ItemsStore";
 
 interface Props {
     id: string;
 }
 export const ItemComponent = (props: Props) => {
     const { id } = props;
-    const { testItems: items, updateTestItems } = useTestItemsStore();
+    const { items: items, updateItems: updateTestItems } = useItemsStore();
     const item = items.getItemByID(id);
     const classes = items.getClasses(item);
     const handleRemove = React.useCallback(() => {

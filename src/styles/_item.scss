@@ -27,29 +27,42 @@
         line-height: $root-item-height;
         text-shadow: $root-text-shadow;
     }
-    // &--level {
-    //     margin-top: 30px;
-    //     margin-bottom: 30px;
-    //     &-2 {
-    //         @extend .item-lower-level;
-    //         background-color: $item-background-2;
-    //     }
-    // }
+
     &--level-2 {
         @extend .item-lower-level;
         background-color: $item-background-2;
-        padding-top: 30px;
-        padding-bottom: 30px;
     }
     &--level-3 {
         @extend .item-lower-level;
         background-color: $item-background-3;
-        padding-top: 30px;
-        padding-bottom: 30px;
     }
     &--level-4 {
         @extend .item-lower-level;
         background-color: $item-background-4;
+    }
+    &--level-5 {
+        @extend .item-lower-level;
+        background-color: $item-background-5;
+    }
+    &--level-6 {
+        @extend .item-lower-level;
+        background-color: $item-background-6;
+    }
+    &--level-7 {
+        @extend .item-lower-level;
+        background-color: $item-background-7;
+    }
+    &--level-8 {
+        @extend .item-lower-level;
+        background-color: $item-background-8;
+    }
+    &--level-9 {
+        @extend .item-lower-level;
+        background-color: $item-background-9;
+    }
+    &--level-0 {
+        @extend .item-lower-level;
+        background-color: $item-background-0;
     }
 
     &--level-1 {

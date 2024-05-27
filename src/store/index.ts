@@ -1,5 +1,5 @@
 // import { useActiveItemStore } from "./ActiveItem";
 import { useModalStore } from "./ModalStore";
-import { useTestItemsStore } from "./TestItemsStore";
+import { useItemsStore } from "./ItemsStore";
 
-export { /*useActiveItemStore,*/ useModalStore, useTestItemsStore };
+export { /*useActiveItemStore,*/ useModalStore, useItemsStore as useTestItemsStore };
