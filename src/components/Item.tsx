@@ -1,8 +1,7 @@
 import * as React from "react";
 import uuid from "react-uuid";
 
-import AddButton from "./AddButton";
-import RemoveButton from "./RemoveButton";
+import { AddButton, RemoveButton } from "components";
 
 import { useItemsStore } from "store/ItemsStore";
 

@@ -1,37 +1,15 @@
 .App {
     text-align: center;
     &__header {
-        @extend .common-box-green;
-        width: $header-width;
-        display: block;
+        @include common-box;
+        width: $app-header-width;
         margin: 0 auto;
         top: -80px;
         position: relative;
         background-color: $item-background-1;
-        border-radius: $radius;
         padding: 1px;
     }
     &__title {
         color: white;
     }
 }
-
-// .contentWrapperPrimary {
-//     margin-left: 150px;
-//     border-left: 2px solid white;
-//     padding: 25px 0;
-//     position: relative;
-// }
-
-// .app-title {
-//     color: white;
-//     background-color: #06575b;
-//     border-radius: 6px;
-//     padding: 12px;
-//     text-align: center;
-//     width: 300px;
-//     display: block;
-//     margin: 0 auto;
-//     top: -80px;
-//     position: relative;
-// }

@@ -6,21 +6,10 @@
   src: url(brandon.ttf);
   font-display: swap;
 }
-.common-box, .Item {
-  display: block;
+.common-grid, .AddItemForm {
+  display: grid;
   border-radius: 6px;
-}
-.common-box-green, .App__header {
-  background-color: #06575b;
-}
-
-.relation-text, .Item_level-1 .relation-distancing-span_top-level:before, .item-lower-level .relation-distancing-span_lower-level:before, .Item_level-0 .relation-distancing-span_lower-level:before, .Item_level-9 .relation-distancing-span_lower-level:before, .Item_level-8 .relation-distancing-span_lower-level:before, .Item_level-7 .relation-distancing-span_lower-level:before, .Item_level-6 .relation-distancing-span_lower-level:before, .Item_level-5 .relation-distancing-span_lower-level:before, .Item_level-4 .relation-distancing-span_lower-level:before, .Item_level-3 .relation-distancing-span_lower-level:before, .Item_level-2 .relation-distancing-span_lower-level:before {
-  font-size: 22px;
-  font-weight: 600;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
-  color: #003b46;
-  letter-spacing: normal;
-  text-shadow: none;
+  grid-gap: 20px;
 }
 
 .cross {
@@ -32,48 +21,6 @@
 .cross :focus {
   outline: none;
   text-decoration: none;
-}
-
-.item-lower-level, .Item_level-0, .Item_level-9, .Item_level-8, .Item_level-7, .Item_level-6, .Item_level-5, .Item_level-4, .Item_level-3, .Item_level-2 {
-  position: relative;
-  width: 420px;
-  background-color: #37597b;
-  margin-left: 40px;
-  padding-left: 45px;
-  margin-top: 30px;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-.item-lower-level .relation-distancing-span_lower-level, .Item_level-0 .relation-distancing-span_lower-level, .Item_level-9 .relation-distancing-span_lower-level, .Item_level-8 .relation-distancing-span_lower-level, .Item_level-7 .relation-distancing-span_lower-level, .Item_level-6 .relation-distancing-span_lower-level, .Item_level-5 .relation-distancing-span_lower-level, .Item_level-4 .relation-distancing-span_lower-level, .Item_level-3 .relation-distancing-span_lower-level, .Item_level-2 .relation-distancing-span_lower-level {
-  position: absolute;
-  top: 50%;
-}
-.item-lower-level .relation-distancing-span_lower-level:before, .Item_level-0 .relation-distancing-span_lower-level:before, .Item_level-9 .relation-distancing-span_lower-level:before, .Item_level-8 .relation-distancing-span_lower-level:before, .Item_level-7 .relation-distancing-span_lower-level:before, .Item_level-6 .relation-distancing-span_lower-level:before, .Item_level-5 .relation-distancing-span_lower-level:before, .Item_level-4 .relation-distancing-span_lower-level:before, .Item_level-3 .relation-distancing-span_lower-level:before, .Item_level-2 .relation-distancing-span_lower-level:before {
-  content: "XOR";
-  position: absolute;
-  left: -135px;
-  transform: translateY(50%);
-  bottom: 50%;
-  color: #fff;
-}
-.item-lower-level:before, .Item_level-0:before, .Item_level-9:before, .Item_level-8:before, .Item_level-7:before, .Item_level-6:before, .Item_level-5:before, .Item_level-4:before, .Item_level-3:before, .Item_level-2:before {
-  position: absolute;
-  content: "";
-  background-image: linear-gradient(#a375f3, #7176f7);
-  left: 0px;
-  height: 100%;
-  width: 20px;
-  top: 0;
-  border-radius: 6px 0 0 6px;
-}
-.item-lower-level:after, .Item_level-0:after, .Item_level-9:after, .Item_level-8:after, .Item_level-7:after, .Item_level-6:after, .Item_level-5:after, .Item_level-4:after, .Item_level-3:after, .Item_level-2:after {
-  position: absolute;
-  content: "";
-  left: -40px;
-  height: 2px;
-  top: 50%;
-  width: 40px;
-  background-color: white;
 }
 
 * {
@@ -148,9 +95,14 @@ br {
   background-color: white;
 }
 
-.Item__heading {
-  border: 2px solid #d3d3d3;
+.Item {
+  display: block;
   border-radius: 6px;
+}
+.Item__heading {
+  display: block;
+  border-radius: 6px;
+  border: 2px solid #fff;
   padding: 7px 20px 7px 15px;
   width: 250px;
   min-height: 60px;
@@ -162,16 +114,62 @@ br {
 }
 .Item_root {
   position: relative;
-  left: calc(50% - 150px - 150px);
+  left: calc(50% - 150px - 210px);
   box-shadow: 0px 4px 20px -4px rgb(172, 166, 192);
   background-image: linear-gradient(#a375f3, #7176f7);
   color: white;
   font-size: 28px;
   letter-spacing: 1.5px;
-  width: 300px;
+  width: 420px;
   height: 80px;
   line-height: 80px;
   text-shadow: 0px 2px 2px rgb(74, 74, 155);
+}
+.Item_lower-level {
+  position: relative;
+  width: 420px;
+  background-color: #37597b;
+  margin-left: 40px;
+  padding-left: 45px;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.Item_lower-level .relation-distancing-span_lower-level {
+  position: absolute;
+  top: 50%;
+}
+.Item_lower-level .relation-distancing-span_lower-level:before {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  color: #fff;
+  letter-spacing: normal;
+  text-shadow: none;
+  content: "XOR";
+  position: absolute;
+  left: -135px;
+  transform: translateY(50%);
+  bottom: 50%;
+}
+.Item_lower-level:before {
+  position: absolute;
+  content: "";
+  background-image: linear-gradient(#a375f3, #7176f7);
+  left: 0px;
+  height: 100%;
+  width: 20px;
+  top: 0;
+  border-radius: 6px 0 0 6px;
+}
+.Item_lower-level:after {
+  position: absolute;
+  content: "";
+  left: -40px;
+  height: 2px;
+  top: 50%;
+  width: 40px;
+  background-color: white;
 }
 .Item_level-2 {
   background-color: #37597b;
@@ -218,12 +216,17 @@ br {
   top: 50%;
 }
 .Item_level-1 .relation-distancing-span_top-level:before {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Open Sans, Helvetica Neue, sans-serif;
+  color: #fff;
+  letter-spacing: normal;
+  text-shadow: none;
   content: "And";
   position: absolute;
   left: -175px;
   transform: translateY(50%);
   bottom: 50%;
-  color: #fff;
 }
 .Item_level-1:before {
   position: absolute;
@@ -264,13 +267,13 @@ br {
   text-align: center;
 }
 .App__header {
-  width: 300px;
   display: block;
+  border-radius: 6px;
+  width: 300px;
   margin: 0 auto;
   top: -80px;
   position: relative;
   background-color: #06575b;
-  border-radius: 6px;
   padding: 1px;
 }
 .App__title {
@@ -278,14 +281,11 @@ br {
 }
 
 .AddItemForm {
+  border: 2px solid #7176f7;
   background-color: #fefefe;
   margin: 15% auto;
   padding: 20px;
-  border: 2px solid #7176f7;
-  border-radius: 6px;
   width: 300px;
-  display: grid;
-  grid-gap: 20px;
 }
 .AddItemForm > * {
   display: block;

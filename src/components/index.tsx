@@ -1,9 +1,9 @@
 import App from "./App";
-
-import Item from "./Item";
 import AddButton from "./AddButton";
-import Plus from "./Plus";
 import AddItemModal from "./AddItemModal";
 import AppProvider from "./AppProvider";
+import Item from "./Item";
+import Plus from "./Plus";
+import RemoveButton from "./RemoveButton";
 
-export { AddButton, AddItemModal, App, AppProvider, Item, Plus };
+export { AddButton, AddItemModal, App, AppProvider, Item, Plus, RemoveButton };

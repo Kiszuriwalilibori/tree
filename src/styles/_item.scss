@@ -1,10 +1,10 @@
 @use "sass:math";
 
 .Item {
-    @extend .common-box;
+    @include common-box;
     &__heading {
-        border: 2px solid #d3d3d3;
-        border-radius: 6px;
+        @include common-box;
+        @include common-border(#fff);
         padding: 7px 20px 7px 15px;
         width: 250px;
         min-height: $item-height;
@@ -16,54 +16,87 @@
     }
     &_root {
         position: relative;
-        left: calc(((50% - $header-width / 2)) - $root-item-width / 2);
+        left: calc(((50% - $app-header-width / 2)) - $item-width / 2);
         @include box_shadow;
         @include gradient;
         color: white;
         font-size: 28px;
         letter-spacing: 1.5px;
-        width: $root-item-width;
+        width: $item-width;
         height: $root-item-height;
         line-height: $root-item-height;
         text-shadow: $root-text-shadow;
         &__heading {
         }
     }
+    &_lower-level {
+        position: relative;
+        width: $item-width;
+        background-color: $item-background-2;
+        margin-left: $lower-level-distance;
+        padding-left: 45px;
+        margin-top: 30px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+        & .relation-distancing-span_lower-level {
+            position: absolute;
+            top: 50%;
+
+            &:before {
+                @include relation-text;
+                content: "XOR";
+                position: absolute;
+                left: -($lower-level-distance + $root-child-left-padding + $root-child-gradient-width + 50px); // niespójne nazewnictwo w stałych
+                transform: translateY(50%);
+                bottom: 50%;
+            }
+        }
+        &:before {
+            position: absolute;
+            content: "";
+            background-image: linear-gradient(#a375f3, #7176f7);
+            left: 0px;
+            height: 100%;
+            width: $root-child-gradient-width;
+            top: 0;
+            border-radius: 6px 0 0 6px;
+        }
+        &:after {
+            position: absolute;
+            content: "";
+            left: -$lower-level-distance;
+            height: 2px;
+            top: 50%;
+            width: $lower-level-distance;
+            background-color: white;
+        }
+    }
 
     &_level-2 {
-        @extend .item-lower-level;
         background-color: $item-background-2;
     }
     &_level-3 {
-        @extend .item-lower-level;
         background-color: $item-background-3;
     }
     &_level-4 {
-        @extend .item-lower-level;
         background-color: $item-background-4;
     }
     &_level-5 {
-        @extend .item-lower-level;
         background-color: $item-background-5;
     }
     &_level-6 {
-        @extend .item-lower-level;
         background-color: $item-background-6;
     }
     &_level-7 {
-        @extend .item-lower-level;
         background-color: $item-background-7;
     }
     &_level-8 {
-        @extend .item-lower-level;
         background-color: $item-background-8;
     }
     &_level-9 {
-        @extend .item-lower-level;
         background-color: $item-background-9;
     }
     &_level-0 {
-        @extend .item-lower-level;
         background-color: $item-background-0;
     }
 
@@ -71,7 +104,7 @@
         background-color: $item-background-1;
         position: relative;
         margin: 40px 0;
-        width: $root-child-width;
+        width: $item-width;
         min-height: 1px;
         margin-left: 80px;
         line-height: 104px;
@@ -84,13 +117,13 @@
             top: 50%;
 
             &:before {
+                @include relation-text;
                 content: "And";
                 position: absolute;
                 left: -($root-child-left-distance + $root-child-left-padding + $root-child-gradient-width + 50px);
-                @extend .relation-text;
+
                 transform: translateY(50%);
                 bottom: 50%;
-                color: $text-color;
             }
         }
         &:before {
@@ -112,22 +145,5 @@
             width: $root-child-left-distance;
             background-color: white;
         }
-    }
-}
-
-.Children {
-    &_root {
-        position: relative;
-        bottom: 0;
-        left: 50%;
-        border-left: 2px solid white;
-        padding: 25px 0;
-    }
-    &_not-root {
-        position: relative;
-        bottom: 0;
-        left: $not-root-child-left-distance;
-        border-left: 2px solid white;
-        padding: 25px 0;
     }
 }
