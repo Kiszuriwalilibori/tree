@@ -1,4 +1,4 @@
-import { InitialItems } from "assets/InitialItems";
+import { INITIAL_ITEMS } from "config";
 import { ROOT_ID } from "config";
 import { Classes, ID, Item, Items } from "types";
 import { create } from "zustand";
@@ -124,7 +124,7 @@ interface State {
 }
 
 export const useItemsStore = create<State>(set => ({
-    items: new ItemsClass(InitialItems),
+    items: new ItemsClass(INITIAL_ITEMS),
     updateItems: (updatedItems: ItemsClass) => {
         set(() => ({ items: updatedItems }));
     },
