@@ -104,13 +104,13 @@ export class ItemsClass {
             classes.item = "Item Item_root";
             classes.children = "Children_root";
             classes.addButton = "Button Button_large";
-            classes.text = "Item_root__heading";
+            classes.heading = "Item_root__heading";
             classes.relation = "Item-root--distancing-span";
         } else {
             classes.item = "Item Item_level-" + level;
             classes.children = "Children_not-root";
             classes.addButton = "Button Button_small";
-            classes.text = "Item__heading";
+            classes.heading = "Item__heading";
             classes.relation = level === 1 ? "relation-distancing-span_top-level" : "relation-distancing-span_lower-level";
         }
 

@@ -1,6 +1,6 @@
 import { Item } from "types";
 import { Plus } from "components";
-import { useModalStore, useTestItemsStore } from "store";
+import { useModalStore, useItemsStore } from "store";
 import { useCallback } from "react";
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 export const AddButton = (props: Props) => {
     const { item } = props;
-    const { items: items } = useTestItemsStore();
+    const { items } = useItemsStore();
     const classes = items.getClasses(item);
     const openModal = useModalStore.use.openModal();
 

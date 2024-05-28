@@ -4,12 +4,12 @@ import TextField from "@mui/material/TextField";
 
 import { useCallback, useId, useRef } from "react";
 import { useMessage, useEnhancedState } from "hooks";
-import { useModalStore, useTestItemsStore } from "store";
+import { useModalStore, useItemsStore } from "store";
 
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
 export const AddItemModal = () => {
-    const { items: items, updateItems: updateTestItems } = useTestItemsStore();
+    const { items, updateItems: updateTestItems } = useItemsStore();
     const isOpen = useModalStore.use.isModalOpen();
     const parent = useModalStore.use.currentItem();
     const closeModal = useModalStore.use.closeModal();

@@ -1,6 +1,6 @@
 .App {
     text-align: center;
-    &-header {
+    &__header {
         @extend .common-box-green;
         width: $header-width;
         display: block;
@@ -11,7 +11,7 @@
         border-radius: $radius;
         padding: 1px;
     }
-    &-title {
+    &__title {
         color: white;
     }
 }

@@ -13,7 +13,7 @@ export interface Item {
 export type Items = Item[];
 
 export interface Classes {
-    text: string;
+    heading: string;
     addButton: string;
     children: string;
     item: string;

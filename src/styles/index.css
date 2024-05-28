@@ -10,7 +10,7 @@
   display: block;
   border-radius: 6px;
 }
-.common-box-green, .App-header {
+.common-box-green, .App__header {
   background-color: #06575b;
 }
 
@@ -276,7 +276,7 @@ br {
 .App {
   text-align: center;
 }
-.App-header {
+.App__header {
   width: 300px;
   display: block;
   margin: 0 auto;
@@ -286,7 +286,7 @@ br {
   border-radius: 6px;
   padding: 1px;
 }
-.App-title {
+.App__title {
   color: white;
 }
 
