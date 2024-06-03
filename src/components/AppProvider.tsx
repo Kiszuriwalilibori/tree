@@ -1,18 +1,21 @@
 import React, { ReactNode } from "react";
 
 import { SnackbarProvider } from "notistack";
+import { ThemeProvider, theme } from "../theme";
 
 const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     return (
-        <SnackbarProvider
-            maxSnack={3}
-            anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "center",
-            }}
-        >
-            {children}
-        </SnackbarProvider>
+        <ThemeProvider theme={theme}>
+            <SnackbarProvider
+                maxSnack={3}
+                anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center",
+                }}
+            >
+                {children}
+            </SnackbarProvider>
+        </ThemeProvider>
     );
 };
 

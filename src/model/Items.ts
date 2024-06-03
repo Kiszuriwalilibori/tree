@@ -31,6 +31,7 @@ export class ItemsClass {
         const index = this.#findParentIndex(parent);
         return items[index];
     }
+
     #getItemLevel(item: Item) {
         if (!item) return undefined;
         let level: number = 0;

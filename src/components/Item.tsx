@@ -13,6 +13,7 @@ export const ItemComponent = (props: Props) => {
     const { items, updateItems } = useItemsStore();
     const item = items.getItemByID(id);
     const classes = items.getClasses(item);
+    console.log(items);
 
     const handleRemove = React.useCallback(() => {
         if (item) {
