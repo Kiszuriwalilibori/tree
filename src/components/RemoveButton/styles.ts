@@ -13,6 +13,7 @@ const StyledButton = styled(IconButton)({
     transform: "translateY(-50%)",
     transition: "background-color 0.5s ease-in-out",
     "&:hover": { backgroundColor: iconHoverColor },
+    "&:focus": { backgroundColor: iconHoverColor },
 });
 
 export default StyledButton;
