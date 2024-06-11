@@ -13,7 +13,6 @@ export const ItemComponent = (props: Props) => {
     const { items, updateItems } = useItemsStore();
     const item = items.getItemByID(id);
     const classes = items.getClasses(item);
-    console.log(items);
 
     const handleRemove = React.useCallback(() => {
         if (item) {
@@ -26,7 +25,7 @@ export const ItemComponent = (props: Props) => {
 
     return (
         <div className={classes.item}>
-            <span className={classes.relation}></span>
+            <span className={classes.relation} data-dynamic={item.relation}></span>
             <div className={classes.heading}>
                 {item.content}
                 {!item.isRoot && <RemoveButton handleClick={handleRemove} />}

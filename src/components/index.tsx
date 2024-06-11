@@ -1,6 +1,6 @@
 import App from "./App";
 import AddButton from "./AddButton";
-import AddItemModal from "./AddItemModal";
+import AddItemModal from "./AddItemModal/AddItemModal";
 import AppProvider from "./AppProvider";
 import Item from "./Item";
 import Plus from "./Plus";

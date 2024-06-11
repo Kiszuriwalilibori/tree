@@ -8,6 +8,7 @@ export interface Item {
     id: ID;
     isRoot: boolean;
     parent: ID | null;
+    relation: string | undefined;
 }
 
 export type Items = Item[];

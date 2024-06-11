@@ -38,13 +38,14 @@
         margin-top: 35px;
         padding-top: 30px;
         padding-bottom: 25px;
+
         & .relation-distancing-span_lower-level {
             position: absolute;
             top: 50%;
 
             &:before {
                 @include relation-text;
-                content: "XOR";
+                content: attr(data-dynamic);
                 position: absolute;
                 left: -($lower-level-distance + $root-child-left-padding + $root-child-gradient-width + 50px); // niespójne nazewnictwo w stałych
                 transform: translateY(50%);
@@ -118,7 +119,7 @@
 
             &:before {
                 @include relation-text;
-                content: "And";
+                content: attr(data-dynamic);
                 position: absolute;
                 left: -($root-child-left-distance + $root-child-left-padding + $root-child-gradient-width + 50px);
 

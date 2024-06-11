@@ -81,7 +81,7 @@ export class ItemsClass {
         const result = this.items.findIndex(item => item.content === content);
         return result === -1 ? true : false;
     }
-    createItem(parent: ID, content: string, hasChildren: boolean) {
+    createItem(parent: ID, content: string, hasChildren: boolean, relation: string) {
         const id = this.#createID();
 
         const item = {
@@ -91,6 +91,7 @@ export class ItemsClass {
             id,
             isRoot: false,
             parent,
+            relation,
         };
         return item;
     }
@@ -107,7 +108,7 @@ export class ItemsClass {
             classes.heading = "Item_root__heading";
             classes.relation = "Item-root--distancing-span";
         } else {
-            classes.item = "Item Item_lower-level Item_level-" + level;
+            classes.item = `Item Item_lower-level Item_level-${level}`;
             classes.children = "Children_not-root";
             classes.addButton = "Button Button_small";
             classes.heading = "Item__heading";

@@ -146,7 +146,7 @@ br {
   color: #fff;
   letter-spacing: normal;
   text-shadow: none;
-  content: "XOR";
+  content: attr(data-dynamic);
   position: absolute;
   left: -135px;
   transform: translateY(50%);
@@ -222,7 +222,7 @@ br {
   color: #fff;
   letter-spacing: normal;
   text-shadow: none;
-  content: "And";
+  content: attr(data-dynamic);
   position: absolute;
   left: -175px;
   transform: translateY(50%);

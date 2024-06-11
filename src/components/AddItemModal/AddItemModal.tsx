@@ -1,12 +1,40 @@
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
+import RadioGroup, { useRadioGroup } from "@mui/material/RadioGroup";
+import Radio from "@mui/material/Radio";
+import FormControlLabel, { FormControlLabelProps } from "@mui/material/FormControlLabel";
+import styled from "@emotion/styled";
 
 import { useCallback, useId, useRef } from "react";
 import { useMessage, useEnhancedState } from "hooks";
 import { useModalStore, useItemsStore } from "store";
 
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
+
+interface StyledFormControlLabelProps extends FormControlLabelProps {
+    checked: boolean;
+}
+
+const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => <FormControlLabel {...props} />)(({ theme, checked }) => ({
+    ".MuiFormControlLabel-label": checked && {
+        color: "#123456",
+    },
+}));
+
+interface XFormControlLabelProps extends FormControlLabelProps {
+    callback: Function;
+}
+function MyFormControlLabel(props: XFormControlLabelProps) {
+    const radioGroup = useRadioGroup();
+    let checked = false;
+
+    if (radioGroup) {
+        checked = radioGroup.value === props.value;
+    }
+
+    return <StyledFormControlLabel checked={checked} {...props} onChange={() => props.callback(props.value)} />;
+}
 
 export const AddItemModal = () => {
     const { items, updateItems: updateTestItems } = useItemsStore();
@@ -16,13 +44,21 @@ export const AddItemModal = () => {
     const handleClose = useModalStore.use.closeModal();
     const [criterion, clearCriterion, setCriterion, isCriterionSet] = useEnhancedState("");
     const refCheckbox = useRef<HTMLInputElement>(null);
+    const [relation, , setRelation] = useEnhancedState("And");
+
+    console.log(relation);
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setRelation(event.target.value);
+        console.log("target", event.target.value);
+        console.log("relation", relation);
+    };
 
     const checkboxId = useId();
     const showMessage = useMessage();
 
     const handleSubmit = useCallback(() => {
         if (items.isItemNotYetDefined(criterion)) {
-            const newItem = items.createItem(parent.id, criterion, refCheckbox.current.checked);
+            const newItem = items.createItem(parent.id, criterion, refCheckbox.current.checked, relation);
             const updatedItems = items.addItem(newItem);
             updateTestItems(updatedItems);
             clearCriterion();
@@ -30,7 +66,7 @@ export const AddItemModal = () => {
         } else {
             showMessage.warning(WARNING_DUPLICATE);
         }
-    }, [criterion, parent, items]);
+    }, [criterion, parent, items, relation]);
 
     return (
         <Modal open={isOpen}>
@@ -58,6 +94,11 @@ export const AddItemModal = () => {
                 <Button variant="contained" size="large" className="AddItemForm__button" color="secondary" onClick={handleClose}>
                     Zamknij
                 </Button>
+                <RadioGroup row aria-labelledby="demo-form-control-label-placement" name="position" defaultValue="And">
+                    <FormControlLabel value="And" control={<Radio onChange={handleChange} />} label="And" />
+                    <FormControlLabel value="Or" control={<Radio onChange={handleChange} />} label="Or" />
+                    <FormControlLabel value="Xor" control={<Radio onChange={handleChange} />} label="Xor" />
+                </RadioGroup>
             </form>
         </Modal>
     );
