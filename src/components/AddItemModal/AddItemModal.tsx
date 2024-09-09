@@ -46,11 +46,8 @@ export const AddItemModal = () => {
     const refCheckbox = useRef<HTMLInputElement>(null);
     const [relation, , setRelation] = useEnhancedState("And");
 
-    console.log(relation);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRelation(event.target.value);
-        console.log("target", event.target.value);
-        console.log("relation", relation);
     };
 
     const checkboxId = useId();
