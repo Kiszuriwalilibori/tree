@@ -57,14 +57,46 @@ export class ItemsClass {
         const result = this.items.find(item => item.id === id);
         return result;
     }
+    // removeItem(item: Item) {
+    //     const parentIndex = item.parent ? this.#findParentIndex(item.parent) : undefined;
+    //     const childIndex = parentIndex ? this.items[parentIndex].children?.indexOf(item.id) : undefined;
+    //     parentIndex && childIndex && this.hasChildren(this.items[parentIndex]) && this.items[parentIndex].children?.indexOf(item.id) && this.items[parentIndex].children?.splice(childIndex, 1);
+    //     this.items = this.items.filter(element => element.id !== item.id);
+
+    //     return this;
+    //     // wypadaloby jeszcze usuwać nody które straciły rodzica. najprościej przefiltrować po tym, czy rodzicc, którego mają wpisanego istnieje
+    // }
     removeItem(item: Item) {
-        const parentIndex = item.parent ? this.#findParentIndex(item.parent) : undefined;
-        const childIndex = parentIndex ? this.items[parentIndex].children?.indexOf(item.id) : undefined;
-        parentIndex && childIndex && this.hasChildren(this.items[parentIndex]) && this.items[parentIndex].children?.indexOf(item.id) && this.items[parentIndex].children?.splice(childIndex, 1);
-        this.items = this.items.filter(element => element.id !== item.id);
+        const getAllDescendantIds = (itemId: ID): ID[] => {
+            const descendants: ID[] = [];
+            const currentItem = this.getItemByID(itemId);
+
+            if (currentItem && currentItem.children) {
+                for (const childId of currentItem.children) {
+                    descendants.push(childId);
+
+                    descendants.push(...getAllDescendantIds(childId));
+                }
+            }
+
+            return descendants;
+        };
+
+        const idsToRemove = new Set([item.id, ...getAllDescendantIds(item.id)]);
+
+        if (item.parent) {
+            const parentIndex = this.#findParentIndex(item.parent);
+            if (parentIndex !== -1 && this.items[parentIndex].children) {
+                const childIndex = this.items[parentIndex].children.indexOf(item.id);
+                if (childIndex !== -1) {
+                    this.items[parentIndex].children.splice(childIndex, 1);
+                }
+            }
+        }
+
+        this.items = this.items.filter(element => !idsToRemove.has(element.id));
 
         return this;
-        // wypadaloby jeszcze usuwać nody które straciły rodzica. najprościej przefiltrować po tym, czy rodzicc, którego mają wpisanego istnieje
     }
     addItem(newItem: Item) {
         this.items.push(newItem);
