@@ -20,3 +20,10 @@ export interface Classes {
     item: string;
     relation: string;
 }
+
+export type EnhancedStateReturn<T> = readonly [
+    T, // current value
+    () => void, // reset function
+    (newValue: T) => void, // set function
+    boolean // isSet boolean
+];

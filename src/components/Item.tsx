@@ -4,6 +4,7 @@ import uuid from "react-uuid";
 import { AddButton, RemoveButton } from "components";
 
 import { useItemsStore } from "store/ItemsStore";
+import useMessage from "hooks/useMessage";
 
 interface Props {
     id: string;
@@ -11,8 +12,9 @@ interface Props {
 export const ItemComponent = (props: Props) => {
     const { id } = props;
     const { items, updateItems } = useItemsStore();
+    const showMessage = useMessage();
     const item = items.getItemByID(id);
-    const classes = items.getClasses(item);
+    const classes = item ? items.getClasses(item) : undefined;
 
     const handleRemove = React.useCallback(() => {
         if (item) {
@@ -21,7 +23,14 @@ export const ItemComponent = (props: Props) => {
         }
     }, [items, item, updateItems]);
 
-    if (!item || !classes) return null;
+    if (!classes) {
+        showMessage.warning(`Classes for item "${id}" could not be generated`);
+        return null;
+    }
+    if (!item) {
+        showMessage.warning(`Item with id "${id}" not found`);
+        return null;
+    }
 
     return (
         <div className={classes.item}>
@@ -32,8 +41,8 @@ export const ItemComponent = (props: Props) => {
             </div>
             {items.hasChildren(item) && (
                 <div className={classes.children}>
-                    {item.children?.map(id => {
-                        return <ItemComponent key={uuid()} id={id} />;
+                    {item.children?.map(childID => {
+                        return <ItemComponent key={childID} id={childID} />;
                     })}
                 </div>
             )}

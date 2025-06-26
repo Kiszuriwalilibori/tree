@@ -1,13 +1,12 @@
 import { useCallback, useMemo, useState } from "react";
-
-function useEnhancedState(initialValue) {
-    const [value, setValue] = useState(initialValue);
+function useEnhancedState<T>(initialValue: T) {
+    const [value, setValue] = useState<T>(initialValue);
 
     const resetState = useCallback(() => {
         setValue(initialValue);
     }, [initialValue]);
 
-    const setState = useCallback(newValue => {
+    const setState = useCallback((newValue: T) => {
         setValue(newValue);
     }, []);
 

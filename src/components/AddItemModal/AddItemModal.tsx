@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import { useCallback, useId, useRef } from "react";
 import { useMessage, useEnhancedState } from "hooks";
 import { useModalStore, useItemsStore } from "store";
+import { EnhancedStateReturn } from "types";
 
 const WARNING_DUPLICATE = "Takie kryterium już istnieje i nie może być zduplikowane";
 
@@ -25,16 +26,16 @@ const StyledFormControlLabel = styled((props: StyledFormControlLabelProps) => <F
 interface XFormControlLabelProps extends FormControlLabelProps {
     callback: Function;
 }
-function MyFormControlLabel(props: XFormControlLabelProps) {
-    const radioGroup = useRadioGroup();
-    let checked = false;
+// function MyFormControlLabel(props: XFormControlLabelProps) {
+//     const radioGroup = useRadioGroup();
+//     let checked = false;
 
-    if (radioGroup) {
-        checked = radioGroup.value === props.value;
-    }
+//     if (radioGroup) {
+//         checked = radioGroup.value === props.value;
+//     }
 
-    return <StyledFormControlLabel checked={checked} {...props} onChange={() => props.callback(props.value)} />;
-}
+//     return <StyledFormControlLabel checked={checked} {...props} onChange={() => props.callback(props.value)} />;
+// }
 
 export const AddItemModal = () => {
     const { items, updateItems: updateTestItems } = useItemsStore();
@@ -42,9 +43,9 @@ export const AddItemModal = () => {
     const parent = useModalStore.use.currentItem();
     const closeModal = useModalStore.use.closeModal();
     const handleClose = useModalStore.use.closeModal();
-    const [criterion, clearCriterion, setCriterion, isCriterionSet] = useEnhancedState("");
+    const [criterion, clearCriterion, setCriterion, isCriterionSet]: EnhancedStateReturn<string> = useEnhancedState<string>("");
     const refCheckbox = useRef<HTMLInputElement>(null);
-    const [relation, , setRelation] = useEnhancedState("And");
+    const [relation, , setRelation]: EnhancedStateReturn<string> = useEnhancedState<string>("And");
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRelation(event.target.value);
